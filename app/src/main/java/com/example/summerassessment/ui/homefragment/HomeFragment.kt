@@ -26,7 +26,7 @@ class HomeFragment: Fragment() {
     private lateinit var binding:MainFragmentHomePageBinding
     private val viewModel:HomeFragmentViewModel by lazy { ViewModelProvider(this).get(HomeFragmentViewModel::class.java) }
 
-    private val adapter=HomeRecommendAdapter()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -40,19 +40,13 @@ class HomeFragment: Fragment() {
 
 
 
-        lifecycleScope.launch {
-            viewModel.getData().collect {
-                p->
-                adapter.submitData(p)
-            }
-        }
-
 
 
         return binding.root
     }
 
     private fun init(){
+        val adapter=HomeRecommendAdapter(requireActivity())
         setHasOptionsMenu(true);
         binding.fragmentHomeVp.adapter=HomePageVpAdapter(requireActivity(),adapter)
 
@@ -83,6 +77,15 @@ class HomeFragment: Fragment() {
         }.attach()
 
         binding.fragmentHomeVp
+
+        viewModel.recommendLiveData.observe(requireActivity()){
+            p->
+            lifecycleScope.launch {
+                adapter.submitData(p)
+            }
+        }
+
+        viewModel.getData()
 
     }
 

@@ -8,7 +8,10 @@ import com.example.summerassessment.model.Data
 import com.example.summerassessment.model.pagingsource.HomeRecommendPagingSource
 import com.example.summerassessment.services.HomeRecommendService
 import com.example.summerassessment.util.create
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.shareIn
 
 object HomeRecommendRepository{
 
@@ -18,9 +21,9 @@ object HomeRecommendRepository{
         return homeRecommendService.getRecommendList().code
     }
 
-    fun getPagingData(): Flow<PagingData<Data>> {
+    fun getPagingData():Flow<PagingData<Data>> {
         return Pager(
-            config = PagingConfig(50),
+            config = PagingConfig(10),
             pagingSourceFactory = { HomeRecommendPagingSource(homeRecommendService) }
         ).flow
     }

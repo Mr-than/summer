@@ -3,6 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
 }
 
+
 android {
     compileSdk 32
 
@@ -34,9 +35,16 @@ android {
         //noinspection DataBindingWithoutKapt
         enabled=true
     }
+
+
+
 }
 
 dependencies {
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
+
+    implementation 'xyz.doikki.android.dkplayer:dkplayer-java:3.3.6'
+    implementation 'xyz.doikki.android.dkplayer:videocache:3.3.6'
 
     implementation 'com.airbnb.android:lottie:5.0.1'
 

@@ -1,65 +1,100 @@
 package com.example.summerassessment.ui.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.airbnb.lottie.LottieAnimationView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CircleCrop
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.request.RequestOptions
 import com.example.summerassessment.R
+import com.example.summerassessment.databinding.HomeRecommendVpItemRvItemLayoutBinding
 import com.example.summerassessment.model.Data
+import com.example.summerassessment.util.decrypt
 
-class HomeRecommendAdapter : PagingDataAdapter<Data,HomeRecommendAdapter.ViewHolder>(COMPARATOR) {
+class HomeRecommendAdapter(private val context: Context) : PagingDataAdapter<Data,HomeRecommendAdapter.ViewHolder>(COMPARATOR){
 
     companion object {
+        private val list= mutableListOf<String>()
         private val COMPARATOR= object : DiffUtil.ItemCallback<Data>() {
             override fun areItemsTheSame(oldItem: Data, newItem: Data): Boolean {
-                return oldItem.user == newItem.user
+                return oldItem.joke.jokesId == newItem.joke.jokesId
             }
-
             override fun areContentsTheSame(oldItem: Data, newItem: Data): Boolean {
-                return oldItem == newItem
+                return false
             }
+            override fun getChangePayload(oldItem: Data, newItem: Data)= listOf<String>()
         }
     }
 
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
-        val a: TextView =itemView.findViewById(R.id.home_page_vp_item_rv_text_nike_name)
-        val b:ImageView=itemView.findViewById(R.id.home_page_vp_item_rv_text_photo)
-        val c:ImageView=itemView.findViewById(R.id.home_page_vp_item_rv_text_like_image)
-        val d:LottieAnimationView=itemView.findViewById(R.id.home_page_vp_item_rv_text_like_lottie)
+    class ViewHolder(val binding:HomeRecommendVpItemRvItemLayoutBinding) : RecyclerView.ViewHolder(binding.root){
 
         init {
-
-
-            c.setOnClickListener{
+            binding.homePageVpItemRvTextLikeImage.setOnClickListener{
                 val position=layoutPosition
-                d.visibility= VISIBLE
-                d.setAnimation("like.json")
-                d.playAnimation()
+                if(!(binding.homePageVpItemRvTextLikeImage.tag as Boolean)){
+                    binding.homePageVpItemRvTextLikeImage.setImageResource(R.drawable.like_click)
+                    list.add(position.toString())
+                    binding.homePageVpItemRvTextLikeImage.tag=true
+                }else{
+                    binding.homePageVpItemRvTextLikeImage.setImageResource(R.drawable.like)
+                    if(list.contains(position.toString())){
+                        list.remove(position.toString())
+                    }
+                    binding.homePageVpItemRvTextLikeImage.tag=false
+                }
             }
-
-
         }
-
     }
 
-
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-            holder.a.text=getItem(position)?.user?.nickName
-            if(position%2==0)
-            holder.b.visibility=GONE
+
+        holder.binding.homePageVpItemRvTextNikeName.text=getItem(position)?.user?.nickName
+
+        holder.binding.homePageVpItemRvTextPhoto.visibility = GONE
+        getItem(position)?.joke?.imageUrl?.run {
+            if(this!="") {
+                val url=decrypt()
+                if(url!=""){
+                    holder.binding.homePageVpItemRvTextPhoto.visibility = VISIBLE
+                    Glide.with(context).load(url)
+                        .apply(RequestOptions.bitmapTransform(RoundedCorners(50)))
+                        .into(holder.binding.homePageVpItemRvTextPhoto)
+                }
+            }
+        }
+
+        getItem(position)?.user?.avatar.run {
+            if(this!="") {
+                Glide.with(context).load(this)
+                    .apply(RequestOptions.bitmapTransform(CircleCrop()))
+                    .into(holder.binding.homePageVpItemRvTextHead)
+            }
+        }
+
+        holder.binding.homePageVpItemRvTextLikeImage.tag = false
+
+        if(list.isNotEmpty()){
+            holder.binding.homePageVpItemRvTextLikeImage.setImageResource( if(list.contains(position.toString())){R.drawable.like_click}else{R.drawable.like})
+        }else{
+            holder.binding.homePageVpItemRvTextLikeImage.setImageResource(R.drawable.like)
+        }
+
+        holder.binding.homePageVpItemRvTextAutograph.text=getItem(position)?.user?.signature
+        holder.binding.homePageVpItemRvTextText.text=getItem(position)?.joke?.content
+
     }
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.home_recommend_vp_item_rv_item_layout,parent,false))
+        val binding:HomeRecommendVpItemRvItemLayoutBinding=HomeRecommendVpItemRvItemLayoutBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+        return ViewHolder(binding)
     }
 
 

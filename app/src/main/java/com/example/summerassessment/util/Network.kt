@@ -18,15 +18,18 @@ inline fun <reified T> create():T{
         .create(T::class.java)
 }
 
-@RequiresApi(Build.VERSION_CODES.O)
-fun String.decrypt() {
 
+fun String.decrypt():String{
     val raw = APP.PASSWORD.toByteArray()
     val secretKeySpec = SecretKeySpec(raw, "AES")
     val cipher = Cipher.getInstance("AES/ECB/PKCS5Padding")
     cipher.init(Cipher.DECRYPT_MODE, secretKeySpec)
-    val encrypted = Base64.getDecoder().decode(this.replace("ftp://",""))
+    val encrypted = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        Base64.getDecoder().decode(this.replace("ftp://","").trim())
+    } else {
+        return ""
+    }
     val original = cipher.doFinal(encrypted)
-    val result = String(original)
-    println(result)
+    val s=String(original)
+    return s
 }
