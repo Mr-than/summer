@@ -7,8 +7,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.example.summerassessment.model.Data
-import com.example.summerassessment.repository.HomeRecommendRepository
-import kotlinx.coroutines.flow.Flow
+import com.example.summerassessment.repository.HomePageRepository
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
@@ -20,7 +19,7 @@ class HomeFragmentViewModel:ViewModel(){
 
     fun getData() {
         viewModelScope.launch {
-            HomeRecommendRepository.getPagingData().cachedIn(viewModelScope).collect { p->
+            HomePageRepository.getPagingData().cachedIn(viewModelScope).collect { p->
                 _recommendLiveData.value = p
                 }
             }

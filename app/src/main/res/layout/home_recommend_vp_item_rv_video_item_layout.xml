@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:layout_marginBottom="10dp"
     android:background="@color/white"
     android:paddingBottom="20dp">
@@ -108,7 +108,7 @@
         app:layout_constraintEnd_toStartOf="@+id/home_page_vp_item_rv_video_hate"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/home_page_vp_item_rv_video_player">
+        app:layout_constraintTop_toBottomOf="@+id/home_page_vp_item_rv_video_player_layout">
 
         <ImageView
             android:id="@+id/home_page_vp_item_rv_video_like_image"
@@ -144,7 +144,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/home_page_vp_item_rv_video_avatar"
-        app:layout_constraintTop_toBottomOf="@+id/home_page_vp_item_rv_video_player">
+        app:layout_constraintTop_toBottomOf="@+id/home_page_vp_item_rv_video_player_layout">
 
         <ImageView
             android:id="@+id/home_page_vp_item_rv_video_share_image"
@@ -175,7 +175,7 @@
         app:layout_constraintEnd_toStartOf="@+id/home_page_vp_item_rv_video_share"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/home_page_vp_item_rv_video_hate"
-        app:layout_constraintTop_toBottomOf="@+id/home_page_vp_item_rv_video_player">
+        app:layout_constraintTop_toBottomOf="@+id/home_page_vp_item_rv_video_player_layout">
 
         <ImageView
             android:id="@+id/home_page_vp_item_rv_video_avatar_image"
@@ -206,7 +206,7 @@
         app:layout_constraintEnd_toStartOf="@+id/home_page_vp_item_rv_video_avatar"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/home_page_vp_item_rv_video_like"
-        app:layout_constraintTop_toBottomOf="@+id/home_page_vp_item_rv_video_player">
+        app:layout_constraintTop_toBottomOf="@+id/home_page_vp_item_rv_video_player_layout">
 
         <ImageView
             android:id="@+id/home_page_vp_item_rv_video_hate_image"
@@ -229,17 +229,26 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <xyz.doikki.videoplayer.player.VideoView
-        android:paddingStart="25dp"
-        android:paddingEnd="25dp"
-        android:id="@+id/home_page_vp_item_rv_video_player"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
+    <LinearLayout
+        android:id="@+id/home_page_vp_item_rv_video_player_layout"
         android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/home_page_vp_item_rv_video_text" />
+        app:layout_constraintTop_toBottomOf="@+id/home_page_vp_item_rv_video_text"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <xyz.doikki.videoplayer.player.VideoView
+            android:layout_width="match_parent"
+            android:id="@+id/home_page_vp_item_rv_video_player"
+            android:layout_height="300dp" />
+
+    </LinearLayout>
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -41,6 +41,8 @@ android {
 }
 
 dependencies {
+    implementation 'xyz.doikki.android.dkplayer:dkplayer-ui:3.3.6'
+
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 
     implementation 'xyz.doikki.android.dkplayer:dkplayer-java:3.3.6'
