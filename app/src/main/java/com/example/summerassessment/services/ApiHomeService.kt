@@ -13,4 +13,16 @@ interface ApiHomeService {
     @POST("home/recommend")
     suspend fun getRecommendList():RecommendListBean
 
+    @Headers("project_token:${APP.PROJECT_TOKEN}")
+    @POST("home/latest")
+    suspend fun getNewList():RecommendListBean
+
+    @Headers("project_token:${APP.PROJECT_TOKEN}")
+    @POST("home/text")
+    suspend fun getTextList():RecommendListBean
+
+    @Headers("project_token:${APP.PROJECT_TOKEN}")
+    @POST("home/pic")
+    suspend fun getPicList():RecommendListBean
+
 }

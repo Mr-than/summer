@@ -1,6 +1,5 @@
 package com.example.summerassessment.ui.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,43 +16,45 @@ import com.example.summerassessment.util.VideoIsPlay
 
 class HomePageVpAdapter(
     private val context: FragmentActivity,
-    private val adapter: HomeRecommendAdapter
+    private val adapters:(Int)->HomeAdapter
 ) : RecyclerView.Adapter<HomePageVpAdapter.ViewHolder>() {
-
-    private lateinit var listener: VideoPlayListener
-
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val a: RecyclerView = itemView.findViewById(R.id.home_page_vp_item_rv)
-        private val re: SwipeRefreshLayout =
+        private val refresh: SwipeRefreshLayout =
             itemView.findViewById(R.id.home_page_vp_item_rv_refresh)
         init {
 
-            listener = adapter
 
-            re.setOnRefreshListener {
-                adapter.refresh()
+            refresh.setOnRefreshListener {
+                val position=layoutPosition
+
+                adapters(position).refresh()
             }
-            adapter.addLoadStateListener {
-                when (it.refresh) {
-                    is LoadState.NotLoading -> {
-                        re.isRefreshing = false
+
+            for(position in 0 until 5) {
+                adapters(position).addLoadStateListener {
+                    when (it.refresh) {
+                        is LoadState.NotLoading -> {
+                            refresh.isRefreshing = false
+                        }
+                        is LoadState.Loading -> {
+                            refresh.isRefreshing = true
+                        }
+                        is LoadState.Error -> {
+                            val state = it.refresh as LoadState.Error
+                            refresh.isRefreshing = false
+                            Toast.makeText(
+                                context,
+                                "Load Error: ${state.error.message}",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
                     }
-                    is LoadState.Loading -> {
-                        re.isRefreshing = true
-                    }
-                    is LoadState.Error -> {
-                        val state = it.refresh as LoadState.Error
-                        re.isRefreshing = false
-                        Toast.makeText(
-                            context,
-                            "Load Error: ${state.error.message}",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
+
                 }
-
             }
+
         }
     }
 
@@ -66,17 +67,12 @@ class HomePageVpAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        if (position == 1) {
-
 
             val manager = LinearLayoutManager(context as MainActivity)
-
             holder.a.layoutManager = manager
-            holder.a.adapter = adapter
+            holder.a.adapter = adapters(position)
 
-            holder.a.addOnScrollListener(VideoIsPlay(listener))
-
-        }
+            holder.a.addOnScrollListener(VideoIsPlay(adapters(position).getListener()))
 
     }
 

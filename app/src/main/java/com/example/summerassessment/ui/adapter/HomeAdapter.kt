@@ -28,9 +28,8 @@ import xyz.doikki.videocontroller.component.ErrorView
 import xyz.doikki.videocontroller.component.PrepareView
 
 
-class HomeRecommendAdapter(private val context: Context) :
-    PagingDataAdapter<Data, HomeRecommendAdapter.ViewHolder>(COMPARATOR), VideoPlayListener {
-
+class HomeAdapter(private val context: Context) :
+    PagingDataAdapter<Data, HomeAdapter.ViewHolder>(COMPARATOR), VideoPlayListener {
 
     companion object {
         private val list = mutableListOf<String>()
@@ -194,9 +193,7 @@ class HomeRecommendAdapter(private val context: Context) :
                     }
                 }
             }
-
         }
-
     }
 
 
@@ -271,5 +268,8 @@ class HomeRecommendAdapter(private val context: Context) :
             imageView.setImageResource(normalImg)
         }
     }
+
+
+    fun getListener():VideoPlayListener=this
 
 }
