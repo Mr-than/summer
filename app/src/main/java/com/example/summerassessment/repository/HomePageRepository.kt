@@ -1,14 +1,11 @@
 package com.example.summerassessment.repository
 
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
-import androidx.paging.PagingData
-import com.example.summerassessment.model.Data
+
 import com.example.summerassessment.model.RecommendListBean
-import com.example.summerassessment.ui.pagingsource.HomeRecommendPagingSource
 import com.example.summerassessment.services.ApiHomeService
 import com.example.summerassessment.util.create
-import kotlinx.coroutines.flow.Flow
+
+import rx.Observable
 
 object HomePageRepository{
 
@@ -20,11 +17,25 @@ object HomePageRepository{
     }
 
 
-    fun getPagingData(getData:suspend ()-> RecommendListBean):Flow<PagingData<Data>> {
-        return Pager(
-            config = PagingConfig(10),
-            pagingSourceFactory = { HomeRecommendPagingSource(getData)
-          }
-        ).flow
+    fun getPagingData(p:Int): Observable<RecommendListBean> {
+        return when(p){
+            0->{
+                apiHomeService.getRecommendList()
+            }
+            1->{
+                apiHomeService.getNewList()
+            }
+            2->{
+                apiHomeService.getTextList()
+            }
+            else->{
+                apiHomeService.getPicList()
+            }
+        }
+
     }
+
+    fun getRecommendFollowData()=apiHomeService.getRecommendFollow()
+
+
 }

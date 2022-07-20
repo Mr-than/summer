@@ -1,10 +1,12 @@
 package com.example.summerassessment.util
 
+import androidx.core.view.size
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.summerassessment.listener.VideoPlayListener
+import com.example.summerassessment.ui.adapter.HomeAdapter
 
-class VideoIsPlay(private val listener: VideoPlayListener): RecyclerView.OnScrollListener(){
+class HomeRvListener(private val listener: VideoPlayListener): RecyclerView.OnScrollListener(){
 
     private var first: Int = 0
     private var last: Int = 0
@@ -21,6 +23,11 @@ class VideoIsPlay(private val listener: VideoPlayListener): RecyclerView.OnScrol
                 listener.playVideo(first, recyclerView)
             }
         }
+
+        if (first >= recyclerView.size - 3&&recyclerView.scrollState==RecyclerView.SCROLL_STATE_IDLE) {
+            val a=recyclerView.size
+            (recyclerView.adapter as HomeAdapter).update()
+        }
     }
 
     override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
@@ -29,7 +36,7 @@ class VideoIsPlay(private val listener: VideoPlayListener): RecyclerView.OnScrol
 
         if(recyclerView.scrollState==RecyclerView.SCROLL_STATE_SETTLING&&first!=last){
             listener.pauseVideo(last, recyclerView)
-
         }
+
     }
 }

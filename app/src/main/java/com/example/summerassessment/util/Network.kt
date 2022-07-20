@@ -3,6 +3,7 @@ package com.example.summerassessment.util
 import android.os.Build
 import com.example.summerassessment.base.APP
 import retrofit2.Retrofit
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.*
 import javax.crypto.Cipher
@@ -11,6 +12,7 @@ import javax.crypto.spec.SecretKeySpec
 inline fun <reified T> create():T{
     return Retrofit.Builder()
         .addConverterFactory(GsonConverterFactory.create())
+        .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
         .baseUrl(APP.BASE_URL)
         .build()
         .create(T::class.java)

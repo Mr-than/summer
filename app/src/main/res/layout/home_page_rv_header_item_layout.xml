@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="150dp"
+    android:layout_marginLeft="16dp"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shape_header_round">
+
+    <ImageView
+        android:id="@+id/home_page_rv_header_item_photo"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/test"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/home_page_rv_header_item_nike_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="不悔此生种深情"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/home_page_rv_header_item_photo" />
+
+    <TextView
+        android:id="@+id/home_page_rv_header_item_article"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="8dp"
+        android:text="发表 227"
+        app:layout_constraintStart_toStartOf="@+id/home_page_rv_header_item_nike_name"
+        app:layout_constraintTop_toBottomOf="@+id/home_page_rv_header_item_nike_name" />
+
+    <TextView
+        android:id="@+id/home_page_rv_header_item_fan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:text="粉丝 26"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/home_page_rv_header_item_article"
+        app:layout_constraintTop_toBottomOf="@+id/home_page_rv_header_item_nike_name" />
+
+    <Button
+        android:id="@+id/home_page_rv_header_button_item_follow"
+        android:layout_width="100dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/shape_follow_button"
+        android:text="+关注"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/home_page_rv_header_item_article" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
