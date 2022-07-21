@@ -3,8 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="150dp"
-    android:layout_marginLeft="16dp"
-    android:layout_height="wrap_content"
+    android:layout_height="200dp"
+    android:layout_marginLeft="8dp"
+    android:layout_marginRight="8dp"
     android:background="@drawable/shape_header_round">
 
     <ImageView
@@ -12,7 +13,6 @@
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginTop="16dp"
-        android:src="@drawable/test"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -22,9 +22,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="不悔此生种深情"
+        android:text="段子乐"
         android:textColor="@color/black"
-        android:textSize="20dp"
+        android:textSize="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/home_page_rv_header_item_photo" />
@@ -33,21 +33,19 @@
         android:id="@+id/home_page_rv_header_item_article"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="8dp"
-        android:text="发表 227"
-        app:layout_constraintStart_toStartOf="@+id/home_page_rv_header_item_nike_name"
+        android:text="发表 0"
+        app:layout_constraintEnd_toStartOf="@+id/home_page_rv_header_item_fan"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/home_page_rv_header_item_nike_name" />
 
     <TextView
         android:id="@+id/home_page_rv_header_item_fan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
-        android:text="粉丝 26"
+        android:text="粉丝 0"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/home_page_rv_header_item_article"
         app:layout_constraintTop_toBottomOf="@+id/home_page_rv_header_item_nike_name" />
 

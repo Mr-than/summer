@@ -27,7 +27,18 @@ class HomePageVpAdapter(
         init {
             refresh.setOnRefreshListener {
                 val position = layoutPosition
-                val a=list[position].refresh()
+                val a=list[position].refresh {
+                    val first=(a.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
+                    val last=(a.layoutManager as LinearLayoutManager).findLastVisibleItemPosition()
+
+                    for (i in first..last){
+                        val viewHolder=a.findViewHolderForLayoutPosition(i)
+                        if(viewHolder is HomeAdapter.VideoViewHolder){
+                            viewHolder.binding.homePageVpItemRvVideoPlayer.release()
+                        }
+                    }
+
+                }
                 refresh.isRefreshing=!a
             }
 

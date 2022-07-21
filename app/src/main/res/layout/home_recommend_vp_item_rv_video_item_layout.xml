@@ -185,8 +185,8 @@
 
         <ImageView
             android:id="@+id/home_page_vp_item_rv_video_avatar_image"
-            android:layout_width="19dp"
-            android:layout_height="15dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:src="@drawable/avatar_review"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -249,13 +249,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <xyz.doikki.videoplayer.player.VideoView
+        <xyz.doikki.videocontroller.component.PrepareView
+            android:id="@+id/prepare_view"
             android:layout_width="match_parent"
-            android:id="@+id/home_page_vp_item_rv_video_player"
-            android:layout_height="300dp" />
+            android:layout_height="wrap_content">
+            <xyz.doikki.videoplayer.player.VideoView
+                android:layout_width="match_parent"
+                android:id="@+id/home_page_vp_item_rv_video_player"
+                android:layout_height="300dp" />
+        </xyz.doikki.videocontroller.component.PrepareView>
 
     </LinearLayout>
-
 
 
 

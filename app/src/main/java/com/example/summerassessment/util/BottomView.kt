@@ -8,8 +8,11 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.lifecycle.ViewModelProvider
 import com.example.summerassessment.R
 import com.example.summerassessment.databinding.MainActivityBottomViewBinding
+import com.example.summerassessment.ui.mainactivity.MainActivity
+import com.example.summerassessment.ui.mainactivity.MainActivityViewModel
 
 class BottomView@JvmOverloads constructor(
     context: Context,
@@ -22,10 +25,13 @@ class BottomView@JvmOverloads constructor(
     private val unClickImg:ArrayList<Int> = ArrayList(4)
     private val clickImg:ArrayList<Int> =ArrayList(4)
 
+    private val viewModel:MainActivityViewModel by lazy { ViewModelProvider(getContext() as MainActivity).get(MainActivityViewModel::class.java) }
+
     private var previousIndex:Int=0
 
 
     init {
+
 
         clipChildren=false
 
@@ -72,15 +78,19 @@ class BottomView@JvmOverloads constructor(
         when(v.id){
             R.id.bottom_button_home_layout->{
                 setViewColor(0)
+                viewModel.setPageNum(0)
             }
             R.id.bottom_button_play_layout->{
                 setViewColor(1)
+                viewModel.setPageNum(1)
             }
             R.id.bottom_button_new_layout->{
                 setViewColor(2)
+                viewModel.setPageNum(2)
             }
             R.id.bottom_button_my_layout->{
                 setViewColor(3)
+                viewModel.setPageNum(3)
             }
             R.id.bottom_button_plus_layout->{
                 setViewColor(4)

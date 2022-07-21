@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:paddingBottom="8dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <ImageView
+        android:id="@+id/dialog_fragment_comment_comment_photo"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/test"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:textSize="13dp"
+        android:id="@+id/dialog_fragment_comment_comment_nick_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="乐-o1bwf8"
+        app:layout_constraintStart_toEndOf="@+id/dialog_fragment_comment_comment_photo"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:textSize="15dp"
+        android:id="@+id/dialog_fragment_comment_comment_text"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:ellipsize="none"
+        android:inputType="textMultiLine"
+        android:singleLine="false"
+        android:text="项目进行中，由于为了快速开发于是登录模块便用了DialogFragment来做，自定义了对话框布局，需求是想要登录对话框一显示就把焦点到用户名的输入框，并且自动弹出输入法软键盘。"
+        app:layout_constraintStart_toEndOf="@+id/dialog_fragment_comment_comment_photo"
+        app:layout_constraintTop_toBottomOf="@+id/dialog_fragment_comment_comment_nick_name" />
+
+    <TextView
+        android:id="@+id/dialog_fragment_comment_comment_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="qwetweyy"
+        app:layout_constraintStart_toEndOf="@+id/dialog_fragment_comment_comment_photo"
+        app:layout_constraintTop_toBottomOf="@+id/dialog_fragment_comment_comment_text" />
+
+    <TextView
+        android:id="@+id/dialog_fragment_comment_comment_reply"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="回复"
+        app:layout_constraintStart_toEndOf="@+id/dialog_fragment_comment_comment_time"
+        app:layout_constraintTop_toBottomOf="@+id/dialog_fragment_comment_comment_text" />
+
+    <TextView
+        android:id="@+id/dialog_fragment_comment_comment_delete"
+        android:textColor="#E79764"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="删除"
+        app:layout_constraintStart_toEndOf="@+id/dialog_fragment_comment_comment_reply"
+        app:layout_constraintTop_toBottomOf="@+id/dialog_fragment_comment_comment_text" />
+
+    <ImageView
+        android:id="@+id/dialog_fragment_comment_comment_like"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="16dp"
+        android:src="@drawable/like_comment_unclick"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/dialog_fragment_comment_comment_like_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="24dp"
+        android:text="0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dialog_fragment_comment_comment_like" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

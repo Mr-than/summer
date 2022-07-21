@@ -18,8 +18,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.coroutines.launch
 import java.util.ArrayList
 
-class HomeFragment:Fragment() {
-
+class HomeFragment : Fragment() {
 
 
     private lateinit var binding: MainFragmentHomePageBinding
@@ -28,7 +27,6 @@ class HomeFragment:Fragment() {
             HomeFragmentViewModel::class.java
         )
     }
-
 
 
     override fun onCreateView(
@@ -48,11 +46,11 @@ class HomeFragment:Fragment() {
 
     private fun init() {
 
-        val followPageAdapter=FollowPageAdapter(requireActivity(),viewModel, ArrayList())
-        val homeAdapter1=HomeAdapter(requireActivity(), ArrayList(),1,viewModel)
-        val homeAdapter2=HomeAdapter(requireActivity(), ArrayList(),2,viewModel)
-        val homeAdapter3=HomeAdapter(requireActivity(), ArrayList(),3,viewModel)
-        val homeAdapter4=HomeAdapter(requireActivity(), ArrayList(),4,viewModel)
+        val followPageAdapter = FollowPageAdapter(requireActivity(), viewModel, ArrayList())
+        val homeAdapter1 = HomeAdapter(requireActivity(), ArrayList(), 1, viewModel)
+        val homeAdapter2 = HomeAdapter(requireActivity(), ArrayList(), 2, viewModel)
+        val homeAdapter3 = HomeAdapter(requireActivity(), ArrayList(), 3, viewModel)
+        val homeAdapter4 = HomeAdapter(requireActivity(), ArrayList(), 4, viewModel)
 
         val adapters = listOf(
             followPageAdapter,
@@ -64,7 +62,7 @@ class HomeFragment:Fragment() {
 
         setHasOptionsMenu(true)
 
-        binding.fragmentHomeVp.adapter = HomePageVpAdapter(requireActivity(),adapters)
+        binding.fragmentHomeVp.adapter = HomePageVpAdapter(requireActivity(), adapters)
 
         binding.fragmentHomeTabLayout.addOnTabSelectedListener(object :
             TabLayout.OnTabSelectedListener {
@@ -98,24 +96,28 @@ class HomeFragment:Fragment() {
             homeAdapter1.update(p)
         }
 
-        viewModel.newLiveData.observe(requireActivity()){ p->
+        viewModel.newLiveData.observe(requireActivity()) { p ->
             homeAdapter2.update(p)
         }
 
-        viewModel.textLiveData.observe(requireActivity()){ p->
+        viewModel.textLiveData.observe(requireActivity()) { p ->
             Log.d("8888888888888888", "init:----------------->${p[0].joke}")
             homeAdapter3.update(p)
         }
 
-        viewModel.picLiveData.observe(requireActivity()){ p->
+        viewModel.picLiveData.observe(requireActivity()) { p ->
             homeAdapter4.update(p)
         }
 
+        viewModel.followLiveData.observe(requireActivity()) {
+            followPageAdapter.update(it)
+        }
 
         viewModel.getRecommendData()
         viewModel.getNewData()
         viewModel.getText()
         viewModel.getPic()
+        viewModel.getFollowData(1)
 
     }
 

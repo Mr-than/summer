@@ -25,66 +25,79 @@ class HomeFragmentViewModel : ViewModel() {
     private val _picLiveData: MutableLiveData<List<Data>> = MutableLiveData()
     val picLiveData: LiveData<List<Data>> get() = _picLiveData
 
+    private val _followLiveData: MutableLiveData<List<Data>> = MutableLiveData()
+    val followLiveData: LiveData<List<Data>> get() = _followLiveData
 
-
-    private val _recommendFollowListLiveData:MutableLiveData<List<DataX>> = MutableLiveData()
-    val recommendFollowListLiveData:LiveData<List<DataX>> get() = _recommendFollowListLiveData
-
-    private var recommendFollowList:List<DataX>?=null
-
-
-
+    private val _recommendFollowListLiveData: MutableLiveData<List<DataX>> = MutableLiveData()
+    val recommendFollowListLiveData: LiveData<List<DataX>> get() = _recommendFollowListLiveData
 
 
     fun getRecommendFollowData() {
+        val ob = HomePageRepository.getRecommendFollowData()
+        ob.subscribeOn(Schedulers.io())
+            .map {
+                it.data
+            }.subscribeOn(Schedulers.io())
+            .subscribe {
+                _recommendFollowListLiveData.postValue(it)
+            }
+    }
 
+    fun getFollowData(page: Int) {
+        val ob = HomePageRepository.getPagingData(4, page)
+        ob.subscribeOn(Schedulers.io())
+            .map {
+                it.data
+            }.subscribeOn(Schedulers.io())
+            .subscribe {
+                _followLiveData.postValue(it)
+            }
     }
 
 
     fun getRecommendData() {
-            val ob=HomePageRepository.getPagingData(0)
-            ob.subscribeOn(Schedulers.io())
-                .map {
+        val ob = HomePageRepository.getPagingData(0, 0)
+        ob.subscribeOn(Schedulers.io())
+            .map {
                 it.data
             }.subscribeOn(Schedulers.io())
-             .subscribe {
-                 _recommendLiveData.postValue(it)
+            .subscribe {
+                _recommendLiveData.postValue(it)
             }
     }
 
-    fun getNewData(){
-        val ob=HomePageRepository.getPagingData(1)
+    fun getNewData() {
+        val ob = HomePageRepository.getPagingData(1, 0)
         ob.subscribeOn(Schedulers.io())
             .map {
-            it.data
-        }.subscribeOn(Schedulers.io())
+                it.data
+            }.subscribeOn(Schedulers.io())
             .subscribe {
                 _newLiveData.postValue(it)
             }
     }
 
-    fun getText(){
-        val ob=HomePageRepository.getPagingData(2)
+    fun getText() {
+        val ob = HomePageRepository.getPagingData(2, 0)
         ob.subscribeOn(Schedulers.io())
             .map {
-            it.data
-        }.subscribeOn(Schedulers.io())
+                it.data
+            }.subscribeOn(Schedulers.io())
             .subscribe {
                 _textLiveData.postValue(it)
             }
     }
 
-    fun getPic(){
-        val ob=HomePageRepository.getPagingData(3)
+    fun getPic() {
+        val ob = HomePageRepository.getPagingData(3, 0)
         ob.subscribeOn(Schedulers.io())
             .map {
-            it.data
-        }
+                it.data
+            }
             .subscribe {
                 _picLiveData.postValue(it)
             }
     }
-
 
 
 }

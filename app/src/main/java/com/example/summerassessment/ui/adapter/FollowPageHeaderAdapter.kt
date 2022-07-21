@@ -1,5 +1,6 @@
 package com.example.summerassessment.ui.adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.Drawable
@@ -13,6 +14,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.example.summerassessment.R
 import com.example.summerassessment.databinding.HomePageRvHeaderItemLayoutBinding
 import com.example.summerassessment.model.DataX
+import com.example.summerassessment.util.decrypt
 import java.util.ArrayList
 
 class FollowPageHeaderAdapter(private val context: Context, private val list: List<DataX>) :
@@ -47,15 +49,19 @@ class FollowPageHeaderAdapter(private val context: Context, private val list: Li
     }
 
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         if (list.isNotEmpty()) {
             holder.binding.homePageRvHeaderItemNikeName.text = list[position].nickname
-            holder.binding.homePageRvHeaderItemArticle.text = list[position].jokesNum
-            holder.binding.homePageRvHeaderItemFan.text = list[position].fansNum
+            holder.binding.homePageRvHeaderItemArticle.text = "发表 ${list[position].jokesNum}"
+            holder.binding.homePageRvHeaderItemFan.text = "粉丝 ${list[position].fansNum}"
 
-            Glide.with(context).load(this)
-                .apply(RequestOptions.bitmapTransform(CircleCrop()))
-                .into(holder.binding.homePageRvHeaderItemPhoto)
+            list[position].avatar.run {
+                Glide.with(context).load(this)
+                    .apply(RequestOptions.bitmapTransform(CircleCrop()))
+                    .into(holder.binding.homePageRvHeaderItemPhoto)
+            }
+
         }
     }
 

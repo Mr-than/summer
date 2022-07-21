@@ -5,6 +5,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.summerassessment.databinding.HomePageRvHeaderLayoutBinding
 import com.example.summerassessment.model.Data
@@ -18,6 +19,9 @@ class FollowPageAdapter(
     private val viewModel: HomeFragmentViewModel,
     private val dataList: ArrayList<Data>
 ) : HomeAdapter(context,dataList,0,viewModel) {
+
+    private val reList = ArrayList<Data>()
+    private var pageNum=1
 
     companion object {
         const val HEADER = 2002
@@ -73,5 +77,31 @@ class FollowPageAdapter(
         adapter.setList(list)
         adapter.notifyDataSetChanged()
     }
+
+    override fun update(){
+        viewModel.getFollowData(pageNum)
+    }
+
+
+    override fun update(newList: List<Data>) {
+        pageNum++
+        if(reList.containsAll(newList)){
+            return
+        }
+        reList.addAll(newList)
+        val result: DiffUtil.DiffResult = DiffUtil.calculateDiff(UpData(dataList, reList), true)
+        dataList.clear()
+        dataList.addAll(reList)
+        result.dispatchUpdatesTo(this)
+    }
+
+
+    fun refresh(): Boolean {
+        reList.clear()
+        pageNum=1
+        update()
+        return true
+    }
+
 
 }

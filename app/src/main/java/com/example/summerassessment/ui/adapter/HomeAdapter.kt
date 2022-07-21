@@ -13,6 +13,7 @@ import android.widget.LinearLayout
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -25,12 +26,15 @@ import com.example.summerassessment.databinding.HomeRecommendVpItemRvVideoItemLa
 import com.example.summerassessment.listener.VideoPlayListener
 import com.example.summerassessment.model.Data
 import com.example.summerassessment.ui.dialogfragment.CommentPage
+import com.example.summerassessment.ui.dialogfragment.viewmodel.CommentPageViewModel
 import com.example.summerassessment.ui.homefragment.HomeFragmentViewModel
+import com.example.summerassessment.ui.mainactivity.MainActivity
 import com.example.summerassessment.util.decrypt
 import xyz.doikki.videocontroller.StandardVideoController
 import xyz.doikki.videocontroller.component.CompleteView
 import xyz.doikki.videocontroller.component.ErrorView
 import xyz.doikki.videocontroller.component.PrepareView
+import kotlin.concurrent.thread
 
 
 open class HomeAdapter(
@@ -43,6 +47,7 @@ open class HomeAdapter(
     //private var viewModel:HomeFragmentViewModel = ViewModelProvider(context as MainActivity).get(HomeFragmentViewModel::class.java)
 
     private val reList = ArrayList<Data>()
+    private var isPlay=false
 
     companion object {
         private val list = mutableListOf<String>()
@@ -54,6 +59,8 @@ open class HomeAdapter(
 
     inner class PhotoViewHolder(val binding: HomeRecommendVpItemRvItemLayoutBinding) :
         ViewHolder(binding.root) {
+
+
 
         init {
             val position = layoutPosition
@@ -75,10 +82,22 @@ open class HomeAdapter(
             )
 
             binding.homePageVpItemRvTextAvatar.setOnClickListener {
+                val viewModel by lazy { ViewModelProvider(context as MainActivity).get(CommentPageViewModel::class.java) }
+
+
                 val fm: FragmentManager = (context as FragmentActivity).supportFragmentManager
                 val editNameDialog = CommentPage()
                 editNameDialog.show(fm, "fragment_dialog")
+
+                thread {
+                    Thread.sleep(500)
+                    val p=layoutPosition
+                    if(p>=0) {
+                        viewModel.getCommentData(dataList[p].joke.jokesId)
+                    }
+                }
             }
+
         }
     }
 
@@ -102,6 +121,22 @@ open class HomeAdapter(
                 position,
                 2
             )
+            binding.homePageVpItemRvVideoAvatar.setOnClickListener {
+                val viewModel by lazy { ViewModelProvider(context as MainActivity).get(CommentPageViewModel::class.java) }
+
+
+                val fm: FragmentManager = (context as FragmentActivity).supportFragmentManager
+                val editNameDialog = CommentPage()
+                editNameDialog.show(fm, "fragment_dialog")
+
+                thread {
+                    Thread.sleep(500)
+                    val p=layoutPosition
+                    if(p>=0) {
+                        viewModel.getCommentData(dataList[p].joke.jokesId)
+                    }
+                }
+            }
         }
     }
 
@@ -222,7 +257,7 @@ open class HomeAdapter(
 
                         holder.binding.homePageVpItemRvVideoPlayer.setUrl(url)
 
-                        val prepareView = PrepareView(context)
+                        val prepareView = holder.binding.prepareView
                         prepareView.setClickStart()
                         val thumb: ImageView =
                             prepareView.findViewById(xyz.doikki.videocontroller.R.id.thumb)
@@ -286,6 +321,7 @@ open class HomeAdapter(
     override fun playVideo(index: Int, recyclerView: RecyclerView) {
         val viewHolder = recyclerView.findViewHolderForAdapterPosition(index)
         if (viewHolder is VideoViewHolder) {
+            isPlay=true
             viewHolder.binding.homePageVpItemRvVideoPlayer.start()
         }
     }
@@ -293,12 +329,8 @@ open class HomeAdapter(
     override fun pauseVideo(index: Int, recyclerView: RecyclerView) {
         val viewHolder = recyclerView.findViewHolderForAdapterPosition(index)
         if (viewHolder is VideoViewHolder) {
-            viewHolder.binding.homePageVpItemRvVideoPlayer.run {
-                release()
-                val controller = StandardVideoController(context)
-                controller.setPlayState(viewHolder.binding.homePageVpItemRvVideoPlayer.currentPlayState);
-                controller.setPlayerState(viewHolder.binding.homePageVpItemRvVideoPlayer.currentPlayerState);
-            }
+            isPlay=false
+            viewHolder.binding.homePageVpItemRvVideoPlayer.release()
         }
     }
 
@@ -362,7 +394,7 @@ open class HomeAdapter(
         return dataList.size
     }
 
-    private inner class UpData(private val oldList: List<Data>, private val newList: List<Data>) :
+    protected inner class UpData(private val oldList: List<Data>, private val newList: List<Data>) :
         DiffUtil.Callback() {
 
         override fun getOldListSize(): Int {
@@ -390,24 +422,28 @@ open class HomeAdapter(
         }
     }
 
-    fun update() {
-        when (adapterTag) {
-            1 -> {
-                viewModel.getRecommendData()
-            }
-            2 -> {
-                viewModel.getNewData()
-            }
-            3 -> {
-                viewModel.getText()
-            }
-            4 -> {
-                viewModel.getPic()
+    open fun update() {
+
+        if (!isPlay) {
+            when (adapterTag) {
+                1 -> {
+                    viewModel.getRecommendData()
+                }
+                2 -> {
+                    viewModel.getNewData()
+                }
+                3 -> {
+                    viewModel.getText()
+                }
+                4 -> {
+                    viewModel.getPic()
+                }
             }
         }
+
     }
 
-    fun update(newList: List<Data>) {
+    open fun update(newList: List<Data>) {
         reList.addAll(newList)
         val result: DiffUtil.DiffResult = DiffUtil.calculateDiff(UpData(dataList, reList), true)
         dataList.clear()
@@ -416,7 +452,9 @@ open class HomeAdapter(
     }
 
 
-    fun refresh(): Boolean {
+    open fun refresh(close:()->Unit): Boolean {
+        close()
+        isPlay=false
         reList.clear()
         update()
         return true

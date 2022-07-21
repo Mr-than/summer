@@ -4,6 +4,8 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Android's project/SummerAssessment/app/src/main/res/drawable/dialog_shape.xml" value="0.1275" />
+        <entry key="..\:/Android's project/SummerAssessment/app/src/main/res/drawable/fragment_failog_comment_edit_shape.xml" value="0.16" />
+        <entry key="..\:/Android's project/SummerAssessment/app/src/main/res/drawable/fragment_failog_comment_edit_view.xml" value="0.16" />
         <entry key="..\:/Android's project/SummerAssessment/app/src/main/res/drawable/home_page_vp_item_layout.xml" value="0.1695" />
         <entry key="..\:/Android's project/SummerAssessment/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1305" />
         <entry key="..\:/Android's project/SummerAssessment/app/src/main/res/drawable/main_bnv_checked_color.xml" value="0.1305" />
@@ -19,7 +21,11 @@
         <entry key="..\:/Android's project/SummerAssessment/app/src/main/res/drawable/video_round_angle.xml" value="0.1475" />
         <entry key="..\:/Android's project/SummerAssessment/app/src/main/res/layout/MainActivityBottomView.xml" value="0.23278985507246377" />
         <entry key="..\:/Android's project/SummerAssessment/app/src/main/res/layout/activity_main.xml" value="0.16941175927517163" />
+        <entry key="..\:/Android's project/SummerAssessment/app/src/main/res/layout/dialog_fragment_comment_comment_rv_item.xml" value="0.26621847886098404" />
+        <entry key="..\:/Android's project/SummerAssessment/app/src/main/res/layout/dialog_fragment_comment_edit_layout.xml" value="0.24139492753623187" />
         <entry key="..\:/Android's project/SummerAssessment/app/src/main/res/layout/dialog_fragment_comment_layout.xml" value="0.26621847886098404" />
+        <entry key="..\:/Android's project/SummerAssessment/app/src/main/res/layout/fragment_brush_video.xml" value="0.25625" />
+        <entry key="..\:/Android's project/SummerAssessment/app/src/main/res/layout/fragment_brush_video_vp2_item.xml" value="0.25625" />
         <entry key="..\:/Android's project/SummerAssessment/app/src/main/res/layout/home_page_rv_header_item_layout.xml" value="0.26621847886098404" />
         <entry key="..\:/Android's project/SummerAssessment/app/src/main/res/layout/home_page_rv_header_layout.xml" value="0.21240942028985507" />
         <entry key="..\:/Android's project/SummerAssessment/app/src/main/res/layout/home_page_vp_item_layout.xml" value="0.23278985507246377" />
