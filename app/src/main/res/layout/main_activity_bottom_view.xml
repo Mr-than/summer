@@ -3,12 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@drawable/shadow"
+    android:background="@drawable/shape_shadow"
+    android:id="@+id/bottom_parent"
     android:layout_height="?attr/actionBarSize"
     android:clipChildren="false">
 
 
     <LinearLayout
+        android:layout_marginLeft="8dp"
         android:clickable="true"
         android:focusable="true"
         android:id="@+id/bottom_button_home_layout"
@@ -17,8 +19,7 @@
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        >
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/bottom_button_home_layout_image"
@@ -73,7 +74,7 @@
         android:paddingTop="3dp"
         android:paddingStart="3dp"
         android:paddingEnd="3dp"
-        android:background="@drawable/round"
+        android:background="@drawable/shape_round"
         android:id="@+id/bottom_button_plus_layout"
         android:layout_width="50dp"
         android:layout_height="50dp"
@@ -89,7 +90,7 @@
             android:id="@+id/bottom_button_plus_layout_image"
             android:layout_width="47dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/round_white"
+            android:background="@drawable/shape_round_white"
             android:src="@drawable/plus"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -129,6 +130,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:layout_marginRight="8dp"
         android:clickable="true"
         android:focusable="true"
         android:id="@+id/bottom_button_my_layout"

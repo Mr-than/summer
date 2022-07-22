@@ -25,7 +25,7 @@
             android:layout_marginLeft="16dp"
             android:layout_marginBottom="16dp"
             android:layout_weight="8"
-            android:background="@drawable/fragment_failog_comment_edit_shape"
+            android:background="@drawable/shape_fragment_failog_comment_edit"
             android:clickable="true"
             android:focusable="true"
             android:gravity="center|left"

@@ -1,4 +1,4 @@
-package com.example.summerassessment.ui.adapter
+package com.example.summerassessment.ui.adapter.homeadapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -13,33 +13,35 @@ import com.example.summerassessment.util.HomeRvListener
 
 class HomePageVpAdapter(
     private val context: FragmentActivity,
-    private val list:List<HomeAdapter>,
+    private val list: List<HomeAdapter>,
 ) : RecyclerView.Adapter<HomePageVpAdapter.ViewHolder>() {
 
     class ViewHolder(
-        private val context: FragmentActivity,
         itemView: View,
-        list:List<HomeAdapter>
+        list: List<HomeAdapter>
     ) : RecyclerView.ViewHolder(itemView) {
         val a: RecyclerView = itemView.findViewById(R.id.home_page_vp_item_rv)
-        private val refresh: SwipeRefreshLayout = itemView.findViewById(R.id.home_page_vp_item_rv_refresh)
+        private val refresh: SwipeRefreshLayout =
+            itemView.findViewById(R.id.home_page_vp_item_rv_refresh)
 
         init {
             refresh.setOnRefreshListener {
                 val position = layoutPosition
-                val a=list[position].refresh {
-                    val first=(a.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
-                    val last=(a.layoutManager as LinearLayoutManager).findLastVisibleItemPosition()
+                val a = list[position].refresh {
+                    val first =
+                        (a.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
+                    val last =
+                        (a.layoutManager as LinearLayoutManager).findLastVisibleItemPosition()
 
-                    for (i in first..last){
-                        val viewHolder=a.findViewHolderForLayoutPosition(i)
-                        if(viewHolder is HomeAdapter.VideoViewHolder){
-                            viewHolder.binding.homePageVpItemRvVideoPlayer.release()
+                    for (i in first..last) {
+                        val viewHolder = a.findViewHolderForLayoutPosition(i)
+                        if (viewHolder is HomeAdapter.VideoViewHolder) {
+                            viewHolder.binding.homePageVpItemRvVideoPlayer.pause()
                         }
                     }
 
                 }
-                refresh.isRefreshing=!a
+                refresh.isRefreshing = !a
             }
 
         }
@@ -48,7 +50,6 @@ class HomePageVpAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
-            context,
             LayoutInflater.from(parent.context)
                 .inflate(R.layout.home_page_vp_item_layout, parent, false), list
         )

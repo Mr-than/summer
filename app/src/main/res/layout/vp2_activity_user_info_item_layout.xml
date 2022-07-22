@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.example.summerassessment.util.ViewPager2Container xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <com.google.android.material.tabs.TabLayout
+        app:tabGravity="start"
+        app:tabMinWidth="100dp"
+        app:tabTextAppearance="@style/TabLayoutTextStyle"
+        android:id="@+id/vp2_activity_user_info_item_layout_tab_layout_child"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/vp2_activity_user_info_item_layout_vp2_child"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</com.example.summerassessment.util.ViewPager2Container>

@@ -9,6 +9,7 @@
     android:paddingBottom="20dp">
 
     <ImageView
+        android:clickable="true"
         android:id="@+id/home_page_vp_item_rv_video_head"
         android:layout_width="35dp"
         android:layout_height="35dp"
@@ -17,7 +18,8 @@
         app:layout_constraintHorizontal_bias="0.042"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.007" />
+        app:layout_constraintVertical_bias="0.007"
+        android:focusable="true" />
 
     <TextView
         android:id="@+id/home_page_vp_item_rv_video_nike_name"
@@ -237,7 +239,7 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <LinearLayout
+    <FrameLayout
         android:id="@+id/home_page_vp_item_rv_video_player_layout"
         android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -247,19 +249,14 @@
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="300dp">
 
-        <xyz.doikki.videocontroller.component.PrepareView
-            android:id="@+id/prepare_view"
+        <xyz.doikki.videoplayer.player.VideoView
+            android:id="@+id/home_page_vp_item_rv_video_player"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <xyz.doikki.videoplayer.player.VideoView
-                android:layout_width="match_parent"
-                android:id="@+id/home_page_vp_item_rv_video_player"
-                android:layout_height="300dp" />
-        </xyz.doikki.videocontroller.component.PrepareView>
+            android:layout_height="match_parent"/>
 
-    </LinearLayout>
+    </FrameLayout>
 
 
 

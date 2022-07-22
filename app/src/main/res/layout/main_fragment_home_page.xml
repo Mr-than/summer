@@ -7,10 +7,12 @@
     android:orientation="vertical">
 
     <androidx.appcompat.widget.Toolbar
-        android:background="@drawable/toolbar_shadow"
+        android:fitsSystemWindows="true"
+        android:minHeight="?attr/actionBarSize"
+        android:background="@drawable/shape_toolbar_shadow"
         android:id="@+id/fragment_home_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize">
+        android:layout_height="wrap_content">
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/fragment_home_tab_layout"

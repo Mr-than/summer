@@ -15,10 +15,6 @@ object HomePageRepository{
 
     private val apiHomeService=create<ApiHomeService>()
 
-    fun getApiHomeService(): ApiHomeService {
-        return apiHomeService
-    }
-
 
     fun getPagingData(p:Int,page:Int): Observable<RecommendListBean> {
         return when(p){

@@ -31,6 +31,15 @@ class HomeFragmentViewModel : ViewModel() {
     private val _recommendFollowListLiveData: MutableLiveData<List<DataX>> = MutableLiveData()
     val recommendFollowListLiveData: LiveData<List<DataX>> get() = _recommendFollowListLiveData
 
+    private var pagNum=0
+
+
+    private val list1 = ArrayList<Data>()
+    private val list2 = ArrayList<Data>()
+    private val list3 = ArrayList<Data>()
+    private val list4 = ArrayList<Data>()
+    private val list5=ArrayList<Data>()
+
 
     fun getRecommendFollowData() {
         val ob = HomePageRepository.getRecommendFollowData()
@@ -43,59 +52,97 @@ class HomeFragmentViewModel : ViewModel() {
             }
     }
 
-    fun getFollowData(page: Int) {
-        val ob = HomePageRepository.getPagingData(4, page)
+    fun getFollowData(isRefresh:Boolean) {
+        val ob = HomePageRepository.getPagingData(4, pagNum)
+        pagNum++
+        if (isRefresh){
+            list5.clear()
+            pagNum=1
+        }
+
         ob.subscribeOn(Schedulers.io())
             .map {
                 it.data
             }.subscribeOn(Schedulers.io())
             .subscribe {
-                _followLiveData.postValue(it)
+
+                if(!list5.containsAll(it)) {
+                    list5.addAll(it)
+                }
+                val new= ArrayList<Data>()
+                new.addAll(list5)
+                _followLiveData.postValue(new)
             }
     }
 
 
-    fun getRecommendData() {
+    fun getRecommendData(isRefresh:Boolean) {
+
         val ob = HomePageRepository.getPagingData(0, 0)
         ob.subscribeOn(Schedulers.io())
             .map {
                 it.data
             }.subscribeOn(Schedulers.io())
             .subscribe {
-                _recommendLiveData.postValue(it)
+                if(isRefresh) {
+                    list1.clear()
+                }
+                list1.addAll(it)
+                val new= ArrayList<Data>()
+                new.addAll(list1)
+                _recommendLiveData.postValue(new)
             }
     }
 
-    fun getNewData() {
+    fun getNewData(isRefresh:Boolean) {
         val ob = HomePageRepository.getPagingData(1, 0)
         ob.subscribeOn(Schedulers.io())
             .map {
                 it.data
             }.subscribeOn(Schedulers.io())
             .subscribe {
-                _newLiveData.postValue(it)
+
+                if(isRefresh) {
+                    list2.clear()
+                }
+                list2.addAll(it)
+                val new= ArrayList<Data>()
+                new.addAll(list2)
+                _newLiveData.postValue(new)
             }
     }
 
-    fun getText() {
+    fun getText(isRefresh:Boolean) {
         val ob = HomePageRepository.getPagingData(2, 0)
         ob.subscribeOn(Schedulers.io())
             .map {
                 it.data
             }.subscribeOn(Schedulers.io())
             .subscribe {
-                _textLiveData.postValue(it)
+                if(isRefresh) {
+                    list3.clear()
+                }
+                list3.addAll(it)
+                val new= ArrayList<Data>()
+                new.addAll(list3)
+                _textLiveData.postValue(new)
             }
     }
 
-    fun getPic() {
+    fun getPic(isRefresh:Boolean) {
         val ob = HomePageRepository.getPagingData(3, 0)
         ob.subscribeOn(Schedulers.io())
             .map {
                 it.data
             }
             .subscribe {
-                _picLiveData.postValue(it)
+                if(isRefresh) {
+                    list4.clear()
+                }
+                list4.addAll(it)
+                val new= ArrayList<Data>()
+                new.addAll(list4)
+                _picLiveData.postValue(new)
             }
     }
 

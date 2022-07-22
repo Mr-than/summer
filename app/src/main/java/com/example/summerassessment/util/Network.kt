@@ -5,6 +5,7 @@ import com.example.summerassessment.base.APP
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import xyz.doikki.videoplayer.controller.ControlWrapper
 import java.util.*
 import javax.crypto.Cipher
 import javax.crypto.spec.SecretKeySpec

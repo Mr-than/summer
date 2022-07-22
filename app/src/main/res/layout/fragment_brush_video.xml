@@ -5,6 +5,7 @@
     android:layout_height="match_parent">
 
     <androidx.viewpager2.widget.ViewPager2
+        android:orientation="vertical"
         android:id="@+id/fragment_brush_video_vp2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

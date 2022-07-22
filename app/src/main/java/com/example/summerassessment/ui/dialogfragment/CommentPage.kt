@@ -16,9 +16,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.summerassessment.R
-import com.example.summerassessment.ui.adapter.CommentPageAdapter
+import com.example.summerassessment.ui.adapter.homeadapter.CommentPageAdapter
 import com.example.summerassessment.ui.dialogfragment.viewmodel.CommentPageViewModel
-import java.util.ArrayList
 
 
 class CommentPage : DialogFragment() {
@@ -26,7 +25,6 @@ class CommentPage : DialogFragment() {
     private lateinit var commendRv: RecyclerView
     private lateinit var openEdit:TextView
     private val viewModel:CommentPageViewModel by lazy { ViewModelProvider(requireActivity()).get(CommentPageViewModel::class.java) }
-    private val adapter:CommentPageAdapter by lazy { CommentPageAdapter(ArrayList(),requireActivity(),viewModel) }
 
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -69,19 +67,23 @@ class CommentPage : DialogFragment() {
             editNameDialog.show(fm, "fragment_edit")
         }
 
+
+        val adapter: CommentPageAdapter by lazy { CommentPageAdapter(requireActivity())}
         commendRv.layoutManager=LinearLayoutManager(requireActivity())
         commendRv.adapter=adapter
+
+        viewModel.numLiveData.observe(requireActivity()){
+            commendNum.text=it
+        }
+
+        viewModel.commentLiveData.observe(requireActivity()){
+            //adapter.refresh()
+            adapter.submitList(it)
+        }
 
 
 
         return dialog
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        viewModel.commentLiveData.observe(requireActivity()){
-            //adapter.refresh()
-            adapter.update(it)
-        }
-    }
 }

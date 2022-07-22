@@ -1,12 +1,12 @@
-package com.example.summerassessment.ui.adapter
+package com.example.summerassessment.ui.adapter.homeadapter
 
 import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.summerassessment.databinding.HomePageRvHeaderLayoutBinding
 import com.example.summerassessment.model.Data
 import com.example.summerassessment.model.DataX
@@ -18,14 +18,11 @@ class FollowPageAdapter(
     private val context: Context,
     private val viewModel: HomeFragmentViewModel,
     private val dataList: ArrayList<Data>
-) : HomeAdapter(context,dataList,0,viewModel) {
+) : HomeAdapter(context,0,viewModel) {
 
-    private val reList = ArrayList<Data>()
-    private var pageNum=1
+    private var isPlay = false
 
-    companion object {
-        const val HEADER = 2002
-    }
+
     private val adapter = FollowPageHeaderAdapter(context, ArrayList<DataX>())
 
 
@@ -78,30 +75,34 @@ class FollowPageAdapter(
         adapter.notifyDataSetChanged()
     }
 
-    override fun update(){
-        viewModel.getFollowData(pageNum)
+    override fun update(i:Boolean){
+        if(!isPlay)
+        viewModel.getFollowData(i)
     }
 
 
-    override fun update(newList: List<Data>) {
-        pageNum++
-        if(reList.containsAll(newList)){
-            return
+    override fun playVideo(index: Int, recyclerView: RecyclerView) {
+        val viewHolder = recyclerView.findViewHolderForAdapterPosition(index)
+        if (viewHolder is VideoViewHolder) {
+            isPlay = true
+            viewHolder.binding.homePageVpItemRvVideoPlayer.start()
         }
-        reList.addAll(newList)
-        val result: DiffUtil.DiffResult = DiffUtil.calculateDiff(UpData(dataList, reList), true)
-        dataList.clear()
-        dataList.addAll(reList)
-        result.dispatchUpdatesTo(this)
     }
 
+    override fun pauseVideo(index: Int, recyclerView: RecyclerView) {
+        val viewHolder = recyclerView.findViewHolderForAdapterPosition(index)
+        if (viewHolder is VideoViewHolder) {
+            isPlay = false
+            viewHolder.binding.homePageVpItemRvVideoPlayer.release()
+        }
+    }
 
-    fun refresh(): Boolean {
-        reList.clear()
-        pageNum=1
-        update()
+    override fun refresh(close: () -> Unit): Boolean {
+        viewModel.getFollowData(true)
+        viewModel.getRecommendFollowData()
         return true
     }
+
 
 
 }

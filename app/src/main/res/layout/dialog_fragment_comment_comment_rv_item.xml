@@ -24,7 +24,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="乐-o1bwf8"
         app:layout_constraintStart_toEndOf="@+id/dialog_fragment_comment_comment_photo"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -39,7 +38,6 @@
         android:ellipsize="none"
         android:inputType="textMultiLine"
         android:singleLine="false"
-        android:text="项目进行中，由于为了快速开发于是登录模块便用了DialogFragment来做，自定义了对话框布局，需求是想要登录对话框一显示就把焦点到用户名的输入框，并且自动弹出输入法软键盘。"
         app:layout_constraintStart_toEndOf="@+id/dialog_fragment_comment_comment_photo"
         app:layout_constraintTop_toBottomOf="@+id/dialog_fragment_comment_comment_nick_name" />
 
@@ -49,7 +47,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:text="qwetweyy"
         app:layout_constraintStart_toEndOf="@+id/dialog_fragment_comment_comment_photo"
         app:layout_constraintTop_toBottomOf="@+id/dialog_fragment_comment_comment_text" />
 

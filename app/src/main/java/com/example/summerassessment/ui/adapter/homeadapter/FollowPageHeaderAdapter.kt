@@ -1,4 +1,4 @@
-package com.example.summerassessment.ui.adapter
+package com.example.summerassessment.ui.adapter.homeadapter
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -14,7 +14,6 @@ import com.bumptech.glide.request.RequestOptions
 import com.example.summerassessment.R
 import com.example.summerassessment.databinding.HomePageRvHeaderItemLayoutBinding
 import com.example.summerassessment.model.DataX
-import com.example.summerassessment.util.decrypt
 import java.util.ArrayList
 
 class FollowPageHeaderAdapter(private val context: Context, private val list: List<DataX>) :

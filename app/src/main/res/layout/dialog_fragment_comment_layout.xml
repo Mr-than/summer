@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/dialog_shape"
+    android:background="@drawable/shape_dialog"
     android:fillViewport="false"
     android:orientation="vertical">
 
@@ -31,7 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="1"
+            android:text="0"
             android:textColor="@color/black"
             android:textSize="15dp" />
     </LinearLayout>
@@ -64,7 +64,7 @@
             android:layout_marginLeft="16dp"
             android:layout_marginBottom="16dp"
             android:layout_weight="8"
-            android:background="@drawable/fragment_failog_comment_edit_shape"
+            android:background="@drawable/shape_fragment_failog_comment_edit"
             android:clickable="true"
             android:focusable="true"
             android:gravity="center|left"

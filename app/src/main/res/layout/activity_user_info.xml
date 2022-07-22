@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".ui.userpage.UserInfoActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/playlist_song_activity_ab"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:minHeight="?attr/actionBarSize"
+            android:fitsSystemWindows="true"
+            android:paddingBottom="16dp"
+            android:layout_width="match_parent"
+            android:id="@+id/playlist_song_activity_ctl"
+            android:background="@color/white"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:contentScrim="#E79764"
+            android:layout_height="wrap_content">
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:orientation="vertical"
+                app:layout_collapseMode="parallax">
+
+
+                <ImageView
+                    android:id="@+id/activity_image_view_user_portrait_big"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:layout_gravity="center"
+                    android:scaleType="center"
+                    android:src="@drawable/test"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/activity_image_view_user_portrait_small"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="92dp"
+                    android:src="@drawable/test"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/activity_image_view_user_portrait_big"
+                    app:shapeAppearanceOverlay="@style/circleStyle"
+                    app:strokeColor="#ff9023"
+                    app:strokeWidth="2dp" />
+
+                <Button
+                    android:id="@+id/activity_button_user_send_message"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_marginStart="68dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/shape_user_message_button"
+                    android:text="私信"
+                    android:textColor="#E79764"
+                    app:layout_constraintStart_toEndOf="@+id/activity_image_view_user_portrait_small"
+                    app:layout_constraintTop_toBottomOf="@+id/activity_image_view_user_portrait_big" />
+
+                <Button
+                    android:id="@+id/activity_button_user_attend"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/shape_user_message_button"
+                    android:text="+关注"
+                    android:textColor="#E79764"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.698"
+                    app:layout_constraintStart_toEndOf="@+id/activity_button_user_send_message"
+                    app:layout_constraintTop_toBottomOf="@+id/activity_image_view_user_portrait_big" />
+
+
+                <TextView
+                    android:id="@+id/activity_text_view_user_nick_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:text="段子乐"
+                    android:textColor="@color/black"
+                    android:textSize="15dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/activity_image_view_user_portrait_small" />
+
+                <TextView
+                    android:id="@+id/activity_text_view_user_in_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:text="入驻段子乐: 2年11个月"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/activity_text_view_user_nick_name" />
+
+                <TextView
+                    android:id="@+id/activity_text_view_user_motto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="28dp"
+                    android:text="他正在想一个爆炸的签名..."
+                    android:textColor="@color/black"
+                    android:textSize="14dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/activity_text_view_user_in_time" />
+
+                <TextView
+                    android:id="@+id/activity_text_view_user_liked"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="20dp"
+                    android:text="800 获赞"
+                    android:textColor="@color/black"
+                    android:textSize="20dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/activity_text_view_user_motto" />
+
+                <TextView
+                    android:id="@+id/activity_text_view_user_attend"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="20dp"
+                    android:text="0 关注"
+                    android:textColor="@color/black"
+                    android:textSize="20dp"
+                    app:layout_constraintStart_toEndOf="@+id/activity_text_view_user_liked"
+                    app:layout_constraintTop_toBottomOf="@+id/activity_text_view_user_motto" />
+
+                <TextView
+                    android:id="@+id/activity_text_view_user_fans"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="20dp"
+                    android:text="0 粉丝"
+                    android:textColor="@color/black"
+                    android:textSize="20dp"
+                    app:layout_constraintStart_toEndOf="@+id/activity_text_view_user_attend"
+                    app:layout_constraintTop_toBottomOf="@+id/activity_text_view_user_motto" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.appcompat.widget.Toolbar
+                app:theme="@style/ToolbarStyle"
+                android:layout_marginTop="30dp"
+                android:fitsSystemWindows="true"
+                android:minHeight="?attr/actionBarSize"
+                android:id="@+id/activity_user_page_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin" />
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/white">
+            <com.google.android.material.tabs.TabLayout
+                app:tabMaxWidth="100dp"
+                android:id="@+id/activity_user_page_tab_layout_parent_vp2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/activity_user_page_vp2_parent_vp2"
+        android:overScrollMode="never"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

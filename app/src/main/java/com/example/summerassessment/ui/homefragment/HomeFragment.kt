@@ -5,18 +5,16 @@ import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
 import com.example.summerassessment.R
 import com.example.summerassessment.databinding.MainFragmentHomePageBinding
 import com.example.summerassessment.model.Data
-import com.example.summerassessment.ui.adapter.FollowPageAdapter
-import com.example.summerassessment.ui.adapter.HomePageVpAdapter
-import com.example.summerassessment.ui.adapter.HomeAdapter
+import com.example.summerassessment.ui.adapter.homeadapter.FollowPageAdapter
+import com.example.summerassessment.ui.adapter.homeadapter.HomePageVpAdapter
+import com.example.summerassessment.ui.adapter.homeadapter.HomeAdapter
 import com.example.summerassessment.ui.mainactivity.MainActivity
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
-import kotlinx.coroutines.launch
-import java.util.ArrayList
+import kotlin.collections.ArrayList
 
 class HomeFragment : Fragment() {
 
@@ -47,10 +45,10 @@ class HomeFragment : Fragment() {
     private fun init() {
 
         val followPageAdapter = FollowPageAdapter(requireActivity(), viewModel, ArrayList())
-        val homeAdapter1 = HomeAdapter(requireActivity(), ArrayList(), 1, viewModel)
-        val homeAdapter2 = HomeAdapter(requireActivity(), ArrayList(), 2, viewModel)
-        val homeAdapter3 = HomeAdapter(requireActivity(), ArrayList(), 3, viewModel)
-        val homeAdapter4 = HomeAdapter(requireActivity(), ArrayList(), 4, viewModel)
+        val homeAdapter1 = HomeAdapter(requireActivity(), 1, viewModel)
+        val homeAdapter2 = HomeAdapter(requireActivity(), 2, viewModel)
+        val homeAdapter3 = HomeAdapter(requireActivity(), 3, viewModel)
+        val homeAdapter4 = HomeAdapter(requireActivity(), 4, viewModel)
 
         val adapters = listOf(
             followPageAdapter,
@@ -64,20 +62,7 @@ class HomeFragment : Fragment() {
 
         binding.fragmentHomeVp.adapter = HomePageVpAdapter(requireActivity(), adapters)
 
-        binding.fragmentHomeTabLayout.addOnTabSelectedListener(object :
-            TabLayout.OnTabSelectedListener {
-            override fun onTabSelected(tab: TabLayout.Tab?) {
 
-            }
-
-            override fun onTabUnselected(tab: TabLayout.Tab?) {
-
-            }
-
-            override fun onTabReselected(tab: TabLayout.Tab?) {
-
-            }
-        })
 
         TabLayoutMediator(binding.fragmentHomeTabLayout, binding.fragmentHomeVp) { tab, p ->
             when (p) {
@@ -91,33 +76,31 @@ class HomeFragment : Fragment() {
 
 
 
-
         viewModel.recommendLiveData.observe(requireActivity()) { p ->
-            homeAdapter1.update(p)
+            homeAdapter1.submitList(p)
         }
 
         viewModel.newLiveData.observe(requireActivity()) { p ->
-            homeAdapter2.update(p)
+            homeAdapter2.submitList(p)
         }
 
         viewModel.textLiveData.observe(requireActivity()) { p ->
-            Log.d("8888888888888888", "init:----------------->${p[0].joke}")
-            homeAdapter3.update(p)
+            homeAdapter3.submitList(p)
         }
 
         viewModel.picLiveData.observe(requireActivity()) { p ->
-            homeAdapter4.update(p)
+            homeAdapter4.submitList(p)
         }
 
         viewModel.followLiveData.observe(requireActivity()) {
-            followPageAdapter.update(it)
+            followPageAdapter.submitList(it)
         }
 
-        viewModel.getRecommendData()
-        viewModel.getNewData()
-        viewModel.getText()
-        viewModel.getPic()
-        viewModel.getFollowData(1)
+        viewModel.getRecommendData(false)
+        viewModel.getNewData(false)
+        viewModel.getText(false)
+        viewModel.getPic(false)
+        viewModel.getFollowData(false)
 
     }
 

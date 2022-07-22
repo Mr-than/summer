@@ -13,6 +13,8 @@ class CommentPageViewModel: ViewModel() {
     private val _commentLiveData:MutableLiveData<List<Comment>> = MutableLiveData()
     val commentLiveData:LiveData<List<Comment>> get() = _commentLiveData
 
+    private val _numLiveData:MutableLiveData<String> = MutableLiveData()
+    val numLiveData:LiveData<String> get() = _numLiveData
 
     fun getCommentData(id:Int){
 
@@ -24,6 +26,10 @@ class CommentPageViewModel: ViewModel() {
                     _commentLiveData.postValue(it)
             }
         }
+
+    fun setNum(num:Int){
+        _numLiveData.postValue(num.toString())
+    }
 
 
 

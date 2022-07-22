@@ -1,7 +1,9 @@
-package com.example.summerassessment.ui.adapter
+package com.example.summerassessment.ui.adapter.homeadapter
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.Outline
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
@@ -9,12 +11,12 @@ import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.view.ViewOutlineProvider
 import android.widget.ImageView
-import android.widget.LinearLayout
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
@@ -29,6 +31,7 @@ import com.example.summerassessment.ui.dialogfragment.CommentPage
 import com.example.summerassessment.ui.dialogfragment.viewmodel.CommentPageViewModel
 import com.example.summerassessment.ui.homefragment.HomeFragmentViewModel
 import com.example.summerassessment.ui.mainactivity.MainActivity
+import com.example.summerassessment.ui.userpage.UserInfoActivity
 import com.example.summerassessment.util.decrypt
 import xyz.doikki.videocontroller.StandardVideoController
 import xyz.doikki.videocontroller.component.CompleteView
@@ -39,22 +42,38 @@ import kotlin.concurrent.thread
 
 open class HomeAdapter(
     private val context: Context,
-    private val dataList: ArrayList<Data>,
     private val adapterTag: Int,
     private val viewModel: HomeFragmentViewModel
-) : RecyclerView.Adapter<HomeAdapter.ViewHolder>(), VideoPlayListener {
+) : ListAdapter<Data,HomeAdapter.ViewHolder>(CALL_BACK), VideoPlayListener {
+
+    companion object {
+        const val HEADER = 2002
+
+        private val list = mutableListOf<String>()
+        private val videoTags = mutableListOf<String>()
+
+        private const val IMAGE_TYPE = 1112
+        private const val VIDEO_TYPE = 1015
+
+        val CALL_BACK = object : DiffUtil.ItemCallback<Data>() {
+            override fun areItemsTheSame(oldItem: Data, newItem: Data): Boolean {
+                return oldItem.joke.jokesId == newItem.joke.jokesId
+            }
+
+            override fun areContentsTheSame(oldItem: Data, newItem: Data): Boolean {
+                return oldItem == newItem
+            }
+        }
+
+    }
+
 
     //private var viewModel:HomeFragmentViewModel = ViewModelProvider(context as MainActivity).get(HomeFragmentViewModel::class.java)
 
-    private val reList = ArrayList<Data>()
-    private var isPlay=false
 
-    companion object {
-        private val list = mutableListOf<String>()
-        private val videoTags = mutableListOf<String>()
-        private const val IMAGE_TYPE = 1112
-        private const val VIDEO_TYPE = 1015
-    }
+    private val reList = ArrayList<Data>()
+    private var isPlay = false
+
 
 
     inner class PhotoViewHolder(val binding: HomeRecommendVpItemRvItemLayoutBinding) :
@@ -63,6 +82,14 @@ open class HomeAdapter(
 
 
         init {
+
+            binding.homePageVpItemRvTextHead.setOnClickListener {
+                val intent=Intent(context as MainActivity,UserInfoActivity::class.java)
+                intent.putExtra("user_id","${getItem(layoutPosition).user.userId}")
+                context.startActivity(intent)
+
+            }
+
             val position = layoutPosition
             setIsLikeImg(
                 binding.homePageVpItemRvTextLike,
@@ -82,7 +109,11 @@ open class HomeAdapter(
             )
 
             binding.homePageVpItemRvTextAvatar.setOnClickListener {
-                val viewModel by lazy { ViewModelProvider(context as MainActivity).get(CommentPageViewModel::class.java) }
+                val viewModel by lazy {
+                    ViewModelProvider(context as MainActivity).get(
+                        CommentPageViewModel::class.java
+                    )
+                }
 
 
                 val fm: FragmentManager = (context as FragmentActivity).supportFragmentManager
@@ -91,9 +122,10 @@ open class HomeAdapter(
 
                 thread {
                     Thread.sleep(500)
-                    val p=layoutPosition
-                    if(p>=0) {
-                        viewModel.getCommentData(dataList[p].joke.jokesId)
+                    val p = layoutPosition
+                    if (p >= 0) {
+                        viewModel.setNum(getItem(p).info.commentNum)
+                        viewModel.getCommentData(getItem(p).joke.jokesId)
                     }
                 }
             }
@@ -103,7 +135,15 @@ open class HomeAdapter(
 
     inner class VideoViewHolder(val binding: HomeRecommendVpItemRvVideoItemLayoutBinding) :
         ViewHolder(binding.root) {
+
         init {
+
+            binding.homePageVpItemRvVideoHead.setOnClickListener {
+                val intent=Intent(context as MainActivity,UserInfoActivity::class.java)
+                intent.putExtra("user_id","${getItem(layoutPosition).user.userId}")
+                context.startActivity(Intent(intent))
+            }
+
             val position = layoutPosition
             setIsLikeImg(
                 binding.homePageVpItemRvVideoLike,
@@ -122,18 +162,23 @@ open class HomeAdapter(
                 2
             )
             binding.homePageVpItemRvVideoAvatar.setOnClickListener {
-                val viewModel by lazy { ViewModelProvider(context as MainActivity).get(CommentPageViewModel::class.java) }
-
+                val viewModel by lazy {
+                    ViewModelProvider(context as MainActivity).get(
+                        CommentPageViewModel::class.java
+                    )
+                }
 
                 val fm: FragmentManager = (context as FragmentActivity).supportFragmentManager
                 val editNameDialog = CommentPage()
                 editNameDialog.show(fm, "fragment_dialog")
 
+                val p=layoutPosition
+
                 thread {
-                    Thread.sleep(500)
-                    val p=layoutPosition
-                    if(p>=0) {
-                        viewModel.getCommentData(dataList[p].joke.jokesId)
+                    //Thread.sleep(500)
+                    if (p >= 0) {
+                        viewModel.setNum(getItem(p).info.commentNum)
+                        viewModel.getCommentData(getItem(p).joke.jokesId)
                     }
                 }
             }
@@ -147,10 +192,10 @@ open class HomeAdapter(
 
         if (holder is PhotoViewHolder) {
 
-            holder.binding.homePageVpItemRvTextNikeName.text = dataList[position].user.nickName
+            holder.binding.homePageVpItemRvTextNikeName.text = getItem(position).user.nickName
 
             holder.binding.homePageVpItemRvTextPhoto.visibility = GONE
-            dataList[position].joke.imageUrl.run {
+            getItem(position).joke.imageUrl.run {
                 if (this != "") {
                     val url = decrypt()
                     if (url != "") {
@@ -162,7 +207,7 @@ open class HomeAdapter(
                 }
             }
 
-            dataList[position].user.avatar.run {
+            getItem(position).user.avatar.run {
                 if (this != "") {
                     Glide.with(context).load(this)
                         .apply(RequestOptions.bitmapTransform(CircleCrop()))
@@ -183,22 +228,22 @@ open class HomeAdapter(
                 position
             )
 
-            holder.binding.homePageVpItemRvTextAutograph.text = dataList[position].user.signature
-            holder.binding.homePageVpItemRvTextText.text = dataList[position].joke.content
+            holder.binding.homePageVpItemRvTextAutograph.text = getItem(position).user.signature
+            holder.binding.homePageVpItemRvTextText.text = getItem(position).joke.content
 
             holder.binding.homePageVpItemRvTextLikeText.text =
-                dataList[position].info.likeNum.toString()
+                getItem(position).info.likeNum.toString()
             holder.binding.homePageVpItemRvTextHateText.text =
-                dataList[position].info.disLikeNum.toString()
+                getItem(position).info.disLikeNum.toString()
             holder.binding.homePageVpItemRvTextAvatarText.text =
-                dataList[position].info.commentNum.toString()
+                getItem(position).info.commentNum.toString()
             holder.binding.homePageVpItemRvTextShareText.text =
-                dataList[position].info.shareNum.toString()
+                getItem(position).info.shareNum.toString()
 
         } else if (holder is VideoViewHolder) {
-            holder.binding.homePageVpItemRvVideoNikeName.text = dataList[position].user.nickName
+            holder.binding.homePageVpItemRvVideoNikeName.text = getItem(position).user.nickName
 
-            dataList[position].user.avatar.run {
+            getItem(position).user.avatar.run {
                 if (this != "") {
                     Glide.with(context).load(this)
                         .apply(RequestOptions.bitmapTransform(CircleCrop()))
@@ -219,20 +264,25 @@ open class HomeAdapter(
                 position
             )
 
-            holder.binding.homePageVpItemRvVideoAutograph.text = dataList[position].user.signature
-            holder.binding.homePageVpItemRvVideoText.text = dataList[position].joke.content
+            holder.binding.homePageVpItemRvVideoAutograph.text = getItem(position).user.signature
+            holder.binding.homePageVpItemRvVideoText.text = getItem(position).joke.content
 
             holder.binding.homePageVpItemRvVideoLikeText.text =
-                dataList[position].info.likeNum.toString()
+                getItem(position).info.likeNum.toString()
             holder.binding.homePageVpItemRvVideoHateText.text =
-                dataList[position].info.disLikeNum.toString()
+                getItem(position).info.disLikeNum.toString()
             holder.binding.homePageVpItemRvVideoAvatarText.text =
-                dataList[position].info.commentNum.toString()
+                getItem(position).info.commentNum.toString()
             holder.binding.homePageVpItemRvVideoShareText.text =
-                dataList[position].info.shareNum.toString()
+                getItem(position).info.shareNum.toString()
 
 
             holder.binding.homePageVpItemRvVideoPlayer.tag = position.toString()
+
+            val controller = StandardVideoController(context)
+            controller.addControlComponent(CompleteView(context)) //自动完成播放界面
+            controller.addControlComponent(ErrorView(context)) //错误界面
+
 
             holder.binding.homePageVpItemRvVideoPlayer.outlineProvider =
                 object : ViewOutlineProvider() {
@@ -242,34 +292,32 @@ open class HomeAdapter(
                     }
                 }
 
+
+            holder.binding.homePageVpItemRvVideoPlayer.setVideoController(controller)
+
             holder.binding.homePageVpItemRvVideoPlayer.clipToOutline = true
 
-            if (!videoTags.contains(holder.binding.homePageVpItemRvVideoPlayer.tag as String)) {
-                videoTags.add(holder.binding.homePageVpItemRvVideoPlayer.tag as String)
-            } else {
-                holder.binding.homePageVpItemRvVideoPlayer.release()
-            }
 
-            dataList[position].joke.videoUrl.run {
+            getItem(position).joke.videoUrl.run {
                 if (this != "") {
                     val url = decrypt()
                     if (url != "") {
 
                         holder.binding.homePageVpItemRvVideoPlayer.setUrl(url)
 
-                        val prepareView = holder.binding.prepareView
+                        val prepareView = PrepareView(context)
                         prepareView.setClickStart()
                         val thumb: ImageView =
                             prepareView.findViewById(xyz.doikki.videocontroller.R.id.thumb)
 
                         val controller = StandardVideoController(context)
                         controller.addDefaultControlComponent(
-                            "${dataList[position].user.nickName} 的作品",
+                            "${getItem(position).user.nickName} 的作品",
                             false
                         )
                         holder.binding.homePageVpItemRvVideoPlayer.setVideoController(controller)
 
-                        val thumbUrl = dataList[position].joke.thumbUrl.decrypt()
+                        val thumbUrl = getItem(position).joke.thumbUrl.decrypt()
 
                         Glide.with(context).load(thumbUrl).into(thumb)
 
@@ -277,7 +325,14 @@ open class HomeAdapter(
                         controller.addControlComponent(ErrorView(context)) //错误界面
                     }
                 }
+
+                if (!videoTags.contains(holder.binding.homePageVpItemRvVideoPlayer.tag as String)) {
+                    videoTags.add(holder.binding.homePageVpItemRvVideoPlayer.tag as String)
+                } else {
+                    holder.binding.homePageVpItemRvVideoPlayer.release()
+                }
             }
+
         }
     }
 
@@ -310,7 +365,7 @@ open class HomeAdapter(
 
 
     override fun getItemViewType(position: Int): Int {
-        dataList[position].joke.videoUrl.run {
+        getItem(position).joke.videoUrl.run {
             if (this != "") {
                 return VIDEO_TYPE
             }
@@ -318,10 +373,11 @@ open class HomeAdapter(
         return IMAGE_TYPE
     }
 
+
     override fun playVideo(index: Int, recyclerView: RecyclerView) {
         val viewHolder = recyclerView.findViewHolderForAdapterPosition(index)
         if (viewHolder is VideoViewHolder) {
-            isPlay=true
+            isPlay = true
             viewHolder.binding.homePageVpItemRvVideoPlayer.start()
         }
     }
@@ -329,7 +385,7 @@ open class HomeAdapter(
     override fun pauseVideo(index: Int, recyclerView: RecyclerView) {
         val viewHolder = recyclerView.findViewHolderForAdapterPosition(index)
         if (viewHolder is VideoViewHolder) {
-            isPlay=false
+            isPlay = false
             viewHolder.binding.homePageVpItemRvVideoPlayer.release()
         }
     }
@@ -360,7 +416,6 @@ open class HomeAdapter(
         position: Int,
         type: Int //1 为赞，2 为踩
     ) {
-
         constraintLayout.setOnClickListener {
 
             if (!(imageView.tag as Boolean)) {
@@ -384,80 +439,42 @@ open class HomeAdapter(
 
                 }
             }
+
         }
     }
 
 
     fun getListener(): VideoPlayListener = this
 
-    override fun getItemCount(): Int {
-        return dataList.size
-    }
-
-    protected inner class UpData(private val oldList: List<Data>, private val newList: List<Data>) :
-        DiffUtil.Callback() {
-
-        override fun getOldListSize(): Int {
-            return oldList.size
-        }
-
-
-        override fun getNewListSize(): Int {
-            return newList.size
-        }
-
-
-        override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-            return oldList[oldItemPosition] == newList[newItemPosition]
-        }
-
-
-        override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-            return false
-        }
-
-
-        override fun getChangePayload(oldItemPosition: Int, newItemPosition: Int): Any {
-            return emptyList<Data>()
-        }
-    }
-
-    open fun update() {
-
+    open fun update(i:Boolean) {
         if (!isPlay) {
             when (adapterTag) {
                 1 -> {
-                    viewModel.getRecommendData()
+                    viewModel.getRecommendData(i)
                 }
                 2 -> {
-                    viewModel.getNewData()
+                    viewModel.getNewData(i)
                 }
                 3 -> {
-                    viewModel.getText()
+                    viewModel.getText(i)
                 }
                 4 -> {
-                    viewModel.getPic()
+                    viewModel.getPic(i)
                 }
             }
         }
 
     }
 
-    open fun update(newList: List<Data>) {
-        reList.addAll(newList)
-        val result: DiffUtil.DiffResult = DiffUtil.calculateDiff(UpData(dataList, reList), true)
-        dataList.clear()
-        dataList.addAll(reList)
-        result.dispatchUpdatesTo(this)
-    }
 
 
-    open fun refresh(close:()->Unit): Boolean {
+
+    open fun refresh(close: () -> Unit): Boolean {
         close()
-        isPlay=false
-        reList.clear()
-        update()
+        isPlay = false
+        update(true)
         return true
     }
+
 
 }

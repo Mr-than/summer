@@ -9,48 +9,11 @@
     android:paddingTop="10dp"
     android:paddingBottom="20dp">
 
-    <ImageView
-        android:clickable="true"
-        android:id="@+id/home_page_vp_item_rv_text_head"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.042"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.007"
-        android:focusable="true" />
 
     <TextView
-        android:id="@+id/home_page_vp_item_rv_text_nike_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:text="段子乐"
-        android:textColor="@color/black"
-        android:textSize="15dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.034"
-        app:layout_constraintStart_toEndOf="@+id/home_page_vp_item_rv_text_head"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/home_page_vp_item_rv_text_autograph"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:textSize="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.045"
-        app:layout_constraintStart_toEndOf="@+id/home_page_vp_item_rv_text_head"
-        app:layout_constraintTop_toBottomOf="@+id/home_page_vp_item_rv_text_nike_name" />
-
-    <TextView
-        android:id="@+id/home_page_vp_item_rv_text_text"
+        android:id="@+id/vp2_text_img_rv_item_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
         android:paddingStart="15dp"
         android:paddingEnd="15dp"
         android:textColor="@color/black"
@@ -58,63 +21,23 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/home_page_vp_item_rv_text_nike_name" />
-
-
-    <LinearLayout
-        android:clickable="true"
-        android:id="@+id/home_page_vp_item_rv_text_subcribe"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:gravity="center"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.872"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:focusable="true">
-
-        <ImageView
-            android:layout_width="10dp"
-            android:layout_height="10dp"
-            android:src="@drawable/subcribe" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:text="关注"
-            android:textColor="#F79453" />
-
-    </LinearLayout>
-
-    <ImageView
-        android:layout_width="19dp"
-        android:layout_height="19dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:src="@drawable/more"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/home_page_vp_item_rv_text_subcribe"
         app:layout_constraintTop_toTopOf="parent" />
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:clickable="true"
         android:focusable="true"
-        android:id="@+id/home_page_vp_item_rv_text_like"
+        android:id="@+id/vp2_text_img_rv_item_like_layout"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toStartOf="@+id/home_page_vp_item_rv_text_hate"
+        app:layout_constraintEnd_toStartOf="@+id/vp2_text_img_rv_item_hate_layout"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/home_page_vp_item_rv_text_photo_layout">
+        app:layout_constraintTop_toBottomOf="@+id/vp2_text_img_rv_item_img_layout">
 
         <ImageView
-            android:id="@+id/home_page_vp_item_rv_text_like_image"
+            android:id="@+id/vp2_text_img_rv_item_like_img"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:src="@drawable/like"
@@ -123,13 +46,13 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/home_page_vp_item_rv_text_like_text"
+            android:id="@+id/vp2_text_img_rv_item_like_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:text="1"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/home_page_vp_item_rv_text_like_image"
+            app:layout_constraintStart_toEndOf="@+id/vp2_text_img_rv_item_like_img"
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -144,8 +67,8 @@
         android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/home_page_vp_item_rv_text_avatar"
-        app:layout_constraintTop_toBottomOf="@+id/home_page_vp_item_rv_text_photo_layout">
+        app:layout_constraintStart_toEndOf="@+id/vp2_text_img_rv_item_comment_layout"
+        app:layout_constraintTop_toBottomOf="@+id/vp2_text_img_rv_item_img_layout">
 
         <ImageView
             android:id="@+id/vp2_text_img_rv_item_share_image"
@@ -157,7 +80,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/home_page_vp_item_rv_text_share_text"
+            android:id="@+id/vp2_text_img_rv_item_share_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
@@ -170,14 +93,14 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:clickable="true"
-        android:id="@+id/home_page_vp_item_rv_text_avatar"
+        android:id="@+id/vp2_text_img_rv_item_comment_layout"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginTop="8dp"
         app:layout_constraintEnd_toStartOf="@+id/vp2_text_img_rv_item_share_layout"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/home_page_vp_item_rv_text_hate"
-        app:layout_constraintTop_toBottomOf="@+id/home_page_vp_item_rv_text_photo_layout"
+        app:layout_constraintStart_toEndOf="@+id/vp2_text_img_rv_item_hate_layout"
+        app:layout_constraintTop_toBottomOf="@+id/vp2_text_img_rv_item_img_layout"
         android:focusable="true">
 
         <ImageView
@@ -190,7 +113,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/home_page_vp_item_rv_text_avatar_text"
+            android:id="@+id/vp2_text_img_rv_item_comment_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
@@ -206,15 +129,15 @@
         android:focusable="true"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:id="@+id/home_page_vp_item_rv_text_hate"
+        android:id="@+id/vp2_text_img_rv_item_hate_layout"
         android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toStartOf="@+id/home_page_vp_item_rv_text_avatar"
+        app:layout_constraintEnd_toStartOf="@+id/vp2_text_img_rv_item_comment_layout"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/home_page_vp_item_rv_text_like"
-        app:layout_constraintTop_toBottomOf="@+id/home_page_vp_item_rv_text_photo_layout">
+        app:layout_constraintStart_toEndOf="@+id/vp2_text_img_rv_item_like_layout"
+        app:layout_constraintTop_toBottomOf="@+id/vp2_text_img_rv_item_img_layout">
 
         <ImageView
-            android:id="@+id/home_page_vp_item_rv_text_hate_image"
+            android:id="@+id/vp2_text_img_rv_item_hate_img"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:src="@drawable/hate"
@@ -223,13 +146,13 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/home_page_vp_item_rv_text_hate_text"
+            android:id="@+id/vp2_text_img_rv_item_hate_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:text="1"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/home_page_vp_item_rv_text_hate_image"
+            app:layout_constraintStart_toEndOf="@+id/vp2_text_img_rv_item_hate_img"
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -237,15 +160,15 @@
 
     <LinearLayout
         android:paddingLeft="16dp"
-        android:id="@+id/home_page_vp_item_rv_text_photo_layout"
+        android:id="@+id/vp2_text_img_rv_item_img_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/home_page_vp_item_rv_text_text">
+        app:layout_constraintTop_toBottomOf="@+id/vp2_text_img_rv_item_text">
 
         <ImageView
-            android:id="@+id/home_page_vp_item_rv_text_photo"
+            android:id="@+id/vp2_text_img_rv_item_img"
             android:layout_width="300dp"
             android:layout_height="250dp"
             android:layout_gravity="left"
