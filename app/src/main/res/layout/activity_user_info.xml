@@ -15,7 +15,6 @@
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:minHeight="?attr/actionBarSize"
             android:fitsSystemWindows="true"
-            android:paddingBottom="16dp"
             android:layout_width="match_parent"
             android:id="@+id/playlist_song_activity_ctl"
             android:background="@color/white"

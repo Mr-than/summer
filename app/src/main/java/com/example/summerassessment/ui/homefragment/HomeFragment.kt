@@ -1,20 +1,18 @@
 package com.example.summerassessment.ui.homefragment
 
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.summerassessment.R
 import com.example.summerassessment.databinding.MainFragmentHomePageBinding
-import com.example.summerassessment.model.Data
+import com.example.summerassessment.ui.searchpage.SearchActivity
 import com.example.summerassessment.ui.adapter.homeadapter.FollowPageAdapter
-import com.example.summerassessment.ui.adapter.homeadapter.HomePageVpAdapter
 import com.example.summerassessment.ui.adapter.homeadapter.HomeAdapter
+import com.example.summerassessment.ui.adapter.homeadapter.HomePageVpAdapter
 import com.example.summerassessment.ui.mainactivity.MainActivity
-import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
-import kotlin.collections.ArrayList
 
 class HomeFragment : Fragment() {
 
@@ -45,10 +43,10 @@ class HomeFragment : Fragment() {
     private fun init() {
 
         val followPageAdapter = FollowPageAdapter(requireActivity(), viewModel, ArrayList())
-        val homeAdapter1 = HomeAdapter(requireActivity(), 1, viewModel)
-        val homeAdapter2 = HomeAdapter(requireActivity(), 2, viewModel)
-        val homeAdapter3 = HomeAdapter(requireActivity(), 3, viewModel)
-        val homeAdapter4 = HomeAdapter(requireActivity(), 4, viewModel)
+        val homeAdapter1 = HomeAdapter(requireActivity(), 1,viewModel)
+        val homeAdapter2 = HomeAdapter(requireActivity(), 2,viewModel)
+        val homeAdapter3 = HomeAdapter(requireActivity(), 3,viewModel)
+        val homeAdapter4 = HomeAdapter(requireActivity(), 4,viewModel)
 
         val adapters = listOf(
             followPageAdapter,
@@ -105,9 +103,20 @@ class HomeFragment : Fragment() {
     }
 
 
+
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.main_bottom_navigation_view_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(paramMenuItem: MenuItem): Boolean {
+        return when (paramMenuItem.itemId) {
+            R.id.home_search->{
+                requireActivity().startActivity(Intent(requireActivity(), SearchActivity::class.java))
+                return false
+            }
+            else-> super.onOptionsItemSelected(paramMenuItem)
+        }
     }
 
 }

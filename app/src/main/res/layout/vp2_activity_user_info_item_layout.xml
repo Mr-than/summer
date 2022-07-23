@@ -16,6 +16,7 @@
         android:layout_height="wrap_content"/>
 
     <androidx.viewpager2.widget.ViewPager2
+        android:background="#F8F8F8"
         android:id="@+id/vp2_activity_user_info_item_layout_vp2_child"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>

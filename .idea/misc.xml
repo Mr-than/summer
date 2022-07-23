@@ -19,6 +19,7 @@
         <entry key="..\:/Android's project/SummerAssessment/app/src/main/res/drawable/shape_dialog.xml" value="0.16" />
         <entry key="..\:/Android's project/SummerAssessment/app/src/main/res/drawable/shape_follow_button.xml" value="0.1175" />
         <entry key="..\:/Android's project/SummerAssessment/app/src/main/res/drawable/shape_followed_button.xml" value="0.1175" />
+        <entry key="..\:/Android's project/SummerAssessment/app/src/main/res/drawable/shape_fragment_failog_comment_edit.xml" value="0.117" />
         <entry key="..\:/Android's project/SummerAssessment/app/src/main/res/drawable/shape_header_round.xml" value="0.1175" />
         <entry key="..\:/Android's project/SummerAssessment/app/src/main/res/drawable/shape_round.xml" value="0.16" />
         <entry key="..\:/Android's project/SummerAssessment/app/src/main/res/drawable/shape_round_black.xml" value="0.16" />
@@ -33,6 +34,8 @@
         <entry key="..\:/Android's project/SummerAssessment/app/src/main/res/drawable/video_round_angle.xml" value="0.1475" />
         <entry key="..\:/Android's project/SummerAssessment/app/src/main/res/layout/MainActivityBottomView.xml" value="0.23278985507246377" />
         <entry key="..\:/Android's project/SummerAssessment/app/src/main/res/layout/activity_main.xml" value="0.16941175927517163" />
+        <entry key="..\:/Android's project/SummerAssessment/app/src/main/res/layout/activity_post_articles.xml" value="0.20168066580377575" />
+        <entry key="..\:/Android's project/SummerAssessment/app/src/main/res/layout/activity_search.xml" value="0.20168066580377575" />
         <entry key="..\:/Android's project/SummerAssessment/app/src/main/res/layout/activity_user_info.xml" value="0.26621847886098404" />
         <entry key="..\:/Android's project/SummerAssessment/app/src/main/res/layout/activity_vp2_layout.xml" value="0.17747898590732267" />
         <entry key="..\:/Android's project/SummerAssessment/app/src/main/res/layout/dialog_fragment_comment_comment_rv_item.xml" value="0.26621847886098404" />
@@ -41,6 +44,10 @@
         <entry key="..\:/Android's project/SummerAssessment/app/src/main/res/layout/dk_video_player_prepare_view.xml" value="0.25729166666666664" />
         <entry key="..\:/Android's project/SummerAssessment/app/src/main/res/layout/fragment_brush_video.xml" value="0.25625" />
         <entry key="..\:/Android's project/SummerAssessment/app/src/main/res/layout/fragment_brush_video_vp2_item.xml" value="0.16941175927517163" />
+        <entry key="..\:/Android's project/SummerAssessment/app/src/main/res/layout/fragment_history_search_layout.xml" value="0.25625" />
+        <entry key="..\:/Android's project/SummerAssessment/app/src/main/res/layout/fragment_message_page.xml" value="0.22870370370370371" />
+        <entry key="..\:/Android's project/SummerAssessment/app/src/main/res/layout/fragment_my_page.xml" value="0.20168066580377575" />
+        <entry key="..\:/Android's project/SummerAssessment/app/src/main/res/layout/fragment_search_result_layout.xml" value="0.16941175927517163" />
         <entry key="..\:/Android's project/SummerAssessment/app/src/main/res/layout/home_page_rv_header_item_layout.xml" value="0.26621847886098404" />
         <entry key="..\:/Android's project/SummerAssessment/app/src/main/res/layout/home_page_rv_header_layout.xml" value="0.21240942028985507" />
         <entry key="..\:/Android's project/SummerAssessment/app/src/main/res/layout/home_page_vp_item_layout.xml" value="0.23278985507246377" />
@@ -56,6 +63,7 @@
         <entry key="..\:/Android's project/SummerAssessment/app/src/main/res/layout/vp2_video_rv.xml" value="0.25729166666666664" />
         <entry key="..\:/Android's project/SummerAssessment/app/src/main/res/layout/vp2_video_rv_item.xml" value="0.4033613316075515" />
         <entry key="..\:/Android's project/SummerAssessment/app/src/main/res/menu/main_bottom_navigation_view_menu.xml" value="0.24270833333333333" />
+        <entry key="..\:/Android's project/SummerAssessment/app/src/main/res/menu/post_joke_menu.xml" value="0.25625" />
       </map>
     </option>
   </component>

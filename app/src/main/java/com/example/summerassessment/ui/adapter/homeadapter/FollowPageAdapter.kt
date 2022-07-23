@@ -18,7 +18,7 @@ class FollowPageAdapter(
     private val context: Context,
     private val viewModel: HomeFragmentViewModel,
     private val dataList: ArrayList<Data>
-) : HomeAdapter(context,0,viewModel) {
+) : HomeAdapter(context,0) {
 
     private var isPlay = false
 

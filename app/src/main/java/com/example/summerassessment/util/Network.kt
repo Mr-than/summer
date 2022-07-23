@@ -2,13 +2,18 @@ package com.example.summerassessment.util
 
 import android.os.Build
 import com.example.summerassessment.base.APP
+import com.qiniu.android.common.FixedZone
+import com.qiniu.android.common.Zone
+import com.qiniu.android.storage.Configuration
+import com.qiniu.android.storage.UpCompletionHandler
+import com.qiniu.android.storage.UploadManager
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
-import xyz.doikki.videoplayer.controller.ControlWrapper
 import java.util.*
 import javax.crypto.Cipher
 import javax.crypto.spec.SecretKeySpec
+
 
 inline fun <reified T> create():T{
     return Retrofit.Builder()
@@ -33,4 +38,9 @@ fun String.decrypt(): String {
     }
     val original = cipher.doFinal(encrypted)
     return String(original)
+}
+
+fun t(){
+
+
 }

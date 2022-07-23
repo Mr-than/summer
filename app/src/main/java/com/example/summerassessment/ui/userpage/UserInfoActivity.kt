@@ -1,7 +1,10 @@
 package com.example.summerassessment.ui.userpage
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.MenuItem
+import androidx.lifecycle.ViewModelProvider
+import com.bumptech.glide.Glide
 import com.example.summerassessment.base.BaseActivity
 import com.example.summerassessment.databinding.ActivityUserInfoBinding
 import com.example.summerassessment.ui.adapter.userinfoadapter.UserInfoParentAdapter
@@ -10,7 +13,9 @@ import com.google.android.material.tabs.TabLayoutMediator
 class UserInfoActivity : BaseActivity() {
 
     private lateinit var binding:ActivityUserInfoBinding
+    private val viewModel by lazy { ViewModelProvider(this).get(UserInfoViewModel::class.java) }
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding=ActivityUserInfoBinding.inflate(layoutInflater)
@@ -35,9 +40,19 @@ class UserInfoActivity : BaseActivity() {
             }
         }.attach()
 
+        viewModel.userMessageLiveData.observe(this){
+            binding.activityTextViewUserFans.text="${it.fansNum} 粉丝数"
+            binding.activityTextViewUserInTime.text="入驻段子乐: ${it.joinTime}"
+            binding.activityTextViewUserMotto.text=it.sigbature
+            binding.activityTextViewUserNickName.text=it.nickname
+            binding.activityTextViewUserLiked.text="${it.likeNum} 获赞"
+            binding.activityButtonUserAttend.text="${it.attentionNum} 关注"
 
+            Glide.with(this).load(it.avatar).into(binding.activityImageViewUserPortraitSmall)
+            Glide.with(this).load(it.cover).into(binding.activityImageViewUserPortraitBig)
+        }
 
-
+        viewModel.getUserMessage(ex?.toInt()?:0)
 
     }
 

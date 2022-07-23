@@ -1,6 +1,7 @@
 package com.example.summerassessment.util
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.util.AttributeSet
@@ -15,6 +16,7 @@ import com.example.summerassessment.R
 import com.example.summerassessment.databinding.MainActivityBottomViewBinding
 import com.example.summerassessment.ui.mainactivity.MainActivity
 import com.example.summerassessment.ui.mainactivity.MainActivityViewModel
+import com.example.summerassessment.ui.postarticlespage.PostArticlesActivity
 
 class BottomView @JvmOverloads constructor(
     context: Context,
@@ -110,7 +112,7 @@ class BottomView @JvmOverloads constructor(
                 viewModel.setPageNum(3)
             }
             R.id.bottom_button_plus_layout -> {
-                setViewColor(4)
+                context.startActivity(Intent(context,PostArticlesActivity::class.java))
             }
         }
     }

@@ -1,6 +1,7 @@
 package com.example.summerassessment.repository
 
 import com.example.summerassessment.model.RecommendListBean
+import com.example.summerassessment.model.UserData
 import com.example.summerassessment.model.UserVideoListData
 import com.example.summerassessment.services.ApiUserService
 import com.example.summerassessment.util.create
@@ -29,6 +30,25 @@ object UserInfoRepository {
     fun getTextImg(userId:Int,page:Int):Observable<RecommendListBean>{
         val requestBody= getRequest(userId,page)
         return apiUserService.getTextImgData(requestBody)
+    }
+
+    fun getOwnVideo(userId:Int,page:Int):Observable<UserVideoListData>{
+        val requestBody= getRequest(userId,page)
+        return apiUserService.getUserOwnVideoData(requestBody)
+    }
+
+    fun getOwnTextImg(userId:Int,page:Int):Observable<RecommendListBean>{
+        val requestBody= getRequest(userId,page)
+        return apiUserService.getUserOwnTextImgData(requestBody)
+    }
+
+    fun getUserMessage(userId:Int): Observable<UserData>{
+
+        val requestBody=MultipartBody.Builder()
+            .setType(MultipartBody.FORM)
+            .addFormDataPart("targetUserId", "$userId")
+            .build()
+        return apiUserService.getUserMessage(requestBody)
     }
 
 }

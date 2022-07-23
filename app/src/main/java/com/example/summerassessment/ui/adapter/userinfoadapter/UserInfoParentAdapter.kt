@@ -26,7 +26,8 @@ class UserInfoParentAdapter(private val context: Context,private val id:Int) : R
 
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.binding.vp2ActivityUserInfoItemLayoutVp2Child.adapter = UserInfoChildAdapter(context,id)
+        holder.binding.vp2ActivityUserInfoItemLayoutVp2Child.adapter = UserInfoChildAdapter(context,id,position)
+        holder.binding.vp2ActivityUserInfoItemLayoutVp2Child.tag=position.toString()
         TabLayoutMediator(
             holder.binding.vp2ActivityUserInfoItemLayoutTabLayoutChild,
             holder.binding.vp2ActivityUserInfoItemLayoutVp2Child

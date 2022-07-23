@@ -43,8 +43,10 @@ import kotlin.concurrent.thread
 open class HomeAdapter(
     private val context: Context,
     private val adapterTag: Int,
-    private val viewModel: HomeFragmentViewModel
-) : ListAdapter<Data,HomeAdapter.ViewHolder>(CALL_BACK), VideoPlayListener {
+    private val viewModel: HomeFragmentViewModel = ViewModelProvider(context as MainActivity).get(
+        HomeFragmentViewModel::class.java
+    )
+) : ListAdapter<Data, HomeAdapter.ViewHolder>(CALL_BACK), VideoPlayListener {
 
     companion object {
         const val HEADER = 2002
@@ -75,7 +77,6 @@ open class HomeAdapter(
     private var isPlay = false
 
 
-
     inner class PhotoViewHolder(val binding: HomeRecommendVpItemRvItemLayoutBinding) :
         ViewHolder(binding.root) {
 
@@ -84,8 +85,8 @@ open class HomeAdapter(
         init {
 
             binding.homePageVpItemRvTextHead.setOnClickListener {
-                val intent=Intent(context as MainActivity,UserInfoActivity::class.java)
-                intent.putExtra("user_id","${getItem(layoutPosition).user.userId}")
+                val intent = Intent(context as MainActivity, UserInfoActivity::class.java)
+                intent.putExtra("user_id", "${getItem(layoutPosition).user.userId}")
                 context.startActivity(intent)
 
             }
@@ -139,8 +140,8 @@ open class HomeAdapter(
         init {
 
             binding.homePageVpItemRvVideoHead.setOnClickListener {
-                val intent=Intent(context as MainActivity,UserInfoActivity::class.java)
-                intent.putExtra("user_id","${getItem(layoutPosition).user.userId}")
+                val intent = Intent(context as MainActivity, UserInfoActivity::class.java)
+                intent.putExtra("user_id", "${getItem(layoutPosition).user.userId}")
                 context.startActivity(Intent(intent))
             }
 
@@ -172,7 +173,7 @@ open class HomeAdapter(
                 val editNameDialog = CommentPage()
                 editNameDialog.show(fm, "fragment_dialog")
 
-                val p=layoutPosition
+                val p = layoutPosition
 
                 thread {
                     //Thread.sleep(500)
@@ -446,7 +447,7 @@ open class HomeAdapter(
 
     fun getListener(): VideoPlayListener = this
 
-    open fun update(i:Boolean) {
+    open fun update(i: Boolean) {
         if (!isPlay) {
             when (adapterTag) {
                 1 -> {
@@ -465,8 +466,6 @@ open class HomeAdapter(
         }
 
     }
-
-
 
 
     open fun refresh(close: () -> Unit): Boolean {
