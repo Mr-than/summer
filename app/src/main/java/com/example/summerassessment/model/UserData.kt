@@ -1,4 +1,4 @@
-package com.example.summerassessment.model
+          package com.example.summerassessment.model
 
 data class UserData(
     val code: Int,
@@ -22,3 +22,5 @@ data class DataE(
     val sigbature: String,
     val userId: Int
 )
+
+

@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
+        android:id="@+id/my_fragment_detailed"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
@@ -18,8 +18,8 @@
 
         <ImageView
             android:id="@+id/fragment_my_page_photo"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:layout_marginStart="16dp"
             android:src="@drawable/test"
             app:layout_constraintStart_toStartOf="parent"
@@ -33,7 +33,7 @@
             android:layout_marginTop="4dp"
             android:text="段子乐"
             android:textColor="@color/black"
-            android:textSize="30dp"
+            android:textSize="20dp"
             app:layout_constraintStart_toEndOf="@+id/fragment_my_page_photo"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -70,7 +70,7 @@
         app:layout_constraintEnd_toStartOf="@+id/fragment_my_page_fans_num"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+        app:layout_constraintTop_toBottomOf="@+id/my_fragment_detailed">
 
         <TextView
             android:id="@+id/fragment_my_page_attention_num_text"
@@ -99,7 +99,7 @@
         app:layout_constraintEnd_toStartOf="@+id/fragment_my_page_bean_num"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/fragment_my_page_attention_num"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+        app:layout_constraintTop_toBottomOf="@+id/my_fragment_detailed">
 
         <TextView
             android:id="@+id/fragment_my_page_fans_num_text"
@@ -128,7 +128,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/fragment_my_page_fans_num"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+        app:layout_constraintTop_toBottomOf="@+id/my_fragment_detailed">
 
         <TextView
             android:id="@+id/fragment_my_page_bean_num_text"
@@ -153,7 +153,7 @@
         android:id="@+id/message_page_comment_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="40dp"
         android:clickable="true"
         android:focusable="true"
         android:orientation="vertical"
@@ -163,8 +163,8 @@
         app:layout_constraintTop_toBottomOf="@+id/fragment_my_page_fans_num">
 
         <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_gravity="center"
             android:src="@drawable/message_comment_img" />
 
@@ -182,7 +182,7 @@
         android:id="@+id/message_page_collection_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="40dp"
         android:clickable="true"
         android:focusable="true"
         android:orientation="vertical"
@@ -192,8 +192,8 @@
         app:layout_constraintTop_toBottomOf="@+id/fragment_my_page_fans_num">
 
         <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_gravity="center"
             android:src="@drawable/my_page_collection" />
 
@@ -210,7 +210,7 @@
         android:id="@+id/message_page_joke_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="40dp"
         android:clickable="true"
         android:focusable="true"
         android:orientation="vertical"
@@ -220,8 +220,8 @@
         app:layout_constraintTop_toBottomOf="@+id/fragment_my_page_fans_num">
 
         <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_gravity="center"
             android:src="@drawable/my_page_jokes" />
 
@@ -240,7 +240,7 @@
         android:id="@+id/message_page_liked_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="40dp"
         android:clickable="true"
         android:focusable="true"
         android:orientation="vertical"
@@ -250,8 +250,8 @@
         app:layout_constraintTop_toBottomOf="@+id/fragment_my_page_fans_num">
 
         <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_gravity="center"
             android:src="@drawable/my_page_like" />
 

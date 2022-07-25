@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.summerassessment.databinding.HomePageRvHeaderLayoutBinding
@@ -27,7 +26,6 @@ class FollowPageAdapter(
 
 
     class HeaderViewHolder(val binding: HomePageRvHeaderLayoutBinding) : ViewHolder(binding.root)
-
 
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -102,7 +100,6 @@ class FollowPageAdapter(
         viewModel.getRecommendFollowData()
         return true
     }
-
 
 
 }

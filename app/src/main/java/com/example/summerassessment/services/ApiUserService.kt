@@ -1,10 +1,7 @@
 package com.example.summerassessment.services
 
 import com.example.summerassessment.base.APP
-import com.example.summerassessment.model.BrushVideoData
-import com.example.summerassessment.model.RecommendListBean
-import com.example.summerassessment.model.UserData
-import com.example.summerassessment.model.UserVideoListData
+import com.example.summerassessment.model.*
 import okhttp3.RequestBody
 import retrofit2.http.Body
 import retrofit2.http.Headers
@@ -32,5 +29,10 @@ interface ApiUserService {
     @Headers("project_token:${APP.PROJECT_TOKEN}")
     @POST("user/info/target")
     fun getUserMessage(@Body requestBody: RequestBody): Observable<UserData>
+
+    @Headers("project_token:${APP.PROJECT_TOKEN}")
+    @POST("user/comment/list")
+    fun gerComment(@Body requestBody: RequestBody):Observable<CurrentCommentData>
+
 
 }

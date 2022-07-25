@@ -108,8 +108,8 @@
     <ImageView
         android:clickable="true"
         android:id="@+id/activity_post_joke_img_view_uncheck_img"
-        android:layout_width="15dp"
-        android:layout_height="15dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:src="@drawable/uncheck"
         app:layout_constraintEnd_toEndOf="@+id/activity_post_joke_img_view_checked_img"
         app:layout_constraintTop_toTopOf="@+id/activity_post_joke_img_view_checked_img"

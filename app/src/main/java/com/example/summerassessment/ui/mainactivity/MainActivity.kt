@@ -11,6 +11,8 @@ import com.example.summerassessment.databinding.ActivityMainBinding
 import com.example.summerassessment.ui.homefragment.HomeFragment
 import com.example.summerassessment.ui.adapter.MainActivityVpAdapter
 import com.example.summerassessment.ui.brushvideofragment.BrushVideoFragment
+import com.example.summerassessment.ui.messagefragment.MessageFragment
+import com.example.summerassessment.ui.myfragment.MyFragment
 
 class MainActivity : BaseActivity(){
 
@@ -33,10 +35,10 @@ class MainActivity : BaseActivity(){
                     BrushVideoFragment()
                 }
                 2->{
-                    HomeFragment()
+                    MessageFragment()
                 }
                 else->{
-                    HomeFragment()
+                    MyFragment()
                 }
             }
         }

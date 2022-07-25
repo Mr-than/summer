@@ -59,16 +59,14 @@ class CommentPage : DialogFragment() {
         commendRv = dialog.findViewById(R.id.dialog_fragment_comment_comment)
         openEdit=dialog.findViewById(R.id.dialog_comment_text_view_open_edit)
 
-
-
         openEdit.setOnClickListener{
             val fm: FragmentManager = (context as FragmentActivity).supportFragmentManager
             val editNameDialog = EditTextDialogFragment()
             editNameDialog.show(fm, "fragment_edit")
         }
 
+        val adapter = CommentPageAdapter(requireActivity())
 
-        val adapter: CommentPageAdapter by lazy { CommentPageAdapter(requireActivity())}
         commendRv.layoutManager=LinearLayoutManager(requireActivity())
         commendRv.adapter=adapter
 
@@ -77,11 +75,8 @@ class CommentPage : DialogFragment() {
         }
 
         viewModel.commentLiveData.observe(requireActivity()){
-            //adapter.refresh()
             adapter.submitList(it)
         }
-
-
 
         return dialog
     }

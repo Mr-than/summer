@@ -1,14 +1,11 @@
 package com.example.summerassessment.ui.userpage
 
-import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.summerassessment.base.APP
-import com.example.summerassessment.model.Data
-import com.example.summerassessment.model.DataE
-import com.example.summerassessment.model.DataU
+import com.example.summerassessment.model.*
 import com.example.summerassessment.repository.UserInfoRepository
 import rx.Observer
 import rx.android.schedulers.AndroidSchedulers
@@ -23,11 +20,15 @@ class UserInfoViewModel: ViewModel() {
     private var ownVideoPage:Int=1
     private var ownTextImgPage:Int=1
 
+    private var commentPage:Int=1
+
     private val list1:ArrayList<DataU> = ArrayList()
     private val list2:ArrayList<Data> =ArrayList()
 
     private val list3:ArrayList<DataU> = ArrayList()
     private val list4:ArrayList<Data> =ArrayList()
+
+    private val commentList:ArrayList<DataM> =ArrayList()
 
     private val _videoLiveData:MutableLiveData<List<DataU>> = MutableLiveData()
     val videoLiveData:LiveData<List<DataU>> get() = _videoLiveData
@@ -44,6 +45,10 @@ class UserInfoViewModel: ViewModel() {
 
     private val _userMessageLiveData:MutableLiveData<DataE> = MutableLiveData()
     val userMessageLiveData:LiveData<DataE> get() = _userMessageLiveData
+
+
+    private val _userCommentLiveData:MutableLiveData<List<DataM>> = MutableLiveData()
+    val userCommentLiveData:LiveData<List<DataM>> get() = _userCommentLiveData
 
 
     fun getVideo(id:Int){
@@ -184,6 +189,41 @@ class UserInfoViewModel: ViewModel() {
                     _userMessageLiveData.postValue(t)
                 }
             })
+    }
+
+
+    fun getCurrentComment(){
+
+
+        val ob=UserInfoRepository.getCurrentComment(commentPage)
+        commentPage++
+        ob.map {
+            it.data
+        }.subscribeOn(Schedulers.io())
+         .subscribeOn(AndroidSchedulers.mainThread())
+            .subscribe(object:Observer<List<DataM>>{
+                override fun onCompleted() {
+
+                }
+
+                override fun onError(e: Throwable?) {
+                    Toast.makeText(APP.getApp(),e?.message,Toast.LENGTH_SHORT).show()
+                }
+
+                override fun onNext(t: List<DataM>) {
+
+                    if (!commentList.containsAll(t)){
+                        commentList.addAll(t)
+                    }
+
+                    val new=ArrayList<DataM>()
+                    new.addAll(commentList)
+
+                    _userCommentLiveData.postValue(new)
+                }
+            })
+
+
     }
 
 }

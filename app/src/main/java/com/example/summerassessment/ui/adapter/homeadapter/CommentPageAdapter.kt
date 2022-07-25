@@ -11,9 +11,6 @@ import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.request.RequestOptions
 import com.example.summerassessment.databinding.DialogFragmentCommentCommentRvItemBinding
 import com.example.summerassessment.model.Comment
-import com.example.summerassessment.model.Data
-import com.example.summerassessment.ui.dialogfragment.viewmodel.CommentPageViewModel
-import java.util.ArrayList
 
 class CommentPageAdapter(
     private val context: Context

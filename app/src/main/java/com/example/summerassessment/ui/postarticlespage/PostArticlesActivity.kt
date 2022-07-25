@@ -8,42 +8,47 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.Matrix
+import android.media.ExifInterface
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.DocumentsContract
 import android.provider.MediaStore
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
+import androidx.lifecycle.ViewModelProvider
 import com.example.summerassessment.R
 import com.example.summerassessment.base.BaseActivity
 import com.example.summerassessment.databinding.ActivityPostArticlesBinding
-import com.qiniu.android.common.FixedZone
-import com.qiniu.android.storage.Configuration
-import com.qiniu.android.storage.UploadManager
 import java.io.ByteArrayOutputStream
 import java.io.File
+import java.io.FileNotFoundException
+import java.util.*
+import kotlin.random.Random
 
 
 class PostArticlesActivity : BaseActivity() {
 
     private lateinit var binding:ActivityPostArticlesBinding
 
+    private val viewModel:PostActivityViewModel by lazy { ViewModelProvider(this).get(PostActivityViewModel::class.java) }
 
     companion object{
         private var uri:Uri? = null
+        private lateinit var outputImage:File
         private const val CHOOSE_PHOTO = 2
         private const val TAKE = 1
         private var isPostImg=false
         private var data:ByteArray?=null
+
     }
 
 
@@ -77,18 +82,12 @@ class PostArticlesActivity : BaseActivity() {
         }
 
 
+
         binding.activityPostJokeImgViewUncheckImg.visibility=View.GONE
-        binding.activityPostJokeImgViewUncheckImg.setOnClickListener {
-            isPostImg=false
-            binding.activityPostJokeImgViewUncheckImg.visibility=View.GONE
-        }
-
-
 
     }
 
     private fun choosePhoto(){
-
 
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED){
@@ -100,25 +99,26 @@ class PostArticlesActivity : BaseActivity() {
                 setPositiveButton("相机"){
                         _, _ ->
 
-                    val file = File(externalCacheDir, "out.jpg")
+                    outputImage = File(externalCacheDir, "out.jpg")
                     try {
-                        if (file.exists()) {
-                            file.delete()
+                        if (outputImage.exists()) {
+                            outputImage.delete()
                         }
-                        file.createNewFile()
+                        outputImage.createNewFile()
                     } catch (e: Exception) {
                         e.printStackTrace()
                     }
 
                     uri = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                        FileProvider.getUriForFile(this@PostArticlesActivity, "com.example.fileprovider", file)
+                        FileProvider.getUriForFile(this@PostArticlesActivity, "com.example.fileprovider", outputImage)
                     } else {
-                        Uri.fromFile(file)
+                        Uri.fromFile(outputImage)
                     }
 
                     val intent = Intent("android.media.action.IMAGE_CAPTURE")
                     intent.putExtra(MediaStore.EXTRA_OUTPUT, uri)
                     startActivityForResult(intent, TAKE)
+
 
 
                 }
@@ -131,7 +131,7 @@ class PostArticlesActivity : BaseActivity() {
         }else{
             //否则去请求相机权限
             ActivityCompat.requestPermissions(this,
-                arrayOf(Manifest.permission.CAMERA),2);
+                arrayOf(Manifest.permission.CAMERA),2)
         }
 
 
@@ -144,9 +144,26 @@ class PostArticlesActivity : BaseActivity() {
         return true
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
          R.id.post_joke->{
+
+             if(binding.activityPostJokeEditText.text.toString().isNotEmpty()) {
+                 if (isPostImg) {
+                     val n = Random.nextLong(100000) + 1000
+                     val name = "${n}.png"
+                     viewModel.getToken(
+                         data!!,
+                         name,
+                         binding.activityPostJokeEditText.text.toString()
+                     )
+                 } else {
+                     viewModel.postJoke(binding.activityPostJokeEditText.text.toString())
+                 }
+             }else{
+                 Toast.makeText(this,"请输入文本",Toast.LENGTH_SHORT).show()
+             }
 
          }
          R.id.home_search->{
@@ -164,6 +181,7 @@ class PostArticlesActivity : BaseActivity() {
     }
 
 
+    @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         when (requestCode) {
@@ -176,7 +194,30 @@ class PostArticlesActivity : BaseActivity() {
                     }
                 }
             }
-            else -> {}
+            else -> {
+                if (resultCode == RESULT_OK) {
+                    try {
+                        binding.activityPostJokeImgViewUncheckImg.visibility=View.VISIBLE
+                        val bitmap =
+                            BitmapFactory.decodeStream(contentResolver.openInputStream(uri!!))
+
+                       binding.activityPostJokeImgViewCheckedImg.setImageBitmap(rotateIfRequired(bitmap))
+                        binding.activityPostJokeImgViewUncheckImg.setOnClickListener {
+                            isPostImg=false
+                            binding.activityPostJokeImgViewUncheckImg.visibility=View.GONE
+                        }
+
+                        val bao = ByteArrayOutputStream()
+                        bitmap.compress(Bitmap.CompressFormat.PNG, 100, bao)
+
+                        val d = bao.toByteArray()
+                        Companion.data =d
+
+                    } catch (e: FileNotFoundException) {
+                        e.printStackTrace()
+                    }
+                }
+            }
         }
     }
 
@@ -228,12 +269,18 @@ class PostArticlesActivity : BaseActivity() {
     private fun displayImage(imagePath: String?) {
         if (imagePath != null) {
             val bitmap = BitmapFactory.decodeFile(imagePath)
-            val bao = ByteArrayOutputStream()
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bao)
-
 
             binding.activityPostJokeImgViewCheckedImg.setImageBitmap(bitmap)
             binding.activityPostJokeImgViewUncheckImg.visibility= View.VISIBLE
+
+            val bao = ByteArrayOutputStream()
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, bao)
+
+            binding.activityPostJokeImgViewUncheckImg.setOnClickListener {
+                isPostImg=false
+                binding.activityPostJokeImgViewUncheckImg.visibility=View.GONE
+            }
+
             val d = bao.toByteArray()
             //val a = imagePath.split("/").toTypedArray()
             //postTo(data, a[a.size - 1])
@@ -268,4 +315,23 @@ class PostArticlesActivity : BaseActivity() {
             }
         }
     }
+
+    private fun rotateIfRequired(bitmap: Bitmap):Bitmap{
+        val exif=ExifInterface(outputImage.path)
+        return when(exif.getAttributeInt(ExifInterface.TAG_ORIENTATION,ExifInterface.ORIENTATION_NORMAL)){
+            ExifInterface.ORIENTATION_ROTATE_90->rotateBitmap(bitmap,90)
+            ExifInterface.ORIENTATION_ROTATE_180->rotateBitmap(bitmap,180)
+            ExifInterface.ORIENTATION_ROTATE_270->rotateBitmap(bitmap,270)
+            else->bitmap
+        }
+    }
+
+    private fun rotateBitmap(bitmap: Bitmap,degree:Int):Bitmap{
+        val matrix=Matrix()
+        matrix.postRotate(degree.toFloat())
+        val rotatedBitmap=Bitmap.createBitmap(bitmap,0,0,bitmap.width,bitmap.height,matrix,true)
+        bitmap.recycle()
+        return rotatedBitmap
+    }
+
 }

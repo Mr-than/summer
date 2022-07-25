@@ -1,11 +1,13 @@
 package com.example.summerassessment.ui.homefragment
 
-import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.summerassessment.base.APP
 import com.example.summerassessment.model.Data
 import com.example.summerassessment.model.DataX
+import com.example.summerassessment.model.IsLikeData
 import com.example.summerassessment.repository.HomePageRepository
 
 import rx.android.schedulers.AndroidSchedulers
@@ -39,6 +41,13 @@ class HomeFragmentViewModel : ViewModel() {
     private val list3 = ArrayList<Data>()
     private val list4 = ArrayList<Data>()
     private val list5=ArrayList<Data>()
+
+
+    private var isLike1=false
+    private var isLike2=false
+    private var isLike3=false
+    private var isLike4=false
+    private var isLike5=false
 
 
     fun getRecommendFollowData() {
@@ -144,6 +153,53 @@ class HomeFragmentViewModel : ViewModel() {
                 new.addAll(list4)
                 _picLiveData.postValue(new)
             }
+    }
+
+    fun setLike(id:Int,state:Boolean){
+        val ob=HomePageRepository.setLike(id,state)
+
+        ob.subscribeOn(Schedulers.io())
+            .subscribeOn(AndroidSchedulers.mainThread())
+            .subscribe(object:rx.Observer<IsLikeData>{
+                override fun onCompleted() {
+
+                }
+                override fun onError(e: Throwable?) {
+                    Toast.makeText(APP.getApp(),e?.message,Toast.LENGTH_SHORT).show()
+                }
+
+                override fun onNext(t: IsLikeData?) {
+                    if(state&&t?.code==200){
+                        Toast.makeText(APP.getApp(),"点赞成功",Toast.LENGTH_SHORT).show()
+                    }else if(!state&&t?.code==200){
+                        Toast.makeText(APP.getApp(),"取消成功",Toast.LENGTH_SHORT).show()
+                    }
+                }
+            })
+
+    }
+
+    fun setUnLike(id:Int,state:Boolean){
+        val ob=HomePageRepository.setLike(id,state)
+
+        ob.subscribeOn(Schedulers.io())
+            .subscribeOn(AndroidSchedulers.mainThread())
+            .subscribe(object:rx.Observer<IsLikeData>{
+                override fun onCompleted() {
+
+                }
+                override fun onError(e: Throwable?) {
+                    Toast.makeText(APP.getApp(),e?.message,Toast.LENGTH_SHORT).show()
+                }
+
+                override fun onNext(t: IsLikeData?) {
+                    if(state&&t?.code==200){
+                        Toast.makeText(APP.getApp(),"踩成功",Toast.LENGTH_SHORT).show()
+                    }else if(!state&&t?.code==200){
+                        Toast.makeText(APP.getApp(),"取消成功",Toast.LENGTH_SHORT).show()
+                    }
+                }
+            })
     }
 
 

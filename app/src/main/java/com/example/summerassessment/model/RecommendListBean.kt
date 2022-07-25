@@ -14,11 +14,11 @@ data class Data(
 
 data class Info(
     val commentNum: Int,
-    val disLikeNum: Int,
+    var disLikeNum: Int,
     val isAttention: Boolean,
-    val isLike: Boolean,
-    val isUnlike: Boolean,
-    val likeNum: Int,
+    var isLike: Boolean,
+    var isUnlike: Boolean,
+    var likeNum: Int,
     val shareNum: Int
 )
 

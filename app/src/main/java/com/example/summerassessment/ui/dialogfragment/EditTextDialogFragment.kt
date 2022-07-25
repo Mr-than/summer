@@ -9,19 +9,28 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.DisplayMetrics
+import android.util.Log
 import android.view.*
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.fragment.app.DialogFragment
+import androidx.lifecycle.ViewModelProvider
 import com.example.summerassessment.R
+import com.example.summerassessment.ui.dialogfragment.viewmodel.CommentPageViewModel
 import kotlin.concurrent.thread
 
 
-class EditTextDialogFragment: DialogFragment() {
-    private lateinit var mEditText:EditText
-    private lateinit var sendCommentImg:ImageView
-    private lateinit var comment:String
+class EditTextDialogFragment : DialogFragment() {
+    private lateinit var mEditText: EditText
+    private lateinit var sendCommentImg: ImageView
+    private lateinit var comment: String
+    private val viewModel: CommentPageViewModel by lazy {
+        ViewModelProvider(requireActivity()).get(
+            CommentPageViewModel::class.java
+        )
+    }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val dialog = Dialog(requireActivity(), R.style.commend_edit_dialog)
@@ -50,29 +59,29 @@ class EditTextDialogFragment: DialogFragment() {
         lp.height = (screenHeight / 14)
 
         window.attributes = lp
-        mEditText=dialog.findViewById(R.id.dialog_commend_text_view_commend_edit)
-        sendCommentImg=dialog.findViewById(R.id.dialog_fragment_text_view_send)
+        mEditText = dialog.findViewById(R.id.dialog_commend_text_view_commend_edit)
+        sendCommentImg = dialog.findViewById(R.id.dialog_fragment_text_view_send)
 
-        mEditText.addTextChangedListener(object : TextWatcher{
+        mEditText.addTextChangedListener(object : TextWatcher {
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
 
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if(mEditText.text.toString().isNotEmpty()){
+                if (mEditText.text.toString().isNotEmpty()) {
                     sendCommentImg.setImageResource(R.drawable.send_able)
-                    sendCommentImg.isClickable=true
-                }else{
+                    sendCommentImg.isClickable = true
+                } else {
                     sendCommentImg.setImageResource(R.drawable.send_disable)
-                    sendCommentImg.isClickable=false
+                    sendCommentImg.isClickable = false
                 }
             }
 
             override fun afterTextChanged(s: Editable?) {
-                    if(mEditText.text.toString().isNotEmpty()){
-                        comment=mEditText.text.toString()
-                    }
+                if (mEditText.text.toString().isNotEmpty()) {
+                    comment = mEditText.text.toString()
+                }
             }
         })
 
@@ -81,15 +90,37 @@ class EditTextDialogFragment: DialogFragment() {
             requireActivity().runOnUiThread {
                 mEditText.requestFocus()
                 mEditText.isFocusableInTouchMode = true
-                val imm = requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                val imm =
+                    requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                 imm.showSoftInput(mEditText, 0)
             }
         }
 
-        sendCommentImg.setOnClickListener{
-            mEditText.setText("")
+
+        viewModel.postIdLiveData.observe(requireActivity()){
+            if(mEditText.text.toString().isNotEmpty()) {
+                val content = mEditText.text.toString()
+                viewModel.commentJoke(content, it)
+                mEditText.setText("")
+            }
         }
-        
+
+
+        viewModel.postRespondLiveData.observe(requireActivity()){
+            viewModel.refreshComment(it)
+        }
+
+        sendCommentImg.setOnClickListener {
+
+            if(mEditText.text.toString().isNotEmpty()) {
+                viewModel.getId()
+
+            }else{
+                Toast.makeText(requireActivity(),"请输入内容",Toast.LENGTH_SHORT).show()
+            }
+
+        }
+
         return dialog
     }
 

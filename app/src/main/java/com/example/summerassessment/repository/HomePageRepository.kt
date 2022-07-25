@@ -1,8 +1,7 @@
 package com.example.summerassessment.repository
 
 
-import com.example.summerassessment.model.CommentData
-import com.example.summerassessment.model.RecommendListBean
+import com.example.summerassessment.model.*
 import com.example.summerassessment.services.ApiHomeService
 import com.example.summerassessment.util.create
 import okhttp3.MultipartBody
@@ -53,4 +52,51 @@ object HomePageRepository{
 
         return apiHomeService.getCommentData(requestBody)
     }
+
+
+    fun setLike(id:Int,state:Boolean):Observable<IsLikeData>{
+
+        val requestBody: RequestBody = MultipartBody.Builder()
+            .setType(MultipartBody.FORM)
+            .addFormDataPart("id", "$id")
+            .addFormDataPart("status","$state")
+            .build()
+
+        return apiHomeService.setIsLike(requestBody)
+    }
+
+    fun setUnLike(id:Int,state:Boolean):Observable<IsLikeData>{
+
+        val requestBody: RequestBody = MultipartBody.Builder()
+            .setType(MultipartBody.FORM)
+            .addFormDataPart("id", "$id")
+            .addFormDataPart("status","$state")
+            .build()
+
+        return apiHomeService.setIsNotLike(requestBody)
+    }
+
+    fun postComment(content:String,id:String):Observable<PostCommentRespond>{
+
+        val requestBody: RequestBody = MultipartBody.Builder()
+            .setType(MultipartBody.FORM)
+            .addFormDataPart("content", content)
+            .addFormDataPart("jokeId",id)
+            .build()
+
+        return apiHomeService.postComment(requestBody)
+    }
+
+
+    fun setUserFollow(status:String,userId:String):Observable<AllData>{
+
+        val requestBody: RequestBody = MultipartBody.Builder()
+            .setType(MultipartBody.FORM)
+            .addFormDataPart("status", status)
+            .addFormDataPart("userId",userId)
+            .build()
+
+        return apiHomeService.setUserFollow(requestBody)
+    }
+
 }

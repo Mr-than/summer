@@ -2,14 +2,12 @@ package com.example.summerassessment.ui.adapter.userinfoadapter
 
 import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.summerassessment.databinding.Vp2VideoRvItemBinding
-import com.example.summerassessment.model.Data
 import com.example.summerassessment.model.DataU
 import com.example.summerassessment.util.decrypt
 

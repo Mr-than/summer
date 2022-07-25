@@ -1,8 +1,6 @@
 package com.example.summerassessment.repository
 
-import com.example.summerassessment.model.RecommendListBean
-import com.example.summerassessment.model.UserData
-import com.example.summerassessment.model.UserVideoListData
+import com.example.summerassessment.model.*
 import com.example.summerassessment.services.ApiUserService
 import com.example.summerassessment.util.create
 import okhttp3.MultipartBody
@@ -50,5 +48,17 @@ object UserInfoRepository {
             .build()
         return apiUserService.getUserMessage(requestBody)
     }
+
+    fun getCurrentComment(page:Int):Observable<CurrentCommentData>{
+        val requestBody=MultipartBody.Builder()
+            .setType(MultipartBody.FORM)
+            .addFormDataPart("page", "$page")
+            .build()
+
+        return apiUserService.gerComment(requestBody)
+    }
+
+
+
 
 }

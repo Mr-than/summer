@@ -22,6 +22,8 @@ class MessageFragment: Fragment() {
 
 
 
+
+
         return binding.root
     }
 }

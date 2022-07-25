@@ -19,7 +19,7 @@ class HomeFragment : Fragment() {
 
     private lateinit var binding: MainFragmentHomePageBinding
     private val viewModel: HomeFragmentViewModel by lazy {
-        ViewModelProvider(this).get(
+        ViewModelProvider(requireActivity()).get(
             HomeFragmentViewModel::class.java
         )
     }
