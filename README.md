@@ -7,7 +7,7 @@
 
 ## app主要界面
 
- <img src="D:\Android's project\SummerAssessment\img\Screenshot_20220726_171343_com.example.summerasse.jpg" alt="Screenshot_20220726_171343_com.example.summerasse" style="zoom:25%;" />
+ <img src="[D:\Android's project\SummerAssessment\img\Screenshot_20220726_171343_com.example.summerasse.jpg" alt="Screenshot_20220726_171343_com.example.summerasse](https://raw.githubusercontent.com/Mr-than/SummerAssessment/main/imgScreenshot_20220726_171343_com.example.summerasse.jpg)" style="zoom:25%;" />
 
 <img src="D:\Android's project\SummerAssessment\img\Screenshot_20220726_171351_com.example.summerasse.jpg" alt="Screenshot_20220726_171351_com.example.summerasse" style="zoom:25%;" />
 
