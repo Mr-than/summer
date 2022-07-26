@@ -7,6 +7,11 @@ import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import rx.Observable
 
+/**
+ *   description:搜索页面的整个仓库
+ *   @author:冉跃
+ *   email:2058109198@qq.com
+ */
 object SearchPageRepository {
 
     private val apiSearchService= create<ApiSearchService>()

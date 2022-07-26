@@ -14,24 +14,37 @@ import com.bumptech.glide.request.RequestOptions
 import com.example.summerassessment.R
 import com.example.summerassessment.databinding.HomePageRvHeaderItemLayoutBinding
 import com.example.summerassessment.model.DataX
+import com.example.summerassessment.ui.homefragment.HomeFragmentViewModel
 import java.util.ArrayList
 
-class FollowPageHeaderAdapter(private val context: Context, private val list: List<DataX>) :
-    RecyclerView.Adapter<FollowPageHeaderAdapter.ViewHolder>() {
+/**
+ *   description:首页推荐关注adapter
+ *   @author:冉跃
+ *   email:2058109198@qq.com
+ */
+class FollowPageHeaderAdapter(
+    private val context: Context,
+    private val list: List<DataX>,
+    private val viewModel: HomeFragmentViewModel
+) : RecyclerView.Adapter<FollowPageHeaderAdapter.ViewHolder>() {
 
 
     inner class ViewHolder(val binding: HomePageRvHeaderItemLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
         init {
             binding.homePageRvHeaderButtonItemFollow.setOnClickListener {
+
                 val drawable: Drawable? = ResourcesCompat.getDrawable(
                     context.resources,
                     R.drawable.shape_followed_button,
                     null
                 )
+
                 binding.homePageRvHeaderButtonItemFollow.background = drawable
                 binding.homePageRvHeaderButtonItemFollow.setTextColor(Color.parseColor("#8A8A8A"))
                 binding.homePageRvHeaderButtonItemFollow.text = "已关注"
+
+                //viewModel
             }
         }
     }
@@ -64,8 +77,8 @@ class FollowPageHeaderAdapter(private val context: Context, private val list: Li
         }
     }
 
-    fun setList(list: List<DataX>){
-        (this.list as ArrayList).run{
+    fun setList(list: List<DataX>) {
+        (this.list as ArrayList).run {
             clear()
             addAll(list)
         }

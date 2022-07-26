@@ -18,6 +18,13 @@ import com.example.summerassessment.ui.mainactivity.MainActivity
 import com.example.summerassessment.ui.mainactivity.MainActivityViewModel
 import com.example.summerassessment.ui.postarticlespage.PostArticlesActivity
 
+/**
+ *   description:底部导航栏
+ *   @author:冉跃
+ *   email:2058109198@qq.com
+ *
+ */
+
 class BottomView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,

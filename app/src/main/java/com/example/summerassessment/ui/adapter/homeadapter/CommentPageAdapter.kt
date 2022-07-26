@@ -12,6 +12,11 @@ import com.bumptech.glide.request.RequestOptions
 import com.example.summerassessment.databinding.DialogFragmentCommentCommentRvItemBinding
 import com.example.summerassessment.model.Comment
 
+/**
+ *   description:段子评论adapter
+ *   @author:冉跃
+ *   email:2058109198@qq.com
+ */
 class CommentPageAdapter(
     private val context: Context
 ) : ListAdapter<Comment,CommentPageAdapter.ViewHolder>(CALL_BACK) {
@@ -46,16 +51,16 @@ class CommentPageAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        Glide.with(context).load(getItem(position).commentUser.userAvatar)
+        Glide.with(context).load(getItem(position)?.commentUser?.userAvatar)
             .apply(RequestOptions.bitmapTransform(CircleCrop()))
             .into(holder.binding.dialogFragmentCommentCommentPhoto)
 
         holder.binding.dialogFragmentCommentCommentLikeNum.text =
-            getItem(position).likeNum.toString()
+            getItem(position)?.likeNum?.toString()
         holder.binding.dialogFragmentCommentCommentNickName.text =
-            getItem(position).commentUser.nickname
-        holder.binding.dialogFragmentCommentCommentText.text = getItem(position).content
-        holder.binding.dialogFragmentCommentCommentTime.text = getItem(position).timeStr
+            getItem(position)?.commentUser?.nickname
+        holder.binding.dialogFragmentCommentCommentText.text = getItem(position)?.content
+        holder.binding.dialogFragmentCommentCommentTime.text = getItem(position)?.timeStr
 
     }
 }

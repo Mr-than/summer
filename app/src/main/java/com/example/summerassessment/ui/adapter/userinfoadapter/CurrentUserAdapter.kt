@@ -1,6 +1,5 @@
 package com.example.summerassessment.ui.adapter.userinfoadapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentActivity
@@ -10,7 +9,11 @@ import com.example.summerassessment.databinding.Vp2ActivityCurrentUserBinding
 import com.example.summerassessment.ui.userpage.UserInfoActivity
 import com.example.summerassessment.ui.userpage.UserInfoViewModel
 
-
+/**
+ *   description:当前用户的收藏
+ *   @author:冉跃
+ *   email:2058109198@qq.com
+ */
 class CurrentUserAdapter(private val context: FragmentActivity, id: Int) :
     UserInfoParentAdapter(context, id) {
 

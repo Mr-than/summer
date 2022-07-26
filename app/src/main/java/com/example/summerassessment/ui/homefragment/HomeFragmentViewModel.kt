@@ -13,6 +13,13 @@ import com.example.summerassessment.repository.HomePageRepository
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 
+
+/**
+ *   description:首页vm
+ *   @author:冉跃
+ *   email:2058109198@qq.com
+ *
+ */
 class HomeFragmentViewModel : ViewModel() {
 
     private val _recommendLiveData: MutableLiveData<List<Data>> = MutableLiveData()
@@ -43,13 +50,6 @@ class HomeFragmentViewModel : ViewModel() {
     private val list5=ArrayList<Data>()
 
 
-    private var isLike1=false
-    private var isLike2=false
-    private var isLike3=false
-    private var isLike4=false
-    private var isLike5=false
-
-
     fun getRecommendFollowData() {
         val ob = HomePageRepository.getRecommendFollowData()
         ob.subscribeOn(Schedulers.io())
@@ -71,7 +71,11 @@ class HomeFragmentViewModel : ViewModel() {
 
         ob.subscribeOn(Schedulers.io())
             .map {
+                if(it.msg=="用户登录过期"){
+                    _followLiveData.postValue(ArrayList<Data>())
+                }
                 it.data
+
             }.subscribeOn(Schedulers.io())
             .subscribe {
 
@@ -202,6 +206,20 @@ class HomeFragmentViewModel : ViewModel() {
             })
     }
 
+
+    fun setFollow(id:String,state:String){
+        val ob=HomePageRepository.setUserFollow(state,id)
+
+        ob.subscribeOn(Schedulers.io())
+            .subscribeOn(AndroidSchedulers.mainThread())
+            .doOnError {
+                list1
+            }
+            .subscribe {
+                Toast.makeText(APP.getApp(),"已关注",Toast.LENGTH_SHORT).show()
+            }
+
+    }
 
 }
 

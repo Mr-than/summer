@@ -10,6 +10,12 @@ import rx.Observer
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 
+/**
+ *   description:搜索结果的vm
+ *   @author:冉跃
+ *   email:2058109198@qq.com
+ *
+ */
 class ResultViewModel : ViewModel() {
 
     private val _searchResultLiveData:MutableLiveData<List<Data>> = MutableLiveData()

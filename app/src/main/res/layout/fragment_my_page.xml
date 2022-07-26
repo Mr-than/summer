@@ -21,7 +21,6 @@
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_marginStart="16dp"
-            android:src="@drawable/test"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -62,6 +61,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
+        android:clickable="true"
         android:id="@+id/fragment_my_page_attention_num"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -70,14 +70,15 @@
         app:layout_constraintEnd_toStartOf="@+id/fragment_my_page_fans_num"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/my_fragment_detailed">
+        app:layout_constraintTop_toBottomOf="@+id/my_fragment_detailed"
+        android:focusable="true">
 
         <TextView
             android:id="@+id/fragment_my_page_attention_num_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="4"
+            android:text="0"
             android:textColor="@color/black"
             android:textSize="20dp" />
 
@@ -91,6 +92,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:clickable="true"
         android:id="@+id/fragment_my_page_fans_num"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -99,14 +101,15 @@
         app:layout_constraintEnd_toStartOf="@+id/fragment_my_page_bean_num"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/fragment_my_page_attention_num"
-        app:layout_constraintTop_toBottomOf="@+id/my_fragment_detailed">
+        app:layout_constraintTop_toBottomOf="@+id/my_fragment_detailed"
+        android:focusable="true">
 
         <TextView
             android:id="@+id/fragment_my_page_fans_num_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="4"
+            android:text="0"
             android:textColor="@color/black"
             android:textSize="20dp" />
 
@@ -135,7 +138,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="4"
+            android:text="0"
             android:textColor="@color/black"
             android:textSize="20dp" />
 
@@ -265,6 +268,7 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/my_page_login"
         android:background="@drawable/shape_follow_button"
         android:layout_width="250dp"
         android:layout_height="wrap_content"

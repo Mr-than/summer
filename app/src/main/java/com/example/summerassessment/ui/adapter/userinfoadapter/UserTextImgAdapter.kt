@@ -12,6 +12,12 @@ import com.example.summerassessment.databinding.Vp2TextIamgeRvItemBinding
 import com.example.summerassessment.model.Data
 import com.example.summerassessment.util.decrypt
 
+
+/**
+ *   description:用户界面的图片、文字adapter
+ *   @author:冉跃
+ *   email:2058109198@qq.com
+ */
 class UserTextImgAdapter(private val context: Context) : ListAdapter<Data, UserTextImgAdapter.ViewHolder>(CALL_BACK) {
 
     companion object {

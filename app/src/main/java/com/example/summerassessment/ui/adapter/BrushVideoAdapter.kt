@@ -19,6 +19,12 @@ import xyz.doikki.videocontroller.component.CompleteView
 import xyz.doikki.videocontroller.component.ErrorView
 import kotlin.concurrent.thread
 
+
+/**
+ *   description:刷视频vp的adapter
+ *   @author:冉跃
+ *   email:2058109198@qq.com
+ */
 class BrushVideoAdapter(
     private val dataList: ArrayList<DataA>,
     private val context: Context,

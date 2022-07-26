@@ -6,6 +6,12 @@ import com.example.summerassessment.ui.adapter.homeadapter.HomeAdapter
 import com.example.summerassessment.ui.searchpage.SearchActivity
 import com.example.summerassessment.ui.searchpage.viewmodel.ResultViewModel
 
+
+/**
+ *   description:搜索结果的adapter
+ *   @author:冉跃
+ *   email:2058109198@qq.com
+ */
 class SearchResultAdapter(private val context: Context, private val adapterTag: Int,private val keyWord:String?) :
     HomeAdapter(context, adapterTag) {
 

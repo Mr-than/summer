@@ -7,6 +7,14 @@ import com.example.summerassessment.listener.VideoPlayListener
 import com.example.summerassessment.ui.adapter.homeadapter.HomeAdapter
 import kotlin.concurrent.thread
 
+/**
+ *   description:rv监听，用于分页和视频的自动播放
+ *   @author:冉跃
+ *   email:2058109198@qq.com
+ *
+ */
+
+
 class HomeRvListener(private val listener: VideoPlayListener): RecyclerView.OnScrollListener(){
 
     private var first: Int = 0

@@ -6,23 +6,20 @@ import com.example.summerassessment.model.Data
 import com.example.summerassessment.model.PostTokenData
 import okhttp3.RequestBody
 import retrofit2.http.Body
+import retrofit2.http.Header
 import retrofit2.http.Headers
 import retrofit2.http.POST
 import rx.Observable
 
 interface ApiPostService {
     @Headers(
-        "project_token:${APP.PROJECT_TOKEN}",
-        "token:eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxNDgzOSIsImV4cCI6MTY1OTE2MjIxMH0.ATRESQWoOWrrxbqr6ERINfB0ejisdgh4Jrs77jkMKm4"
-    )
+        "project_token:${APP.PROJECT_TOKEN}")
     @POST("helper/qiniu/token")
-    fun getToken(@Body requestBody: RequestBody): Observable<PostTokenData>
+    fun getToken(@Body requestBody: RequestBody,@Header("token") token:String): Observable<PostTokenData>
 
     @Headers(
-        "project_token:${APP.PROJECT_TOKEN}",
-        "token:eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxNDgzOSIsImV4cCI6MTY1OTE2MjIxMH0.ATRESQWoOWrrxbqr6ERINfB0ejisdgh4Jrs77jkMKm4"
-    )
+        "project_token:${APP.PROJECT_TOKEN}")
     @POST("jokes/post")
-    fun postImg(@Body requestBody: RequestBody): Observable<AllData>
+    fun postImg(@Body requestBody: RequestBody,@Header("token") token:String): Observable<AllData>
 
 }

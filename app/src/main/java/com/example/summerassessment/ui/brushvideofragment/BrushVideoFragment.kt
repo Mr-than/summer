@@ -11,6 +11,11 @@ import com.example.summerassessment.databinding.FragmentBrushVideoBinding
 import com.example.summerassessment.ui.adapter.BrushVideoAdapter
 import java.util.ArrayList
 
+/**
+ *   description:刷视频界面
+ *   @author:冉跃
+ *   email:2058109198@qq.com
+ */
 class BrushVideoFragment: Fragment() {
 
     private lateinit var binding:FragmentBrushVideoBinding

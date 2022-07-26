@@ -10,81 +10,59 @@ import rx.Observable
 interface ApiHomeService {
 
     @Headers(
-        "project_token:${APP.PROJECT_TOKEN}",
-        "token:eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxNDgzOSIsImV4cCI6MTY1OTE2MjIxMH0.ATRESQWoOWrrxbqr6ERINfB0ejisdgh4Jrs77jkMKm4"
-    )
+        "project_token:${APP.PROJECT_TOKEN}")
     @POST("home/recommend")
-    fun getRecommendList(): Observable<RecommendListBean>
+    fun getRecommendList(@Header("token") token:String): Observable<RecommendListBean>
 
     @Headers(
-        "project_token:${APP.PROJECT_TOKEN}",
-        "token:eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxNDgzOSIsImV4cCI6MTY1OTE2MjIxMH0.ATRESQWoOWrrxbqr6ERINfB0ejisdgh4Jrs77jkMKm4"
-    )
+        "project_token:${APP.PROJECT_TOKEN}")
     @POST("home/latest")
-    fun getNewList(): Observable<RecommendListBean>
+    fun getNewList(@Header("token") token:String): Observable<RecommendListBean>
 
     @Headers(
-        "project_token:${APP.PROJECT_TOKEN}",
-        "token:eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxNDgzOSIsImV4cCI6MTY1OTE2MjIxMH0.ATRESQWoOWrrxbqr6ERINfB0ejisdgh4Jrs77jkMKm4"
-    )
+        "project_token:${APP.PROJECT_TOKEN}")
     @POST("home/text")
-    fun getTextList(): Observable<RecommendListBean>
+    fun getTextList(@Header("token") token:String): Observable<RecommendListBean>
 
     @Headers(
-        "project_token:${APP.PROJECT_TOKEN}",
-        "token:eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxNDgzOSIsImV4cCI6MTY1OTE2MjIxMH0.ATRESQWoOWrrxbqr6ERINfB0ejisdgh4Jrs77jkMKm4"
-    )
+        "project_token:${APP.PROJECT_TOKEN}")
     @POST("home/pic")
-    fun getPicList(): Observable<RecommendListBean>
+    fun getPicList(@Header("token") token:String): Observable<RecommendListBean>
 
     @Headers(
-        "project_token:${APP.PROJECT_TOKEN}",
-        "token:eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxNDgzOSIsImV4cCI6MTY1OTE2MjIxMH0.ATRESQWoOWrrxbqr6ERINfB0ejisdgh4Jrs77jkMKm4"
-    )
+        "project_token:${APP.PROJECT_TOKEN}")
     @POST("home/attention/list")
-    fun getFollowArt(@Body requestBody: RequestBody): Observable<RecommendListBean>
+    fun getFollowArt(@Body requestBody: RequestBody,@Header("token") token:String): Observable<RecommendListBean>
 
     @Headers(
-        "project_token:${APP.PROJECT_TOKEN}",
-        "token:eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxNDgzOSIsImV4cCI6MTY1OTE2MjIxMH0.ATRESQWoOWrrxbqr6ERINfB0ejisdgh4Jrs77jkMKm4"
-    )
+        "project_token:${APP.PROJECT_TOKEN}")
     @POST("home/attention/recommend")
-    fun getRecommendFollow(): Observable<RecommendFollowBean>
+    fun getRecommendFollow(@Header("token") token:String): Observable<RecommendFollowBean>
 
     @Headers(
-        "project_token:${APP.PROJECT_TOKEN}",
-        "token:eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxNDgzOSIsImV4cCI6MTY1OTE2MjIxMH0.ATRESQWoOWrrxbqr6ERINfB0ejisdgh4Jrs77jkMKm4"
-    )
+        "project_token:${APP.PROJECT_TOKEN}")
     @POST("jokes/comment/list")
-    fun getCommentData(@Body requestBody: RequestBody):Observable<CommentData>
+    fun getCommentData(@Body requestBody: RequestBody,@Header("token") token:String):Observable<CommentData>
 
 
     @Headers(
-        "project_token:${APP.PROJECT_TOKEN}",
-        "token:eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxNDgzOSIsImV4cCI6MTY1OTE2MjIxMH0.ATRESQWoOWrrxbqr6ERINfB0ejisdgh4Jrs77jkMKm4"
-    )
+        "project_token:${APP.PROJECT_TOKEN}")
     @POST("jokes/like")
-    fun setIsLike(@Body requestBody: RequestBody):Observable<IsLikeData>
+    fun setIsLike(@Body requestBody: RequestBody,@Header("token") token:String):Observable<IsLikeData>
 
     @Headers(
-        "project_token:${APP.PROJECT_TOKEN}",
-        "token:eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxNDgzOSIsImV4cCI6MTY1OTE2MjIxMH0.ATRESQWoOWrrxbqr6ERINfB0ejisdgh4Jrs77jkMKm4"
-    )
+        "project_token:${APP.PROJECT_TOKEN}")
     @POST("jokes/unlike")
-    fun setIsNotLike(@Body requestBody: RequestBody):Observable<IsLikeData>
+    fun setIsNotLike(@Body requestBody: RequestBody,@Header("token") token:String):Observable<IsLikeData>
 
     @Headers(
-        "project_token:${APP.PROJECT_TOKEN}",
-        "token:eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxNDgzOSIsImV4cCI6MTY1OTE2MjIxMH0.ATRESQWoOWrrxbqr6ERINfB0ejisdgh4Jrs77jkMKm4"
-    )
+        "project_token:${APP.PROJECT_TOKEN}")
     @POST("jokes/comment")
-    fun postComment(@Body requestBody: RequestBody):Observable<PostCommentRespond>
+    fun postComment(@Body requestBody: RequestBody,@Header("token") token:String):Observable<PostCommentRespond>
 
     @Headers(
-        "project_token:${APP.PROJECT_TOKEN}",
-        "token:eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxNDgzOSIsImV4cCI6MTY1OTE2MjIxMH0.ATRESQWoOWrrxbqr6ERINfB0ejisdgh4Jrs77jkMKm4"
-    )
+        "project_token:${APP.PROJECT_TOKEN}")
     @POST("user/attention")
-    fun setUserFollow(@Body requestBody: RequestBody):Observable<AllData>
+    fun setUserFollow(@Body requestBody: RequestBody,@Header("token") token:String):Observable<AllData>
 
 }

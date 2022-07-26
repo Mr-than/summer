@@ -21,6 +21,21 @@
         android:theme="@style/Theme.SummerAssessment"
         tools:targetApi="31">
         <activity
+            android:name=".ui.StartActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.logactivity.LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.ffactivity.FollowsFansActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.jokedetail.DetailActivity"
             android:exported="false" />
 
@@ -51,11 +66,7 @@
             android:label=""
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateAlwaysHidden">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 

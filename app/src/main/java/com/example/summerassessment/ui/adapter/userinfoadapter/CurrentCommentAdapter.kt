@@ -8,6 +8,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.summerassessment.databinding.RvItemCurrentUserCommentBinding
 import com.example.summerassessment.model.DataM
 
+
+/**
+ *   description:当前用户的评论界面
+ *   @author:冉跃
+ *   email:2058109198@qq.com
+ */
 class CurrentCommentAdapter : ListAdapter<DataM, CurrentCommentAdapter.ViewHolder>(CALL_BACK) {
 
     companion object {

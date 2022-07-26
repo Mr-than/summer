@@ -14,6 +14,13 @@ import com.example.summerassessment.ui.brushvideofragment.BrushVideoFragment
 import com.example.summerassessment.ui.messagefragment.MessageFragment
 import com.example.summerassessment.ui.myfragment.MyFragment
 
+
+/**
+ *   description:main
+ *   @author:冉跃
+ *   email:2058109198@qq.com
+ *
+ */
 class MainActivity : BaseActivity(){
 
     private lateinit var binding: ActivityMainBinding

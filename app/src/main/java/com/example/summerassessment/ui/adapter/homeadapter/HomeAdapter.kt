@@ -23,6 +23,7 @@ import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.example.summerassessment.R
+import com.example.summerassessment.base.APP
 import com.example.summerassessment.databinding.HomeRecommendVpItemRvItemLayoutBinding
 import com.example.summerassessment.databinding.HomeRecommendVpItemRvVideoItemLayoutBinding
 import com.example.summerassessment.listener.VideoPlayListener
@@ -30,6 +31,8 @@ import com.example.summerassessment.model.Data
 import com.example.summerassessment.ui.dialogfragment.CommentPage
 import com.example.summerassessment.ui.dialogfragment.viewmodel.CommentPageViewModel
 import com.example.summerassessment.ui.homefragment.HomeFragmentViewModel
+import com.example.summerassessment.ui.jokedetail.DetailActivity
+import com.example.summerassessment.ui.logactivity.LoginActivity
 import com.example.summerassessment.ui.mainactivity.MainActivity
 import com.example.summerassessment.ui.userpage.UserInfoActivity
 import com.example.summerassessment.util.decrypt
@@ -39,7 +42,11 @@ import xyz.doikki.videocontroller.component.ErrorView
 import xyz.doikki.videocontroller.component.PrepareView
 import kotlin.concurrent.thread
 
-
+/**
+ *   description:首页的rv的总adapter
+ *   @author 冉跃
+ *   email:2058109198@qq.com
+ */
 open class HomeAdapter(
     private val context: Context,
     private val adapterTag: Int,
@@ -49,19 +56,17 @@ open class HomeAdapter(
 ) : ListAdapter<Data, HomeAdapter.ViewHolder>(CALL_BACK), VideoPlayListener {
 
     companion object {
+        //这个是给子类用的
         const val HEADER = 2002
 
+        //下面的list全是为了防止复用的
         private val list = mutableListOf<String>()
         private val videoTags = mutableListOf<String>()
-        private val viewLikeList = mutableListOf<String>()
 
+        private val followList = mutableListOf<String>()
 
         private val hateList = mutableListOf<String>()
         private val hateVideoTags = mutableListOf<String>()
-
-
-        private val likeNumList = mutableListOf<String>()
-        private val hateNumList = mutableListOf<String>()
 
 
         private const val IMAGE_TYPE = 1112
@@ -73,7 +78,7 @@ open class HomeAdapter(
             }
 
             override fun areContentsTheSame(oldItem: Data, newItem: Data): Boolean {
-                return (oldItem.info.isLike == newItem.info.isLike)&&(oldItem.info.isUnlike==newItem.info.isUnlike)
+                return (oldItem.info.isLike == newItem.info.isLike) && (oldItem.info.isUnlike == newItem.info.isUnlike)
             }
         }
 
@@ -92,7 +97,7 @@ open class HomeAdapter(
 
 
         init {
-
+            //全是点击事件
             binding.homePageVpItemRvTextHead.setOnClickListener {
                 val intent = Intent(context as MainActivity, UserInfoActivity::class.java)
                 intent.putExtra("user_id", "${getItem(layoutPosition).user.userId}")
@@ -100,10 +105,34 @@ open class HomeAdapter(
             }
 
 
+            binding.homePageVpItemRvTextPhotoLayout .setOnClickListener {
+                val intent = Intent(context as MainActivity, DetailActivity::class.java)
+                intent.putExtra("url", getItem(layoutPosition).joke.imageUrl.decrypt())
+                context.startActivity(intent)
+            }
+
 
             binding.homePageVpItemRvTextLike.setOnClickListener {
-                val position = layoutPosition
-                setLike(position)
+
+                if(APP.isLogin) {
+
+                    val position = layoutPosition
+
+                    if (!getItem(position).info.isLike) {
+                        binding.homePageVpItemRvTextLikeImage.setImageResource(R.drawable.like_click)
+                        binding.homePageVpItemRvTextLikeText.text =
+                            ((getItem(position).info.likeNum + 1) + 1).toString()
+                    } else {
+                        binding.homePageVpItemRvTextLikeImage.setImageResource(R.drawable.like)
+                        binding.homePageVpItemRvTextLikeText.text =
+                            ((getItem(position).info.likeNum + 1) - 1).toString()
+                    }
+
+
+                    setLike(position)
+                }else{
+                    context.startActivity(Intent(context,LoginActivity::class.java))
+                }
             }
 
             binding.homePageVpItemRvTextHate.setOnClickListener {
@@ -113,35 +142,61 @@ open class HomeAdapter(
 
 
             binding.homePageVpItemRvTextAvatar.setOnClickListener {
-                val viewModel by lazy {
-                    ViewModelProvider(context as MainActivity).get(
-                        CommentPageViewModel::class.java
-                    )
-                }
 
+                if(APP.isLogin) {
 
-                val fm: FragmentManager = (context as FragmentActivity).supportFragmentManager
-                val editNameDialog = CommentPage()
-                editNameDialog.show(fm, "fragment_dialog")
-
-                thread {
-                    Thread.sleep(500)
-                    val p = layoutPosition
-                    if (p >= 0) {
-                        viewModel.setNum(getItem(p).info.commentNum)
-                        viewModel.getCommentData(getItem(p).joke.jokesId)
+                    val viewModel by lazy {
+                        ViewModelProvider(context as MainActivity).get(
+                            CommentPageViewModel::class.java
+                        )
                     }
+
+
+                    val fm: FragmentManager = (context as FragmentActivity).supportFragmentManager
+                    val editNameDialog = CommentPage()
+                    editNameDialog.show(fm, "fragment_dialog")
+
+                    thread {
+                        Thread.sleep(500)
+                        val p = layoutPosition
+                        if (p >= 0) {
+                            viewModel.setNum(getItem(p).info.commentNum)
+                            viewModel.getCommentData(getItem(p).joke.jokesId)
+                        }
+                    }
+                }else{
+                    context.startActivity(Intent(context,LoginActivity::class.java))
                 }
+            }
+
+
+
+            binding.homePageVpItemRvTextSubcribe.setOnClickListener {
+
+                val position = layoutPosition
+                viewModel.setFollow(getItem(position).user.userId.toString(), "1")
+                binding.homePageVpItemRvTextSubcribe.visibility = GONE
+
+                followList.add(position.toString())
 
             }
+
 
         }
     }
 
+    @SuppressLint("SetTextI18n")
     inner class VideoViewHolder(val binding: HomeRecommendVpItemRvVideoItemLayoutBinding) :
         ViewHolder(binding.root) {
 
         init {
+
+            binding.homePageVpItemRvVideoSubcribe.setOnClickListener {
+                val position = layoutPosition
+                viewModel.setFollow(getItem(position).user.userId.toString(), "1")
+                binding.homePageVpItemRvVideoSubcribe.visibility = GONE
+                followList.add(position.toString())
+            }
 
             binding.homePageVpItemRvVideoHead.setOnClickListener {
                 val intent = Intent(context as MainActivity, UserInfoActivity::class.java)
@@ -150,8 +205,23 @@ open class HomeAdapter(
             }
 
             binding.homePageVpItemRvVideoLike.setOnClickListener {
-                val position = layoutPosition
-                setLike(position)
+
+                if(APP.isLogin) {
+                    val position = layoutPosition
+                    if (!getItem(position).info.isLike) {
+                        binding.homePageVpItemRvVideoLikeImage.setImageResource(R.drawable.like_click)
+                        binding.homePageVpItemRvVideoLikeText.text =
+                            ((getItem(position).info.likeNum + 1) + 1).toString()
+                    } else {
+                        binding.homePageVpItemRvVideoLikeImage.setImageResource(R.drawable.like)
+                        binding.homePageVpItemRvVideoLikeText.text =
+                            ((getItem(position).info.likeNum + 1) - 1).toString()
+                    }
+                    setLike(position)
+                }else{
+                    context.startActivity(Intent(context,LoginActivity::class.java))
+                }
+
             }
 
             binding.homePageVpItemRvVideoHate.setOnClickListener {
@@ -159,25 +229,33 @@ open class HomeAdapter(
                 setUnLIke(position)
             }
             binding.homePageVpItemRvVideoAvatar.setOnClickListener {
-                val viewModel by lazy {
-                    ViewModelProvider(context as MainActivity).get(
-                        CommentPageViewModel::class.java
-                    )
-                }
 
-                val fm: FragmentManager = (context as FragmentActivity).supportFragmentManager
-                val editNameDialog = CommentPage()
-                editNameDialog.show(fm, "fragment_dialog")
 
-                val p = layoutPosition
-
-                thread {
-                    //Thread.sleep(500)
-                    if (p >= 0) {
-                        viewModel.setNum(getItem(p).info.commentNum)
-                        viewModel.getCommentData(getItem(p).joke.jokesId)
+                if(APP.isLogin) {
+                    val viewModel by lazy {
+                        ViewModelProvider(context as MainActivity).get(
+                            CommentPageViewModel::class.java
+                        )
                     }
+
+                    val fm: FragmentManager = (context as FragmentActivity).supportFragmentManager
+                    val editNameDialog = CommentPage()
+                    editNameDialog.show(fm, "fragment_dialog")
+
+                    val p = layoutPosition
+
+                    thread {
+                        //Thread.sleep(500)
+                        if (p >= 0) {
+                            viewModel.setNum(getItem(p).info.commentNum)
+                            viewModel.getCommentData(getItem(p).joke.jokesId)
+                        }
+                    }
+                }else{
+                    context.startActivity(Intent(context,LoginActivity::class.java))
                 }
+
+
             }
         }
     }
@@ -188,6 +266,15 @@ open class HomeAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         if (holder is PhotoViewHolder) {
+
+            if (followList.isNotEmpty()) {
+                if (followList.contains(position.toString()))
+                    holder.binding.homePageVpItemRvTextSubcribe.visibility = GONE
+                else
+                    holder.binding.homePageVpItemRvTextSubcribe.visibility = VISIBLE
+            } else {
+                holder.binding.homePageVpItemRvTextSubcribe.visibility = VISIBLE
+            }
 
             holder.binding.homePageVpItemRvTextNikeName.text = getItem(position).user.nickName
 
@@ -213,22 +300,22 @@ open class HomeAdapter(
             }
 
 
-                holder.binding.homePageVpItemRvTextLikeImage.setImageResource(
-                    if (getItem(position).info.isLike) {
-                        R.drawable.like_click
-                    } else {
-                        R.drawable.like
-                    }
-                )
+            holder.binding.homePageVpItemRvTextLikeImage.setImageResource(
+                if (getItem(position).info.isLike) {
+                    R.drawable.like_click
+                } else {
+                    R.drawable.like
+                }
+            )
 
 
-                holder.binding.homePageVpItemRvTextHateImage.setImageResource(
-                    if (getItem(position).info.isUnlike) {
-                        R.drawable.hate_click
-                    } else {
-                        R.drawable.hate
-                    }
-                )
+            holder.binding.homePageVpItemRvTextHateImage.setImageResource(
+                if (getItem(position).info.isUnlike) {
+                    R.drawable.hate_click
+                } else {
+                    R.drawable.hate
+                }
+            )
 
 
             holder.binding.homePageVpItemRvTextAutograph.text = getItem(position).user.signature
@@ -240,12 +327,14 @@ open class HomeAdapter(
 
 
 
-                holder.binding.homePageVpItemRvTextLikeText.text = getItem(position).info.likeNum.toString()
+            holder.binding.homePageVpItemRvTextLikeText.text =
+                getItem(position).info.likeNum.toString()
 
 
 
 
-                holder.binding.homePageVpItemRvTextHateText.text = getItem(position).info.disLikeNum.toString()
+            holder.binding.homePageVpItemRvTextHateText.text =
+                getItem(position).info.disLikeNum.toString()
 
 
 
@@ -257,6 +346,17 @@ open class HomeAdapter(
 
 
         } else if (holder is VideoViewHolder) {
+
+            if (followList.isNotEmpty()) {
+                if (followList.contains(position.toString()))
+                    holder.binding.homePageVpItemRvVideoSubcribe.visibility = GONE
+                else
+                    holder.binding.homePageVpItemRvVideoSubcribe.visibility = VISIBLE
+            } else {
+                holder.binding.homePageVpItemRvVideoSubcribe.visibility = VISIBLE
+            }
+
+
             holder.binding.homePageVpItemRvVideoNikeName.text = getItem(position).user.nickName
 
             getItem(position).user.avatar.run {
@@ -267,20 +367,20 @@ open class HomeAdapter(
                 }
             }
 
-                holder.binding.homePageVpItemRvVideoLikeImage.setImageResource(
-                    if (getItem(position).info.isLike) {
-                        R.drawable.like_click
-                    } else {
-                        R.drawable.like
-                    }
-                )
-                holder.binding.homePageVpItemRvVideoHateImage.setImageResource(
-                    if (getItem(position).info.isUnlike) {
-                        R.drawable.hate_click
-                    } else {
-                        R.drawable.hate
-                    }
-                )
+            holder.binding.homePageVpItemRvVideoLikeImage.setImageResource(
+                if (getItem(position).info.isLike) {
+                    R.drawable.like_click
+                } else {
+                    R.drawable.like
+                }
+            )
+            holder.binding.homePageVpItemRvVideoHateImage.setImageResource(
+                if (getItem(position).info.isUnlike) {
+                    R.drawable.hate_click
+                } else {
+                    R.drawable.hate
+                }
+            )
 
             holder.binding.homePageVpItemRvVideoAutograph.text = getItem(position).user.signature
             holder.binding.homePageVpItemRvVideoText.text = getItem(position).joke.content
@@ -318,8 +418,9 @@ open class HomeAdapter(
 
             getItem(position).joke.videoUrl.run {
                 if (this != "") {
+                    //这里是准备视频播放器
                     val url = decrypt()
-                    if (url != ""&&!holder.binding.homePageVpItemRvVideoPlayer.isPlaying) {
+                    if (url != "" && !holder.binding.homePageVpItemRvVideoPlayer.isPlaying) {
 
                         holder.binding.homePageVpItemRvVideoPlayer.setUrl(url)
 
@@ -341,6 +442,7 @@ open class HomeAdapter(
 
                         controller.addControlComponent(CompleteView(context)) //自动完成播放界面
                         controller.addControlComponent(ErrorView(context)) //错误界面
+
                     }
                 }
 
@@ -409,7 +511,6 @@ open class HomeAdapter(
     }
 
 
-
     fun getListener(): VideoPlayListener = this
 
     open fun update(i: Boolean) {
@@ -434,6 +535,7 @@ open class HomeAdapter(
 
 
     open fun refresh(close: () -> Unit): Boolean {
+        followList.clear()
         close()
         list.clear()
         videoTags.clear()
@@ -446,34 +548,34 @@ open class HomeAdapter(
     }
 
 
-    private fun setLike(position: Int){
+    private fun setLike(position: Int) {
 
-        if(!getItem(position).info.isLike) {
+        if (!getItem(position).info.isLike) {
             getItem(position).info.isLike = true
             getItem(position).info.likeNum += 1
-            viewModel.setLike(getItem(position).joke.jokesId,true)
-        }else{
+            viewModel.setLike(getItem(position).joke.jokesId, true)
+
+        } else {
             getItem(position).info.isLike = false
             getItem(position).info.likeNum -= 1
-            viewModel.setLike(getItem(position).joke.jokesId,false)
+            viewModel.setLike(getItem(position).joke.jokesId, false)
         }
-        notifyItemChanged(position,"")
+
 
     }
 
 
-
-    private fun setUnLIke(position: Int){
-        if(!getItem(position).info.isUnlike) {
+    private fun setUnLIke(position: Int) {
+        if (!getItem(position).info.isUnlike) {
             getItem(position).info.isUnlike = true
             getItem(position).info.disLikeNum += 1
-            viewModel.setUnLike(getItem(position).joke.jokesId,true)
-        }else{
+            viewModel.setUnLike(getItem(position).joke.jokesId, true)
+        } else {
             getItem(position).info.isUnlike = false
             getItem(position).info.disLikeNum -= 1
-            viewModel.setUnLike(getItem(position).joke.jokesId,false)
+            viewModel.setUnLike(getItem(position).joke.jokesId, false)
         }
-        notifyItemChanged(position,"")
+
     }
 
 

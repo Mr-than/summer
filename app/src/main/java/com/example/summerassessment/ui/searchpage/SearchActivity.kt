@@ -8,6 +8,12 @@ import androidx.fragment.app.Fragment
 import com.example.summerassessment.R
 import com.example.summerassessment.databinding.ActivitySearchBinding
 
+/**
+ *   description:搜索页
+ *   @author:冉跃
+ *   email:2058109198@qq.com
+ *
+ */
 
 class SearchActivity : AppCompatActivity() {
 

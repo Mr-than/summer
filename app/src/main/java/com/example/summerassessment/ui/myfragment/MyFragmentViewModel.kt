@@ -4,23 +4,40 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.summerassessment.model.DataC
+import com.example.summerassessment.model.InfoC
+import com.example.summerassessment.model.UserC
 import com.example.summerassessment.repository.MyPageRepository
 import rx.Observer
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 
-class MyFragmentViewModel: ViewModel() {
-    private val _currentUserLiveData:MutableLiveData<DataC> = MutableLiveData()
-    val currentUserLiveData:LiveData<DataC> get() = _currentUserLiveData
+/**
+ *   description:“我的”页面的vm
+ *   @author:冉跃
+ *   email:2058109198@qq.com
+ *
+ */
+
+class MyFragmentViewModel : ViewModel() {
+    private val _currentUserLiveData: MutableLiveData<DataC> = MutableLiveData()
+    val currentUserLiveData: LiveData<DataC> get() = _currentUserLiveData
 
 
-    fun getCurrentUser(){
-        val ob=MyPageRepository.getData()
+    fun getCurrentUser() {
+        val ob = MyPageRepository.getData()
         ob.map {
+            if (it.msg == "用户登录过期") {
+                _currentUserLiveData.postValue(
+                    DataC(
+                        InfoC(0, 0, 0, 0),
+                        UserC("", "", "", "", "", "", "", 0, "")
+                    )
+                )
+            }
             it.data
         }.subscribeOn(Schedulers.io())
             .subscribeOn(AndroidSchedulers.mainThread())
-            .subscribe(object:Observer<DataC>{
+            .subscribe(object : Observer<DataC> {
                 override fun onCompleted() {
 
                 }

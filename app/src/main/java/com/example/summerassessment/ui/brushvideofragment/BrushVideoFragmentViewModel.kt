@@ -8,6 +8,12 @@ import com.example.summerassessment.repository.BrushVideoRepository
 import rx.Scheduler
 import rx.schedulers.Schedulers
 
+
+/**
+ *   description:刷视频界面的vm
+ *   @author:冉跃
+ *   email:2058109198@qq.com
+ */
 class BrushVideoFragmentViewModel: ViewModel() {
 
     private val _brushVideoLiveData:MutableLiveData<List<DataA>> = MutableLiveData()

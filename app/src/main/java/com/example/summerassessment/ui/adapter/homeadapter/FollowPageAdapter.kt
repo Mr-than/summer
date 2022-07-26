@@ -13,6 +13,13 @@ import com.example.summerassessment.ui.homefragment.HomeFragmentViewModel
 import com.example.summerassessment.ui.mainactivity.MainActivity
 import java.util.ArrayList
 
+
+/**
+ *   description:首页关注用户的段子adapter
+ *   @author:冉跃
+ *   email:2058109198@qq.com
+ */
+//这里继承的是HomeAdapter，是因为这里的功能就多了一个头布局，其他功能一样
 class FollowPageAdapter(
     private val context: Context,
     private val viewModel: HomeFragmentViewModel,
@@ -22,7 +29,7 @@ class FollowPageAdapter(
     private var isPlay = false
 
 
-    private val adapter = FollowPageHeaderAdapter(context, ArrayList<DataX>())
+    private val adapter = FollowPageHeaderAdapter(context, ArrayList<DataX>(),viewModel)
 
 
     class HeaderViewHolder(val binding: HomePageRvHeaderLayoutBinding) : ViewHolder(binding.root)

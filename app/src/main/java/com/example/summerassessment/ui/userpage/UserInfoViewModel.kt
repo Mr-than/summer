@@ -12,6 +12,13 @@ import rx.android.schedulers.AndroidSchedulers
 
 import rx.schedulers.Schedulers
 
+/**
+ *   description:个人信息页的vm
+ *   @author:冉跃
+ *   email:2058109198@qq.com
+ *
+ */
+
 class UserInfoViewModel: ViewModel() {
 
     private var videoPage:Int=1
@@ -193,8 +200,6 @@ class UserInfoViewModel: ViewModel() {
 
 
     fun getCurrentComment(){
-
-
         val ob=UserInfoRepository.getCurrentComment(commentPage)
         commentPage++
         ob.map {

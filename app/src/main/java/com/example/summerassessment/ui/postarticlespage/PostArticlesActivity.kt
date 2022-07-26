@@ -34,6 +34,12 @@ import java.io.FileNotFoundException
 import java.util.*
 import kotlin.random.Random
 
+/**
+ *   description:发文章页
+ *   @author:冉跃
+ *   email:2058109198@qq.com
+ *
+ */
 
 class PostArticlesActivity : BaseActivity() {
 

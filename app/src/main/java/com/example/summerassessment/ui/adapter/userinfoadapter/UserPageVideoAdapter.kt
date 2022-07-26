@@ -11,6 +11,11 @@ import com.example.summerassessment.databinding.Vp2VideoRvItemBinding
 import com.example.summerassessment.model.DataU
 import com.example.summerassessment.util.decrypt
 
+/**
+ *   description:用户界面的视频的adapter
+ *   @author:冉跃
+ *   email:2058109198@qq.com
+ */
 class UserPageVideoAdapter(private val context: Context) : ListAdapter<DataU, UserPageVideoAdapter.ViewHolder>(CALL_BACK) {
 
     companion object {

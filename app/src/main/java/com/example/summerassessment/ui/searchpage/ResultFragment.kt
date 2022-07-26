@@ -12,6 +12,12 @@ import com.example.summerassessment.ui.adapter.SearchResultAdapter
 import com.example.summerassessment.ui.adapter.homeadapter.HomeAdapter
 import com.example.summerassessment.ui.searchpage.viewmodel.ResultViewModel
 
+/**
+ *   description:搜索结果
+ *   @author:冉跃
+ *   email:2058109198@qq.com
+ *
+ */
 class ResultFragment: Fragment() {
 
     private lateinit var binding:FragmentSearchResultLayoutBinding

@@ -8,6 +8,13 @@ import android.widget.LinearLayout
 import androidx.viewpager2.widget.ViewPager2
 import kotlin.math.abs
 
+/**
+ *   description:套在vp2外层，解决vp2嵌套的滑动冲突
+ *   @author:冉跃
+ *   email:2058109198@qq.com
+ *
+ */
+
 class ViewPager2Container @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : LinearLayout(context, attrs, defStyleAttr) {
 
     private var mViewPager2: ViewPager2? = null

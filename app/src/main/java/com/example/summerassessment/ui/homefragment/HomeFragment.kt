@@ -13,7 +13,15 @@ import com.example.summerassessment.ui.adapter.homeadapter.HomeAdapter
 import com.example.summerassessment.ui.adapter.homeadapter.HomePageVpAdapter
 import com.example.summerassessment.ui.mainactivity.MainActivity
 import com.google.android.material.tabs.TabLayoutMediator
+import kotlin.concurrent.thread
 
+
+/**
+ *   description:首页
+ *   @author:冉跃
+ *   email:2058109198@qq.com
+ *
+ */
 class HomeFragment : Fragment() {
 
 
@@ -119,4 +127,12 @@ class HomeFragment : Fragment() {
         }
     }
 
+    override fun onStart() {
+        super.onStart()
+        thread {
+            Thread.sleep(500)
+            viewModel.getFollowData(true)
+        }
+
+    }
 }

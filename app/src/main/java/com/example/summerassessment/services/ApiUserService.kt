@@ -4,6 +4,7 @@ import com.example.summerassessment.base.APP
 import com.example.summerassessment.model.*
 import okhttp3.RequestBody
 import retrofit2.http.Body
+import retrofit2.http.Header
 import retrofit2.http.Headers
 import retrofit2.http.POST
 import rx.Observable
@@ -32,7 +33,7 @@ interface ApiUserService {
 
     @Headers("project_token:${APP.PROJECT_TOKEN}")
     @POST("user/comment/list")
-    fun gerComment(@Body requestBody: RequestBody):Observable<CurrentCommentData>
+    fun gerComment(@Body requestBody: RequestBody,@Header("token") token:String):Observable<CurrentCommentData>
 
 
 }

@@ -10,6 +10,12 @@ import com.example.summerassessment.repository.HomePageRepository
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 
+
+/**
+ *   description:查看评论页面的vm
+ *   @author:冉跃
+ *   email:2058109198@qq.com
+ */
 class CommentPageViewModel: ViewModel() {
 
     private val _commentLiveData:MutableLiveData<List<Comment>> = MutableLiveData()

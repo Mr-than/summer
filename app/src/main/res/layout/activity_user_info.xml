@@ -56,18 +56,6 @@
                     app:strokeWidth="2dp" />
 
                 <Button
-                    android:id="@+id/activity_button_user_send_message"
-                    android:layout_width="wrap_content"
-                    android:layout_height="35dp"
-                    android:layout_marginStart="68dp"
-                    android:layout_marginTop="8dp"
-                    android:background="@drawable/shape_user_message_button"
-                    android:text="私信"
-                    android:textColor="#E79764"
-                    app:layout_constraintStart_toEndOf="@+id/activity_image_view_user_portrait_small"
-                    app:layout_constraintTop_toBottomOf="@+id/activity_image_view_user_portrait_big" />
-
-                <Button
                     android:id="@+id/activity_button_user_attend"
                     android:layout_width="wrap_content"
                     android:layout_height="35dp"
@@ -77,7 +65,7 @@
                     android:textColor="#E79764"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.698"
-                    app:layout_constraintStart_toEndOf="@+id/activity_button_user_send_message"
+                    app:layout_constraintStart_toEndOf="@+id/activity_image_view_user_portrait_small"
                     app:layout_constraintTop_toBottomOf="@+id/activity_image_view_user_portrait_big" />
 
 

@@ -19,7 +19,11 @@ import com.example.summerassessment.R
 import com.example.summerassessment.ui.adapter.homeadapter.CommentPageAdapter
 import com.example.summerassessment.ui.dialogfragment.viewmodel.CommentPageViewModel
 
-
+/**
+ *   description:查看评论
+ *   @author:冉跃
+ *   email:2058109198@qq.com
+ */
 class CommentPage : DialogFragment() {
     private lateinit var commendNum: TextView
     private lateinit var commendRv: RecyclerView

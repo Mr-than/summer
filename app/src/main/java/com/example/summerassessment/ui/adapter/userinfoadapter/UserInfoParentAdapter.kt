@@ -9,6 +9,12 @@ import com.example.summerassessment.databinding.Vp2ActivityUserInfoItemLayoutBin
 import com.example.summerassessment.ui.userpage.UserInfoViewModel
 import com.google.android.material.tabs.TabLayoutMediator
 
+
+/**
+ *   description:用户界面的最外层vp2
+ *   @author:冉跃
+ *   email:2058109198@qq.com
+ */
 open class UserInfoParentAdapter(
     private val context: Context,
     private val id: Int,

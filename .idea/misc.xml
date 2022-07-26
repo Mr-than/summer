@@ -34,10 +34,14 @@
         <entry key="..\:/Android's project/SummerAssessment/app/src/main/res/drawable/video_round_angle.xml" value="0.1475" />
         <entry key="..\:/Android's project/SummerAssessment/app/src/main/res/layout/MainActivityBottomView.xml" value="0.23278985507246377" />
         <entry key="..\:/Android's project/SummerAssessment/app/src/main/res/layout/activity_detail.xml" value="0.21120136810602821" />
+        <entry key="..\:/Android's project/SummerAssessment/app/src/main/res/layout/activity_follows_fans.xml" value="0.21120136810602821" />
+        <entry key="..\:/Android's project/SummerAssessment/app/src/main/res/layout/activity_login.xml" value="0.21120136810602821" />
+        <entry key="..\:/Android's project/SummerAssessment/app/src/main/res/layout/activity_login2.xml" value="0.21120136810602821" />
         <entry key="..\:/Android's project/SummerAssessment/app/src/main/res/layout/activity_main.xml" value="0.16941175927517163" />
         <entry key="..\:/Android's project/SummerAssessment/app/src/main/res/layout/activity_post_articles.xml" value="0.20168066580377575" />
         <entry key="..\:/Android's project/SummerAssessment/app/src/main/res/layout/activity_search.xml" value="0.20168066580377575" />
-        <entry key="..\:/Android's project/SummerAssessment/app/src/main/res/layout/activity_user_info.xml" value="0.26621847886098404" />
+        <entry key="..\:/Android's project/SummerAssessment/app/src/main/res/layout/activity_start.xml" value="0.21077383497221033" />
+        <entry key="..\:/Android's project/SummerAssessment/app/src/main/res/layout/activity_user_info.xml" value="0.16941175927517163" />
         <entry key="..\:/Android's project/SummerAssessment/app/src/main/res/layout/activity_vp2_layout.xml" value="0.17747898590732267" />
         <entry key="..\:/Android's project/SummerAssessment/app/src/main/res/layout/dialog_fragment_comment_comment_rv_item.xml" value="0.26621847886098404" />
         <entry key="..\:/Android's project/SummerAssessment/app/src/main/res/layout/dialog_fragment_comment_edit_layout.xml" value="0.24139492753623187" />
@@ -52,16 +56,19 @@
         <entry key="..\:/Android's project/SummerAssessment/app/src/main/res/layout/home_page_rv_header_item_layout.xml" value="0.26621847886098404" />
         <entry key="..\:/Android's project/SummerAssessment/app/src/main/res/layout/home_page_rv_header_layout.xml" value="0.21240942028985507" />
         <entry key="..\:/Android's project/SummerAssessment/app/src/main/res/layout/home_page_vp_item_layout.xml" value="0.23278985507246377" />
-        <entry key="..\:/Android's project/SummerAssessment/app/src/main/res/layout/home_recommend_vp_item_rv_item_layout.xml" value="0.26621847886098404" />
+        <entry key="..\:/Android's project/SummerAssessment/app/src/main/res/layout/home_recommend_vp_item_rv_item_layout.xml" value="0.20168066580377575" />
         <entry key="..\:/Android's project/SummerAssessment/app/src/main/res/layout/home_recommend_vp_item_rv_video_item_layout.xml" value="0.20168066580377575" />
         <entry key="..\:/Android's project/SummerAssessment/app/src/main/res/layout/main_activity_bottom_view.xml" value="0.26621847886098404" />
         <entry key="..\:/Android's project/SummerAssessment/app/src/main/res/layout/main_fragment_home_page.xml" value="0.23278985507246377" />
-        <entry key="..\:/Android's project/SummerAssessment/app/src/main/res/layout/rv_item_current_user_comment.xml" value="0.16941175927517163" />
+        <entry key="..\:/Android's project/SummerAssessment/app/src/main/res/layout/rv_item_current_user_comment.xml" value="0.20168066580377575" />
+        <entry key="..\:/Android's project/SummerAssessment/app/src/main/res/layout/rv_item_message_layout.xml" value="0.21034630183839248" />
         <entry key="..\:/Android's project/SummerAssessment/app/src/main/res/layout/test.xml" value="0.23278985507246377" />
         <entry key="..\:/Android's project/SummerAssessment/app/src/main/res/layout/test_home.xml" value="0.20168066580377575" />
         <entry key="..\:/Android's project/SummerAssessment/app/src/main/res/layout/test_layout.xml" value="0.25729166666666664" />
         <entry key="..\:/Android's project/SummerAssessment/app/src/main/res/layout/vp2_activity_current_user.xml" value="0.21120136810602821" />
         <entry key="..\:/Android's project/SummerAssessment/app/src/main/res/layout/vp2_activity_current_user_cumment.xml" value="0.21034630183839248" />
+        <entry key="..\:/Android's project/SummerAssessment/app/src/main/res/layout/vp2_activity_follow_fan_item_layout.xml" value="0.21120136810602821" />
+        <entry key="..\:/Android's project/SummerAssessment/app/src/main/res/layout/vp2_activity_follow_fan_rv_item_layout.xml" value="0.21034630183839248" />
         <entry key="..\:/Android's project/SummerAssessment/app/src/main/res/layout/vp2_activity_user_collection.xml" value="0.20168066580377575" />
         <entry key="..\:/Android's project/SummerAssessment/app/src/main/res/layout/vp2_activity_user_info_item_layout.xml" value="0.25625" />
         <entry key="..\:/Android's project/SummerAssessment/app/src/main/res/layout/vp2_text_iamge_rv_item.xml" value="0.25729166666666664" />

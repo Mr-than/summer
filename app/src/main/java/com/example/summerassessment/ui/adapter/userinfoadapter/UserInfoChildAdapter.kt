@@ -9,6 +9,12 @@ import com.example.summerassessment.databinding.ActivityVp2LayoutBinding
 import com.example.summerassessment.ui.userpage.UserInfoActivity
 import com.example.summerassessment.ui.userpage.UserInfoViewModel
 
+
+/**
+ *   description:用户界面的最内层vp2
+ *   @author:冉跃
+ *   email:2058109198@qq.com
+ */
 class UserInfoChildAdapter(private val context: Context, private val id: Int,private val pageNum:Int) :
     RecyclerView.Adapter<UserInfoChildAdapter.ViewHolder>() {
 

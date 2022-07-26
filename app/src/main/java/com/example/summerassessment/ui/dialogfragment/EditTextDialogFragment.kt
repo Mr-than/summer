@@ -21,7 +21,12 @@ import com.example.summerassessment.R
 import com.example.summerassessment.ui.dialogfragment.viewmodel.CommentPageViewModel
 import kotlin.concurrent.thread
 
-
+/**
+ *   description:编辑发送评论页
+ *   @author:冉跃
+ *   email:2058109198@qq.com
+ *
+ */
 class EditTextDialogFragment : DialogFragment() {
     private lateinit var mEditText: EditText
     private lateinit var sendCommentImg: ImageView

@@ -19,6 +19,12 @@ import java.lang.Exception
 import java.util.*
 import kotlin.concurrent.thread
 
+/**
+ *   description:发文章页的vm
+ *   @author:冉跃
+ *   email:2058109198@qq.com
+ *
+ */
 class PostActivityViewModel : ViewModel() {
 
 
