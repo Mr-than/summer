@@ -49,7 +49,7 @@ class BrushVideoFragment: Fragment() {
         }
         binding.fragmentBrushVideoVp2.adapter=adapter
 
-        viewModel.brushVideoLiveData.observe(requireActivity()){
+        viewModel.brushVideoLiveData.observe(viewLifecycleOwner){
             adapter.update(it,binding.fragmentBrushVideoVp2)
         }
 

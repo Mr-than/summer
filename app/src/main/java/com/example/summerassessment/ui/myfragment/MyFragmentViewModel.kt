@@ -36,7 +36,7 @@ class MyFragmentViewModel : ViewModel() {
             }
             it.data
         }.subscribeOn(Schedulers.io())
-            .subscribeOn(AndroidSchedulers.mainThread())
+            .observeOn(AndroidSchedulers.mainThread())
             .subscribe(object : Observer<DataC> {
                 override fun onCompleted() {
 

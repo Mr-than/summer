@@ -42,7 +42,7 @@ class ResultViewModel : ViewModel() {
             Log.d("8888888", "map:---------------${Thread.currentThread()}")
             it.data
         }.subscribeOn(Schedulers.io())
-            .subscribeOn(AndroidSchedulers.mainThread())
+            .observeOn(AndroidSchedulers.mainThread())
             .subscribe(object : Observer<List<Data>> {
                 override fun onCompleted() {
 

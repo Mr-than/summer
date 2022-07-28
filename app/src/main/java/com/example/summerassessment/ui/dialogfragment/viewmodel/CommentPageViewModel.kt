@@ -63,7 +63,7 @@ class CommentPageViewModel: ViewModel() {
         ob.map {
             it.data
         }.subscribeOn(Schedulers.io())
-            .subscribeOn(AndroidSchedulers.mainThread())
+            .observeOn(AndroidSchedulers.mainThread())
             .doOnError {
                 val a=0
             }.subscribe{

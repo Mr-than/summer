@@ -48,7 +48,7 @@ class MyFragment: Fragment() {
             binding.myPageLogin.text="退出登录"
         }
 
-        viewModel.currentUserLiveData.observe(requireActivity()){
+        viewModel.currentUserLiveData.observe(viewLifecycleOwner){
             if(it!=null) {
                 binding.fragmentMyPageNikeName.text = it.user.nickname
                 binding.fragmentMyPageMotto.text = it.user.signature

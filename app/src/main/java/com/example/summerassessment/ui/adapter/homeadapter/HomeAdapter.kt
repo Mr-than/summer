@@ -83,18 +83,13 @@ open class HomeAdapter(
         }
 
     }
-
-
     //private var viewModel:HomeFragmentViewModel = ViewModelProvider(context as MainActivity).get(HomeFragmentViewModel::class.java)
 
     private var isPlay = false
 
-
     @SuppressLint("SetTextI18n")
     inner class PhotoViewHolder(val binding: HomeRecommendVpItemRvItemLayoutBinding) :
         ViewHolder(binding.root) {
-
-
 
         init {
             //全是点击事件
@@ -103,35 +98,26 @@ open class HomeAdapter(
                 intent.putExtra("user_id", "${getItem(layoutPosition).user.userId}")
                 context.startActivity(intent)
             }
-
-
-            binding.homePageVpItemRvTextPhotoLayout .setOnClickListener {
+            binding.homePageVpItemRvTextPhotoLayout.setOnClickListener {
                 val intent = Intent(context as MainActivity, DetailActivity::class.java)
                 intent.putExtra("url", getItem(layoutPosition).joke.imageUrl.decrypt())
                 context.startActivity(intent)
             }
-
-
             binding.homePageVpItemRvTextLike.setOnClickListener {
-
-                if(APP.isLogin) {
-
+                if (APP.isLogin) {
                     val position = layoutPosition
-
                     if (!getItem(position).info.isLike) {
                         binding.homePageVpItemRvTextLikeImage.setImageResource(R.drawable.like_click)
                         binding.homePageVpItemRvTextLikeText.text =
-                            ((getItem(position).info.likeNum + 1) + 1).toString()
+                            ((getItem(position).info.likeNum + 1)).toString()
                     } else {
                         binding.homePageVpItemRvTextLikeImage.setImageResource(R.drawable.like)
                         binding.homePageVpItemRvTextLikeText.text =
-                            ((getItem(position).info.likeNum + 1) - 1).toString()
+                            ((getItem(position).info.likeNum ) - 1).toString()
                     }
-
-
                     setLike(position)
-                }else{
-                    context.startActivity(Intent(context,LoginActivity::class.java))
+                } else {
+                    context.startActivity(Intent(context, LoginActivity::class.java))
                 }
             }
 
@@ -139,19 +125,15 @@ open class HomeAdapter(
                 val position = layoutPosition
                 setUnLIke(position)
             }
-
-
             binding.homePageVpItemRvTextAvatar.setOnClickListener {
 
-                if(APP.isLogin) {
+                if (APP.isLogin) {
 
                     val viewModel by lazy {
                         ViewModelProvider(context as MainActivity).get(
                             CommentPageViewModel::class.java
                         )
                     }
-
-
                     val fm: FragmentManager = (context as FragmentActivity).supportFragmentManager
                     val editNameDialog = CommentPage()
                     editNameDialog.show(fm, "fragment_dialog")
@@ -164,24 +146,16 @@ open class HomeAdapter(
                             viewModel.getCommentData(getItem(p).joke.jokesId)
                         }
                     }
-                }else{
-                    context.startActivity(Intent(context,LoginActivity::class.java))
+                } else {
+                    context.startActivity(Intent(context, LoginActivity::class.java))
                 }
             }
-
-
-
             binding.homePageVpItemRvTextSubcribe.setOnClickListener {
-
                 val position = layoutPosition
                 viewModel.setFollow(getItem(position).user.userId.toString(), "1")
                 binding.homePageVpItemRvTextSubcribe.visibility = GONE
-
                 followList.add(position.toString())
-
             }
-
-
         }
     }
 
@@ -206,22 +180,21 @@ open class HomeAdapter(
 
             binding.homePageVpItemRvVideoLike.setOnClickListener {
 
-                if(APP.isLogin) {
+                if (APP.isLogin) {
                     val position = layoutPosition
                     if (!getItem(position).info.isLike) {
                         binding.homePageVpItemRvVideoLikeImage.setImageResource(R.drawable.like_click)
                         binding.homePageVpItemRvVideoLikeText.text =
-                            ((getItem(position).info.likeNum + 1) + 1).toString()
+                            ((getItem(position).info.likeNum + 1) ).toString()
                     } else {
                         binding.homePageVpItemRvVideoLikeImage.setImageResource(R.drawable.like)
                         binding.homePageVpItemRvVideoLikeText.text =
-                            ((getItem(position).info.likeNum + 1) - 1).toString()
+                            ((getItem(position).info.likeNum ) - 1).toString()
                     }
                     setLike(position)
-                }else{
-                    context.startActivity(Intent(context,LoginActivity::class.java))
+                } else {
+                    context.startActivity(Intent(context, LoginActivity::class.java))
                 }
-
             }
 
             binding.homePageVpItemRvVideoHate.setOnClickListener {
@@ -230,8 +203,7 @@ open class HomeAdapter(
             }
             binding.homePageVpItemRvVideoAvatar.setOnClickListener {
 
-
-                if(APP.isLogin) {
+                if (APP.isLogin) {
                     val viewModel by lazy {
                         ViewModelProvider(context as MainActivity).get(
                             CommentPageViewModel::class.java
@@ -251,17 +223,14 @@ open class HomeAdapter(
                             viewModel.getCommentData(getItem(p).joke.jokesId)
                         }
                     }
-                }else{
-                    context.startActivity(Intent(context,LoginActivity::class.java))
+                } else {
+                    context.startActivity(Intent(context, LoginActivity::class.java))
                 }
-
-
             }
         }
     }
 
     abstract class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
-
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
@@ -299,7 +268,6 @@ open class HomeAdapter(
                 }
             }
 
-
             holder.binding.homePageVpItemRvTextLikeImage.setImageResource(
                 if (getItem(position).info.isLike) {
                     R.drawable.like_click
@@ -307,7 +275,6 @@ open class HomeAdapter(
                     R.drawable.like
                 }
             )
-
 
             holder.binding.homePageVpItemRvTextHateImage.setImageResource(
                 if (getItem(position).info.isUnlike) {
@@ -317,27 +284,17 @@ open class HomeAdapter(
                 }
             )
 
-
             holder.binding.homePageVpItemRvTextAutograph.text = getItem(position).user.signature
             holder.binding.homePageVpItemRvTextText.text = getItem(position).joke.content
-
 
             holder.binding.homePageVpItemRvTextLikeText.tag = getItem(position).info.likeNum
             holder.binding.homePageVpItemRvTextHateText.tag = getItem(position).info.disLikeNum
 
-
-
             holder.binding.homePageVpItemRvTextLikeText.text =
                 getItem(position).info.likeNum.toString()
 
-
-
-
             holder.binding.homePageVpItemRvTextHateText.text =
                 getItem(position).info.disLikeNum.toString()
-
-
-
 
             holder.binding.homePageVpItemRvTextAvatarText.text =
                 getItem(position).info.commentNum.toString()
@@ -415,7 +372,6 @@ open class HomeAdapter(
 
             holder.binding.homePageVpItemRvVideoPlayer.clipToOutline = true
 
-
             getItem(position).joke.videoUrl.run {
                 if (this != "") {
                     //这里是准备视频播放器
@@ -456,7 +412,6 @@ open class HomeAdapter(
         }
     }
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return when (viewType) {
             IMAGE_TYPE -> {
@@ -483,7 +438,6 @@ open class HomeAdapter(
         }
     }
 
-
     override fun getItemViewType(position: Int): Int {
         getItem(position).joke.videoUrl.run {
             if (this != "") {
@@ -492,7 +446,6 @@ open class HomeAdapter(
         }
         return IMAGE_TYPE
     }
-
 
     override fun playVideo(index: Int, recyclerView: RecyclerView) {
         val viewHolder = recyclerView.findViewHolderForAdapterPosition(index)
@@ -510,9 +463,7 @@ open class HomeAdapter(
         }
     }
 
-
     fun getListener(): VideoPlayListener = this
-
     open fun update(i: Boolean) {
         if (!isPlay) {
             when (adapterTag) {
@@ -530,9 +481,7 @@ open class HomeAdapter(
                 }
             }
         }
-
     }
-
 
     open fun refresh(close: () -> Unit): Boolean {
         followList.clear()
@@ -547,9 +496,7 @@ open class HomeAdapter(
         return true
     }
 
-
     private fun setLike(position: Int) {
-
         if (!getItem(position).info.isLike) {
             getItem(position).info.isLike = true
             getItem(position).info.likeNum += 1
@@ -560,10 +507,7 @@ open class HomeAdapter(
             getItem(position).info.likeNum -= 1
             viewModel.setLike(getItem(position).joke.jokesId, false)
         }
-
-
     }
-
 
     private fun setUnLIke(position: Int) {
         if (!getItem(position).info.isUnlike) {
@@ -575,8 +519,5 @@ open class HomeAdapter(
             getItem(position).info.disLikeNum -= 1
             viewModel.setUnLike(getItem(position).joke.jokesId, false)
         }
-
     }
-
-
 }

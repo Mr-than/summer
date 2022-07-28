@@ -5,7 +5,7 @@ import android.view.WindowManager
 import androidx.core.content.res.ResourcesCompat
 import androidx.lifecycle.ViewModelProvider
 import com.example.summerassessment.R
-import com.example.summerassessment.base.BaseActivity
+import com.example.summerassessment.base.WindowActivity
 import com.example.summerassessment.databinding.ActivityMainBinding
 
 import com.example.summerassessment.ui.homefragment.HomeFragment
@@ -21,7 +21,7 @@ import com.example.summerassessment.ui.myfragment.MyFragment
  *   email:2058109198@qq.com
  *
  */
-class MainActivity : BaseActivity(){
+class MainActivity : WindowActivity(){
 
     private lateinit var binding: ActivityMainBinding
     private val viewModel:MainActivityViewModel by lazy { ViewModelProvider(this).get(MainActivityViewModel::class.java) }

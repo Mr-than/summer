@@ -31,7 +31,7 @@ class MessageFragment: Fragment() {
     ): View{
         binding=FragmentMessagePageBinding.inflate(inflater)
 
-        viewModel.message.observe(requireActivity()){
+        viewModel.message.observe(viewLifecycleOwner){
             if(it!=null) {
                 val adapter = MessageAdapter(it as ArrayList<DataO>)
                 binding.messagePageRv.adapter = adapter

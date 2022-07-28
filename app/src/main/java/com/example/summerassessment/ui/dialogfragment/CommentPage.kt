@@ -6,8 +6,7 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.DisplayMetrics
-import android.view.Gravity
-import android.view.WindowManager
+import android.view.*
 import android.widget.TextView
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentActivity
@@ -16,6 +15,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.summerassessment.R
+import com.example.summerassessment.databinding.DialogFragmentCommentLayoutBinding
 import com.example.summerassessment.ui.adapter.homeadapter.CommentPageAdapter
 import com.example.summerassessment.ui.dialogfragment.viewmodel.CommentPageViewModel
 
@@ -28,8 +28,8 @@ class CommentPage : DialogFragment() {
     private lateinit var commendNum: TextView
     private lateinit var commendRv: RecyclerView
     private lateinit var openEdit:TextView
-    private val viewModel:CommentPageViewModel by lazy { ViewModelProvider(requireActivity()).get(CommentPageViewModel::class.java) }
-
+    private val viewModel:CommentPageViewModel by lazy { ViewModelProvider(requireActivity())[CommentPageViewModel::class.java] }
+    private lateinit var binding:DialogFragmentCommentLayoutBinding
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val dialog = Dialog(requireActivity(), R.style.commend_dialog)
@@ -63,7 +63,19 @@ class CommentPage : DialogFragment() {
         commendRv = dialog.findViewById(R.id.dialog_fragment_comment_comment)
         openEdit=dialog.findViewById(R.id.dialog_comment_text_view_open_edit)
 
-        openEdit.setOnClickListener{
+
+
+        return dialog
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        binding=DialogFragmentCommentLayoutBinding.inflate(inflater)
+
+       binding.dialogCommentTextViewOpenEdit.setOnClickListener{
             val fm: FragmentManager = (context as FragmentActivity).supportFragmentManager
             val editNameDialog = EditTextDialogFragment()
             editNameDialog.show(fm, "fragment_edit")
@@ -71,18 +83,18 @@ class CommentPage : DialogFragment() {
 
         val adapter = CommentPageAdapter(requireActivity())
 
-        commendRv.layoutManager=LinearLayoutManager(requireActivity())
-        commendRv.adapter=adapter
+       binding.dialogFragmentCommentComment.layoutManager=LinearLayoutManager(requireActivity())
+       binding.dialogFragmentCommentComment.adapter=adapter
 
-        viewModel.numLiveData.observe(requireActivity()){
+        viewModel.numLiveData.observe(viewLifecycleOwner){
             commendNum.text=it
         }
 
-        viewModel.commentLiveData.observe(requireActivity()){
+        viewModel.commentLiveData.observe(viewLifecycleOwner){
             adapter.submitList(it)
         }
 
-        return dialog
-    }
 
+        return binding.root
+    }
 }

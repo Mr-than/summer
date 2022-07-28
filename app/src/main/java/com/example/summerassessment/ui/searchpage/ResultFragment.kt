@@ -37,7 +37,7 @@ class ResultFragment: Fragment() {
         val adapter=SearchResultAdapter(requireActivity(),5,key)
         binding.fragmentSearchResultRv.adapter=adapter
 
-        viewModel.searchResultLiveData.observe(requireActivity()){
+        viewModel.searchResultLiveData.observe(viewLifecycleOwner){
             adapter.submitList(it)
         }
 

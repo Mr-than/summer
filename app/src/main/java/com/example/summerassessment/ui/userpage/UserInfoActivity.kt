@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.view.MenuItem
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
-import com.example.summerassessment.base.BaseActivity
+import com.example.summerassessment.base.WindowActivity
 import com.example.summerassessment.databinding.ActivityUserInfoBinding
 import com.example.summerassessment.ui.adapter.userinfoadapter.CurrentUserAdapter
 import com.example.summerassessment.ui.adapter.userinfoadapter.UserInfoParentAdapter
@@ -18,7 +18,7 @@ import com.google.android.material.tabs.TabLayoutMediator
  *
  */
 
-class UserInfoActivity : BaseActivity() {
+class UserInfoActivity : WindowActivity() {
 
     private lateinit var binding:ActivityUserInfoBinding
     private val viewModel by lazy { ViewModelProvider(this).get(UserInfoViewModel::class.java) }

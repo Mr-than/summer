@@ -18,6 +18,8 @@ import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.summerassessment.R
+import com.example.summerassessment.databinding.DialogFragmentCommentCommentRvItemBinding
+import com.example.summerassessment.databinding.DialogFragmentCommentEditLayoutBinding
 import com.example.summerassessment.ui.dialogfragment.viewmodel.CommentPageViewModel
 import kotlin.concurrent.thread
 
@@ -28,8 +30,8 @@ import kotlin.concurrent.thread
  *
  */
 class EditTextDialogFragment : DialogFragment() {
-    private lateinit var mEditText: EditText
-    private lateinit var sendCommentImg: ImageView
+    private lateinit var binding:DialogFragmentCommentEditLayoutBinding
+
     private lateinit var comment: String
     private val viewModel: CommentPageViewModel by lazy {
         ViewModelProvider(requireActivity()).get(
@@ -64,28 +66,41 @@ class EditTextDialogFragment : DialogFragment() {
         lp.height = (screenHeight / 14)
 
         window.attributes = lp
-        mEditText = dialog.findViewById(R.id.dialog_commend_text_view_commend_edit)
-        sendCommentImg = dialog.findViewById(R.id.dialog_fragment_text_view_send)
 
-        mEditText.addTextChangedListener(object : TextWatcher {
+
+
+        return dialog
+    }
+
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        binding=DialogFragmentCommentEditLayoutBinding.inflate(inflater)
+
+
+
+        binding.dialogCommendTextViewCommendEdit.addTextChangedListener(object : TextWatcher {
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
 
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (mEditText.text.toString().isNotEmpty()) {
-                    sendCommentImg.setImageResource(R.drawable.send_able)
-                    sendCommentImg.isClickable = true
+                if (binding.dialogCommendTextViewCommendEdit.text.toString().isNotEmpty()) {
+                    binding.dialogFragmentTextViewSend.setImageResource(R.drawable.send_able)
+                    binding.dialogFragmentTextViewSend.isClickable = true
                 } else {
-                    sendCommentImg.setImageResource(R.drawable.send_disable)
-                    sendCommentImg.isClickable = false
+                    binding.dialogFragmentTextViewSend.setImageResource(R.drawable.send_disable)
+                    binding.dialogFragmentTextViewSend.isClickable = false
                 }
             }
 
             override fun afterTextChanged(s: Editable?) {
-                if (mEditText.text.toString().isNotEmpty()) {
-                    comment = mEditText.text.toString()
+                if (binding.dialogCommendTextViewCommendEdit.text.toString().isNotEmpty()) {
+                    comment = binding.dialogCommendTextViewCommendEdit.text.toString()
                 }
             }
         })
@@ -93,31 +108,31 @@ class EditTextDialogFragment : DialogFragment() {
         thread {
             Thread.sleep(200)
             requireActivity().runOnUiThread {
-                mEditText.requestFocus()
-                mEditText.isFocusableInTouchMode = true
+                binding.dialogCommendTextViewCommendEdit.requestFocus()
+                binding.dialogCommendTextViewCommendEdit.isFocusableInTouchMode = true
                 val imm =
                     requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                imm.showSoftInput(mEditText, 0)
+                imm.showSoftInput(binding.dialogCommendTextViewCommendEdit, 0)
             }
         }
 
 
-        viewModel.postIdLiveData.observe(requireActivity()){
-            if(mEditText.text.toString().isNotEmpty()) {
-                val content = mEditText.text.toString()
+        viewModel.postIdLiveData.observe(viewLifecycleOwner){
+            if(binding.dialogCommendTextViewCommendEdit.text.toString().isNotEmpty()) {
+                val content = binding.dialogCommendTextViewCommendEdit.text.toString()
                 viewModel.commentJoke(content, it)
-                mEditText.setText("")
+                binding.dialogCommendTextViewCommendEdit.setText("")
             }
         }
 
 
-        viewModel.postRespondLiveData.observe(requireActivity()){
+        viewModel.postRespondLiveData.observe(viewLifecycleOwner){
             viewModel.refreshComment(it)
         }
 
-        sendCommentImg.setOnClickListener {
+        binding.dialogFragmentTextViewSend.setOnClickListener {
 
-            if(mEditText.text.toString().isNotEmpty()) {
+            if(binding.dialogCommendTextViewCommendEdit.text.toString().isNotEmpty()) {
                 viewModel.getId()
 
             }else{
@@ -126,7 +141,8 @@ class EditTextDialogFragment : DialogFragment() {
 
         }
 
-        return dialog
-    }
 
+
+        return binding.root
+    }
 }

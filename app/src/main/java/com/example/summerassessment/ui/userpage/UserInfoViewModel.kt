@@ -65,7 +65,7 @@ class UserInfoViewModel: ViewModel() {
         ob.subscribeOn(Schedulers.io())
             .map {
                 it.data
-            }.subscribeOn(AndroidSchedulers.mainThread())
+            }.observeOn(AndroidSchedulers.mainThread())
             .subscribe(object : Observer<List<DataU>> {
                 override fun onCompleted() {
 
@@ -95,7 +95,7 @@ class UserInfoViewModel: ViewModel() {
         ob.subscribeOn(Schedulers.io())
             .map {
                 it.data
-            }.subscribeOn(AndroidSchedulers.mainThread())
+            }.observeOn(AndroidSchedulers.mainThread())
             .subscribe(object : Observer<List<Data>> {
                 override fun onCompleted() {
 
@@ -124,7 +124,7 @@ class UserInfoViewModel: ViewModel() {
         ownVideoPage++
 
         ob.subscribeOn(Schedulers.io())
-            .subscribeOn(AndroidSchedulers.mainThread())
+            .observeOn(AndroidSchedulers.mainThread())
             .map {
                 it.data
             }.subscribe(object : Observer<List<DataU>> {
@@ -155,7 +155,7 @@ class UserInfoViewModel: ViewModel() {
         ob.subscribeOn(Schedulers.io())
             .map {
                 it.data
-            }.subscribeOn(AndroidSchedulers.mainThread())
+            }.observeOn(AndroidSchedulers.mainThread())
             .subscribe(object : Observer<List<Data>> {
                 override fun onCompleted() {
 
@@ -182,7 +182,7 @@ class UserInfoViewModel: ViewModel() {
         UserInfoRepository.getUserMessage(id).map {
             it.data
         }.subscribeOn(Schedulers.io())
-            .subscribeOn(AndroidSchedulers.mainThread())
+            .observeOn(AndroidSchedulers.mainThread())
             .subscribe(object : Observer<DataE>{
                 override fun onCompleted() {
 
@@ -205,7 +205,7 @@ class UserInfoViewModel: ViewModel() {
         ob.map {
             it.data
         }.subscribeOn(Schedulers.io())
-         .subscribeOn(AndroidSchedulers.mainThread())
+         .observeOn(AndroidSchedulers.mainThread())
             .subscribe(object:Observer<List<DataM>>{
                 override fun onCompleted() {
 

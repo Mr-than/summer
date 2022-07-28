@@ -30,12 +30,11 @@ class PostActivityViewModel : ViewModel() {
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun getToken(data: ByteArray, name: String, content: String) {
-
-        thread {
             val ob = PostActivityRepository.getToken(name)
             ob.map {
                 it
             }
+                .observeOn(Schedulers.io())
                 .observeOn(Schedulers.io())
                 .subscribe(object : Observer<PostTokenData> {
                     override fun onCompleted() {
@@ -62,8 +61,6 @@ class PostActivityViewModel : ViewModel() {
                     }
 
                 })
-
-        }
 
     }
 

@@ -55,7 +55,7 @@ class HomeFragmentViewModel : ViewModel() {
         ob.subscribeOn(Schedulers.io())
             .map {
                 it.data
-            }.subscribeOn(Schedulers.io())
+            }.observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 _recommendFollowListLiveData.postValue(it)
             }

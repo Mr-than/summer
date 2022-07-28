@@ -35,7 +35,7 @@ class MessageViewModel: ViewModel() {
         }.doOnError {
 
         }.subscribeOn(Schedulers.io())
-            .subscribeOn(AndroidSchedulers.mainThread())
+            .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 _message.postValue(it)
             }

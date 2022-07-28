@@ -37,7 +37,7 @@ class LoginViewModel : ViewModel() {
         apiLoginService.getCode(requestBody).doOnError {
 
         }.subscribeOn(Schedulers.io())
-            .subscribeOn(AndroidSchedulers.mainThread())
+            .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 _codeLiveData.postValue(it.msg)
             }
@@ -59,7 +59,7 @@ class LoginViewModel : ViewModel() {
             .doOnError {
 
         }.subscribeOn(Schedulers.io())
-            .subscribeOn(AndroidSchedulers.mainThread())
+            .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 _loginLiveData.postValue(it)
             }

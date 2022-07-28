@@ -26,12 +26,11 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.lifecycle.ViewModelProvider
 import com.example.summerassessment.R
-import com.example.summerassessment.base.BaseActivity
+import com.example.summerassessment.base.WindowActivity
 import com.example.summerassessment.databinding.ActivityPostArticlesBinding
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileNotFoundException
-import java.util.*
 import kotlin.random.Random
 
 /**
@@ -41,7 +40,7 @@ import kotlin.random.Random
  *
  */
 
-class PostArticlesActivity : BaseActivity() {
+class PostArticlesActivity : WindowActivity() {
 
     private lateinit var binding:ActivityPostArticlesBinding
 

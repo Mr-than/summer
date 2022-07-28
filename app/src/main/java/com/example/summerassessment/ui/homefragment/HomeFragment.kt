@@ -82,23 +82,23 @@ class HomeFragment : Fragment() {
 
 
 
-        viewModel.recommendLiveData.observe(requireActivity()) { p ->
+        viewModel.recommendLiveData.observe(viewLifecycleOwner) { p ->
             homeAdapter1.submitList(p)
         }
 
-        viewModel.newLiveData.observe(requireActivity()) { p ->
+        viewModel.newLiveData.observe(viewLifecycleOwner) { p ->
             homeAdapter2.submitList(p)
         }
 
-        viewModel.textLiveData.observe(requireActivity()) { p ->
+        viewModel.textLiveData.observe(viewLifecycleOwner) { p ->
             homeAdapter3.submitList(p)
         }
 
-        viewModel.picLiveData.observe(requireActivity()) { p ->
+        viewModel.picLiveData.observe(viewLifecycleOwner) { p ->
             homeAdapter4.submitList(p)
         }
 
-        viewModel.followLiveData.observe(requireActivity()) {
+        viewModel.followLiveData.observe(viewLifecycleOwner) {
             followPageAdapter.submitList(it)
         }
 

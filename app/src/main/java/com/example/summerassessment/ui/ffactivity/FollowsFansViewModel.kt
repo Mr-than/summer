@@ -38,7 +38,7 @@ class FollowsFansViewModel: ViewModel() {
             it.data
             }
             .subscribeOn(Schedulers.io())
-            .subscribeOn(AndroidSchedulers.mainThread())
+            .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 if(!list1.containsAll(it)){
                     list1.addAll(it)
@@ -56,7 +56,7 @@ class FollowsFansViewModel: ViewModel() {
         val ob= FollowFansRepository.setUserFollow(state,id)
 
         ob.subscribeOn(Schedulers.io())
-            .subscribeOn(AndroidSchedulers.mainThread())
+            .observeOn(AndroidSchedulers.mainThread())
             .doOnError {
                 list1
             }
@@ -76,7 +76,7 @@ class FollowsFansViewModel: ViewModel() {
             it.data
         }
             .subscribeOn(Schedulers.io())
-            .subscribeOn(AndroidSchedulers.mainThread())
+            .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 if(!list2.containsAll(it)){
                     list2.addAll(it)
