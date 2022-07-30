@@ -1,10 +1,12 @@
 package com.example.summerassessment.ui.adapter
 
 import android.content.Context
+import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
-import com.example.summerassessment.ui.adapter.homeadapter.HomeAdapter
-import com.example.summerassessment.ui.searchpage.SearchActivity
-import com.example.summerassessment.ui.searchpage.viewmodel.ResultViewModel
+import androidx.recyclerview.widget.RecyclerView
+import com.example.summerassessment.ui.adapter.home.HomeAdapter
+import com.example.summerassessment.ui.search.SearchActivity
+import com.example.summerassessment.ui.search.viewmodel.ResultViewModel
 
 
 /**
@@ -12,17 +14,17 @@ import com.example.summerassessment.ui.searchpage.viewmodel.ResultViewModel
  *   @author:冉跃
  *   email:2058109198@qq.com
  */
-class SearchResultAdapter(private val context: Context, private val adapterTag: Int,private val keyWord:String?) :
+class SearchResultAdapter(private val context: FragmentActivity, private val adapterTag: Int,private val keyWord:String?) :
     HomeAdapter(context, adapterTag) {
 
         private val viewModel by lazy { ViewModelProvider(context as SearchActivity).get(ResultViewModel::class.java) }
 
-        override fun update(i:Boolean){
+        override fun update(i: Boolean, recyclerView: RecyclerView?) {
             when(adapterTag){
                 5->{
                     viewModel.getSearchResultData(keyWord)
                 }
-                else->super.update(i)
+                else->super.update(i,recyclerView)
             }
 
         }

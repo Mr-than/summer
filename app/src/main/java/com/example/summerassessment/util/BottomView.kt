@@ -14,9 +14,9 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.lifecycle.ViewModelProvider
 import com.example.summerassessment.R
 import com.example.summerassessment.databinding.MainActivityBottomViewBinding
-import com.example.summerassessment.ui.mainactivity.MainActivity
-import com.example.summerassessment.ui.mainactivity.MainActivityViewModel
-import com.example.summerassessment.ui.postarticlespage.PostArticlesActivity
+import com.example.summerassessment.ui.main.MainActivity
+import com.example.summerassessment.ui.main.viewmodel.MainActivityViewModel
+import com.example.summerassessment.ui.publish.PostArticlesActivity
 
 /**
  *   description:底部导航栏

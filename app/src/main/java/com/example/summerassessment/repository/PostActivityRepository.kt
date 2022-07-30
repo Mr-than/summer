@@ -2,9 +2,8 @@ package com.example.summerassessment.repository
 
 import com.example.summerassessment.base.APP
 import com.example.summerassessment.model.AllData
-import com.example.summerassessment.model.Data
 import com.example.summerassessment.model.PostTokenData
-import com.example.summerassessment.services.ApiPostService
+import com.example.summerassessment.services.PostService
 import com.example.summerassessment.util.create
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -17,7 +16,7 @@ import rx.Observable
  *   email:2058109198@qq.com
  */
 object PostActivityRepository {
-    private val apiPostService:ApiPostService= create()
+    private val postService:PostService= create()
 
     fun getToken(name:String): Observable<PostTokenData> {
         val requestBody: RequestBody = MultipartBody.Builder()
@@ -26,7 +25,7 @@ object PostActivityRepository {
             .addFormDataPart("type","0")
             .build()
 
-        return apiPostService.getToken(requestBody, APP.token)
+        return postService.getToken(requestBody, APP.token)
     }
 
     fun postImg(content:String,url:String): Observable<AllData>{
@@ -37,7 +36,7 @@ object PostActivityRepository {
             .addFormDataPart("type","2")
             .addFormDataPart("image_urls",url)
             .build()
-        return apiPostService.postImg(requestBody,APP.token)
+        return postService.postImg(requestBody,APP.token)
     }
 
     fun postText(content:String): Observable<AllData>{
@@ -47,7 +46,7 @@ object PostActivityRepository {
             .addFormDataPart("type","1")
             .build()
 
-        return apiPostService.postImg(requestBody,APP.token)
+        return postService.postImg(requestBody,APP.token)
     }
 
 }

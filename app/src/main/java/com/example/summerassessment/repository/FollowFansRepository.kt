@@ -3,7 +3,7 @@ package com.example.summerassessment.repository
 import com.example.summerassessment.base.APP
 import com.example.summerassessment.model.AllData
 import com.example.summerassessment.model.AttentionUserListData
-import com.example.summerassessment.services.ApiFollowService
+import com.example.summerassessment.services.FollowService
 import com.example.summerassessment.util.create
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -16,7 +16,7 @@ import rx.Observable
  *   email:2058109198@qq.com
  */
 object FollowFansRepository {
-    private val apiFollowService:ApiFollowService= create()
+    private val followService:FollowService= create()
 
 
     fun getFollowData(id:String,page:String): Observable<AttentionUserListData> {
@@ -27,7 +27,7 @@ object FollowFansRepository {
             .addFormDataPart("targetUserId",id)
             .build()
 
-        return apiFollowService.userFollowList(requestBody, APP.token)
+        return followService.userFollowList(requestBody, APP.token)
     }
 
     fun setUserFollow(state:String,id:String): Observable<AllData>{
@@ -37,7 +37,7 @@ object FollowFansRepository {
             .addFormDataPart("userId",id)
             .build()
 
-        return apiFollowService.setUserFollow(requestBody,APP.token)
+        return followService.setUserFollow(requestBody,APP.token)
     }
 
     fun getFanData(id:String,page:String): Observable<AttentionUserListData> {
@@ -48,7 +48,7 @@ object FollowFansRepository {
             .addFormDataPart("targetUserId",id)
             .build()
 
-        return apiFollowService.userFanList(requestBody,APP.token)
+        return followService.userFanList(requestBody,APP.token)
     }
 
 }

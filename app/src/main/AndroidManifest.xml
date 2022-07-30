@@ -30,13 +30,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.logactivity.LoginActivity"
+            android:name=".ui.login.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.ffactivity.FollowsFansActivity"
+            android:name=".ui.follow.FollowsFansActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.jokedetail.DetailActivity"
+            android:name=".ui.detail.DetailActivity"
             android:exported="false" />
 
         <provider
@@ -50,17 +50,17 @@
         </provider>
 
         <activity
-            android:name=".ui.postarticlespage.PostArticlesActivity"
+            android:name=".ui.publish.PostArticlesActivity"
             android:exported="true"
             android:label="" />
         <activity
-            android:name=".ui.searchpage.SearchActivity"
+            android:name=".ui.search.SearchActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.userpage.UserInfoActivity"
+            android:name=".ui.user.UserInfoActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.mainactivity.MainActivity"
+            android:name=".ui.main.MainActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="true"
             android:label=""

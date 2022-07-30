@@ -9,7 +9,6 @@ import android.content.Context
 class APP:Application() {
     override fun onCreate(){
         super.onCreate()
-
         context=applicationContext
     }
 

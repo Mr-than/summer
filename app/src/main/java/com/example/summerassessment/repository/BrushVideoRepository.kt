@@ -1,6 +1,6 @@
 package com.example.summerassessment.repository
 
-import com.example.summerassessment.services.ApiPlayService
+import com.example.summerassessment.services.PlayService
 import com.example.summerassessment.util.create
 
 
@@ -12,8 +12,8 @@ import com.example.summerassessment.util.create
 //其实这里可以不要仓库层，因为这里的这一层的功能单一且简单
 object BrushVideoRepository {
 
-    private val apiPlayService =create<ApiPlayService>()
+    private val playService =create<PlayService>()
 
-    fun getVideoData()= apiPlayService.getVideoData()
+    fun getVideoData()= playService.getVideoData()
 
 }

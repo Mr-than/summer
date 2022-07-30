@@ -3,7 +3,7 @@ package com.example.summerassessment.repository
 
 import com.example.summerassessment.base.APP
 import com.example.summerassessment.model.*
-import com.example.summerassessment.services.ApiHomeService
+import com.example.summerassessment.services.HomeService
 import com.example.summerassessment.util.create
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -19,23 +19,23 @@ import rx.Observable
 object HomePageRepository{
 
 
-    private val apiHomeService=create<ApiHomeService>()
+    private val homeService=create<HomeService>()
 
 
     fun getPagingData(p:Int,page:Int): Observable<RecommendListBean> {
         return when(p){
             0->{
                 val a=APP.token
-                apiHomeService.getRecommendList(APP.token)
+                homeService.getRecommendList(APP.token)
             }
             1->{
-                apiHomeService.getNewList(APP.token)
+                homeService.getNewList(APP.token)
             }
             2->{
-                apiHomeService.getTextList(APP.token)
+                homeService.getTextList(APP.token)
             }
             3->{
-                apiHomeService.getPicList(APP.token)
+                homeService.getPicList(APP.token)
             }
             else->{
 
@@ -44,13 +44,13 @@ object HomePageRepository{
                     .addFormDataPart("page", "$page")
                     .build()
 
-                apiHomeService.getFollowArt(requestBody,APP.token)
+                homeService.getFollowArt(requestBody,APP.token)
             }
         }
 
     }
 
-    fun getRecommendFollowData()=apiHomeService.getRecommendFollow(APP.token)
+    fun getRecommendFollowData()=homeService.getRecommendFollow(APP.token)
 
     fun getCommentData(id:Int,a:Int):Observable<CommentData> {
         val requestBody: RequestBody = MultipartBody.Builder()
@@ -58,7 +58,7 @@ object HomePageRepository{
             .addFormDataPart("jokeId", "$id")
             .build()
 
-        return apiHomeService.getCommentData(requestBody,APP.token)
+        return homeService.getCommentData(requestBody,APP.token)
     }
 
 
@@ -70,7 +70,7 @@ object HomePageRepository{
             .addFormDataPart("status","$state")
             .build()
 
-        return apiHomeService.setIsLike(requestBody,APP.token)
+        return homeService.setIsLike(requestBody,APP.token)
     }
 
     fun setUnLike(id:Int,state:Boolean):Observable<IsLikeData>{
@@ -81,7 +81,7 @@ object HomePageRepository{
             .addFormDataPart("status","$state")
             .build()
 
-        return apiHomeService.setIsNotLike(requestBody,APP.token)
+        return homeService.setIsNotLike(requestBody,APP.token)
     }
 
     fun postComment(content:String,id:String):Observable<PostCommentRespond>{
@@ -92,7 +92,7 @@ object HomePageRepository{
             .addFormDataPart("jokeId",id)
             .build()
 
-        return apiHomeService.postComment(requestBody,APP.token)
+        return homeService.postComment(requestBody,APP.token)
     }
 
 
@@ -104,7 +104,7 @@ object HomePageRepository{
             .addFormDataPart("userId",userId)
             .build()
 
-        return apiHomeService.setUserFollow(requestBody,APP.token)
+        return homeService.setUserFollow(requestBody,APP.token)
     }
 
 }

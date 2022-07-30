@@ -12,7 +12,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.example.summerassessment.databinding.FragmentBrushVideoVp2ItemBinding
 import com.example.summerassessment.model.Data
 import com.example.summerassessment.model.DataA
-import com.example.summerassessment.ui.mainactivity.MainActivity
+import com.example.summerassessment.ui.main.MainActivity
 import com.example.summerassessment.util.decrypt
 import xyz.doikki.videocontroller.StandardVideoController
 import xyz.doikki.videocontroller.component.CompleteView

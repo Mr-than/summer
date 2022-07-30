@@ -15,6 +15,10 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.viewpager.widget.ViewPager
 import kotlin.math.sqrt
 
+/**
+ * 用于显示放大图片
+ * 这个类是网上cv的
+ */
 class ZoomImageView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
@@ -46,7 +50,7 @@ class ZoomImageView @JvmOverloads constructor(
     private var isCheckLeftAndRight = false
     private var isCheckTopAndBottom = false
 
-    /*********双击放大与缩小 */
+    /*双击放大与缩小*/
     private val mGestureDetector: GestureDetector
     private var isAutoScale = false
 

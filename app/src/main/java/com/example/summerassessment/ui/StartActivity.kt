@@ -5,8 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.summerassessment.R
 import com.example.summerassessment.base.APP
-import com.example.summerassessment.ui.logactivity.LoginActivity
-import com.example.summerassessment.ui.mainactivity.MainActivity
+import com.example.summerassessment.ui.login.LoginActivity
+import com.example.summerassessment.ui.main.MainActivity
 import kotlin.concurrent.thread
 
 /**

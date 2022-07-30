@@ -43,6 +43,9 @@ android {
 }
 
 dependencies {
+
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.3'
+
     implementation 'xyz.doikki.android.dkplayer:dkplayer-ui:3.3.6'
 
     implementation 'com.qiniu:qiniu-android-sdk:8.4.+'

@@ -2,20 +2,20 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:background="@drawable/shape_shadow"
     android:id="@+id/bottom_parent"
+    android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
+    android:background="@drawable/shape_shadow"
     android:clipChildren="false">
 
 
     <LinearLayout
-        android:layout_marginLeft="8dp"
-        android:clickable="true"
-        android:focusable="true"
         android:id="@+id/bottom_button_home_layout"
         android:layout_width="wrap_content"
         android:layout_height="35dp"
+        android:layout_marginLeft="8dp"
+        android:clickable="true"
+        android:focusable="true"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -30,20 +30,20 @@
 
         <TextView
             android:id="@+id/bottom_button_home_layout_text"
-            android:textSize="10sp"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:text="首页" />
+            android:text="首页"
+            android:textSize="10sp" />
     </LinearLayout>
 
     <LinearLayout
-        android:clickable="true"
-        android:focusable="true"
         android:id="@+id/bottom_button_play_layout"
         android:layout_width="wrap_content"
         android:layout_height="35dp"
+        android:clickable="true"
+        android:focusable="true"
         android:orientation="vertical"
         android:paddingTop="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -60,37 +60,37 @@
 
         <TextView
             android:id="@+id/bottom_button_play_layout_text"
-            android:textSize="10dp"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:text="划一划" />
+            android:text="划一划"
+            android:textSize="10dp" />
     </LinearLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:clickable="true"
-        android:focusable="true"
-        android:paddingTop="3dp"
-        android:paddingStart="3dp"
-        android:paddingEnd="3dp"
-        android:background="@drawable/shape_round"
         android:id="@+id/bottom_button_plus_layout"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginBottom="30dp"
+        android:background="@drawable/shape_round"
+        android:clickable="true"
+        android:focusable="true"
+        android:paddingStart="3dp"
+        android:paddingTop="3dp"
+        android:paddingEnd="3dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/bottom_button_my_layout"
         app:layout_constraintStart_toStartOf="@+id/bottom_button_home_layout"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:layout_marginTop="5dp"
-            android:clipChildren="false"
             android:id="@+id/bottom_button_plus_layout_image"
             android:layout_width="47dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:background="@drawable/shape_round_white"
+            android:clipChildren="false"
             android:src="@drawable/plus"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -101,11 +101,11 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
-        android:clickable="true"
-        android:focusable="true"
         android:id="@+id/bottom_button_new_layout"
         android:layout_width="wrap_content"
         android:layout_height="35dp"
+        android:clickable="true"
+        android:focusable="true"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/bottom_button_my_layout"
@@ -121,21 +121,21 @@
 
         <TextView
             android:id="@+id/bottom_button_new_layout_text"
-            android:textSize="10dp"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:text="消息" />
+            android:text="消息"
+            android:textSize="10dp" />
     </LinearLayout>
 
     <LinearLayout
-        android:layout_marginRight="8dp"
-        android:clickable="true"
-        android:focusable="true"
         android:id="@+id/bottom_button_my_layout"
         android:layout_width="wrap_content"
         android:layout_height="35dp"
+        android:layout_marginRight="8dp"
+        android:clickable="true"
+        android:focusable="true"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -150,12 +150,12 @@
 
         <TextView
             android:id="@+id/bottom_button_my_layout_text"
-            android:textSize="10dp"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:text="我的" />
+            android:text="我的"
+            android:textSize="10dp" />
     </LinearLayout>
 
 

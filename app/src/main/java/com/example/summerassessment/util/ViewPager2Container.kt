@@ -31,9 +31,6 @@ class ViewPager2Container @JvmOverloads constructor(context: Context, attrs: Att
                 break
             }
         }
-        if (mViewPager2 == null) {
-            throw IllegalStateException("The root child of ViewPager2Container must contains a ViewPager2")
-        }
     }
 
     override fun onInterceptTouchEvent(ev: MotionEvent): Boolean {

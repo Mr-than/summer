@@ -2,10 +2,8 @@ package com.example.summerassessment.repository
 
 import com.example.summerassessment.base.APP
 import com.example.summerassessment.model.CurrentUserData
-import com.example.summerassessment.model.UserData
-import com.example.summerassessment.services.ApiMyService
+import com.example.summerassessment.services.MyService
 import com.example.summerassessment.util.create
-import retrofit2.http.Header
 
 import rx.Observable
 
@@ -17,10 +15,10 @@ import rx.Observable
  */
 object MyPageRepository {
 
-    private val apiMyService= create<ApiMyService>()
+    private val myService= create<MyService>()
 
     fun getData(): Observable<CurrentUserData> {
-        return apiMyService.getUser(APP.token)
+        return myService.getUser(APP.token)
     }
 
 }
