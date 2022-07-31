@@ -7,29 +7,29 @@
 
 ## app主要界面
 
- <img src="D:\Android's project\SummerAssessment\img\Screenshot_20220726_171343_com.example.summerasse.jpg" alt="Screenshot_20220726_171343_com.example.summerasse" style="zoom:25%;" />
+ <img src="https://raw.githubusercontent.com/Mr-than/SummerAssessment/main/imgScreenshot_20220726_171343_com.example.summerasse.jpg" style="zoom:25%;" />
 
-<img src="D:\Android's project\SummerAssessment\img\Screenshot_20220726_171351_com.example.summerasse.jpg" alt="Screenshot_20220726_171351_com.example.summerasse" style="zoom:25%;" />
+<img src="https://raw.githubusercontent.com/Mr-than/SummerAssessment/main/imgScreenshot_20220726_171351_com.example.summerasse.jpg" style="zoom:25%;" />
 
-<img src="D:\Android's project\SummerAssessment\img\Screenshot_20220726_171411_com.example.summerasse.jpg" alt="Screenshot_20220726_171411_com.example.summerasse" style="zoom:25%;" />
+<img src="https://raw.githubusercontent.com/Mr-than/SummerAssessment/main/imgScreenshot_20220726_171411_com.example.summerasse.jpg" style="zoom:25%;" />
 
-<img src="D:\Android's project\SummerAssessment\img\Screenshot_20220726_171416_com.example.summerasse.jpg" alt="Screenshot_20220726_171416_com.example.summerasse" style="zoom:25%;" />
+<img src="https://raw.githubusercontent.com/Mr-than/SummerAssessment/main/imgScreenshot_20220726_171416_com.example.summerasse.jpg" style="zoom:25%;" />
 
-<img src="D:\Android's project\SummerAssessment\img\Screenshot_20220726_171422_com.example.summerasse.jpg" alt="Screenshot_20220726_171422_com.example.summerasse" style="zoom:25%;" />
+<img src="https://raw.githubusercontent.com/Mr-than/SummerAssessment/main/imgScreenshot_20220726_171422_com.example.summerasse.jpg" style="zoom:25%;" />
 
-<img src="D:\Android's project\SummerAssessment\img\Screenshot_20220726_171449_com.example.summerasse.jpg" alt="Screenshot_20220726_171449_com.example.summerasse" style="zoom:25%;" />
+<img src="https://raw.githubusercontent.com/Mr-than/SummerAssessment/main/imgScreenshot_20220726_171449_com.example.summerasse.jpg" style="zoom:25%;" />
 
-<img src="D:\Android's project\SummerAssessment\img\Screenshot_20220726_171458_com.example.summerasse.jpg" alt="Screenshot_20220726_171458_com.example.summerasse" style="zoom:25%;" />
+<img src="https://raw.githubusercontent.com/Mr-than/SummerAssessment/main/imgScreenshot_20220726_171458_com.example.summerasse.jpg" style="zoom:25%;" />
 
-<img src="D:\Android's project\SummerAssessment\img\Screenshot_20220726_171503_com.example.summerasse.jpg" alt="Screenshot_20220726_171503_com.example.summerasse" style="zoom:25%;" />
+<img src="https://raw.githubusercontent.com/Mr-than/SummerAssessment/main/imgScreenshot_20220726_171503_com.example.summerasse.jpg" style="zoom:25%;" />
 
-<img src="D:\Android's project\SummerAssessment\img\Screenshot_20220726_171507_com.example.summerasse.jpg" alt="Screenshot_20220726_171507_com.example.summerasse" style="zoom:25%;" />
+<img src="https://raw.githubusercontent.com/Mr-than/SummerAssessment/main/imgScreenshot_20220726_171507_com.example.summerasse.jpg" style="zoom:25%;" />
 
-<img src="D:\Android's project\SummerAssessment\img\Screenshot_20220726_171525_com.example.summerasse.jpg" alt="Screenshot_20220726_171525_com.example.summerasse" style="zoom:25%;" />
+<img src="https://raw.githubusercontent.com/Mr-than/SummerAssessment/main/imgScreenshot_20220726_171525_com.example.summerasse.jpg" style="zoom:25%;" />
 
-<img src="D:\Android's project\SummerAssessment\img\Screenshot_20220726_171531_com.example.summerasse.jpg" alt="Screenshot_20220726_171531_com.example.summerasse" style="zoom:25%;" />
+<img src="https://raw.githubusercontent.com/Mr-than/SummerAssessment/main/imgScreenshot_20220726_171531_com.example.summerasse.jpg" style="zoom:25%;" />
 
-<img src="D:\Android's project\SummerAssessment\img\Screenshot_20220726_171559_com.example.summerasse.jpg" alt="Screenshot_20220726_171559_com.example.summerasse" style="zoom:25%;" />
+<img src="https://raw.githubusercontent.com/Mr-than/SummerAssessment/main/imgScreenshot_20220726_171559_com.example.summerasse.jpg" style="zoom:25%;" />
 
 ## 用到的技术
 
