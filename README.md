@@ -43,7 +43,7 @@
 
 ### **[DKVideoPlayer](https://github.com/Doikki/DKVideoPlayer)**
 
-这是一个第三方的视频播放器框架，得到学长允许后使用，主要用来播放视频
+这是一个第三方的视频播放器框架，播放视频
 
 ## 心得
 
